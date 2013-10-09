@@ -3,6 +3,7 @@
 namespace Piddo\UsuarioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Usuario
@@ -10,16 +11,15 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Piddo\UsuarioBundle\Entity\UsuarioRepository")
  */
-class Usuario
+class Usuario implements UserInterface
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="rut", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $rut;
 
     /**
      * @var string
@@ -27,6 +27,13 @@ class Usuario
      * @ORM\Column(name="password", type="string", length=100)
      */
     private $password;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=100)
+     */
+    private $salt;
 
     /**
      * @var string
@@ -69,9 +76,9 @@ class Usuario
      *
      * @return integer 
      */
-    public function getId()
+    public function getRut()
     {
-        return $this->id;
+        return $this->rut;
     }
 
     /**
@@ -95,6 +102,29 @@ class Usuario
     public function getPassword()
     {
         return $this->password;
+    }
+    
+       /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return Usuario
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string 
+     */
+    public function getSalt()
+    {
+        return $this->salt;
     }
 
     /**
@@ -210,5 +240,22 @@ class Usuario
     public function getCargo()
     {
         return $this->cargo;
+    }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getRoles() {
+        return array('ROLE_USUARIO');
+        return $this->getCargo();
+    }
+
+    public function getUsername() {
+        return $this->getRut();
+    }
+    
+    public function __toString() {
+        return $this->getNombre().' '.$this->getApellidos();
     }
 }
