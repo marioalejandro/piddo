@@ -2861,6 +2861,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('/home/seba/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views', 'Twig');
         $instance->addPath('/home/seba/Documentos/piddo/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
         $instance->addPath('/home/seba/Documentos/piddo/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
+        $instance->addPath('/home/seba/Documentos/piddo/src/Piddo/UsuarioBundle/Resources/views', 'Usuario');
         $instance->addPath('/home/seba/Documentos/piddo/src/Acme/DemoBundle/Resources/views', 'AcmeDemo');
         $instance->addPath('/home/seba/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('/home/seba/Documentos/piddo/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
@@ -3311,6 +3312,7 @@ class appDevDebugProjectContainer extends Container
                 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
                 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
+                'UsuarioBundle' => 'Piddo\\UsuarioBundle\\UsuarioBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
