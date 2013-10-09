@@ -80,6 +80,19 @@ class Usuario implements UserInterface
     {
         return $this->rut;
     }
+    
+     /**
+     * Set rut
+     *
+     * @param integer $rut
+     * @return Usuario
+     */
+    public function setRut($rut)
+    {
+        $this->rut = $rut;
+    
+        return $this;
+    }
 
     /**
      * Set password

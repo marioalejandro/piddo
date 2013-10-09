@@ -1,1 +1,6 @@
 Hello {{ name }}!
+ {% for tipo, mensajes in app.session.flashbag.all() %}
+        {% for mensaje in mensajes %}
+            <p class="flash-{{ tipo }}">{{ mensaje }}</p>
+        {% endfor %}
+    {% endfor %}
