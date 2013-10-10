@@ -10,13 +10,20 @@ security:
             login_path: usuario_login
             check_path: usuario_login_check
             default_target_path: /hello/Usuario
+            always_use_default_target_path:  true
     
     providers:
       usuarios:
         entity: { class: Piddo\UsuarioBundle\Entity\Usuario, property: rut}
 
     access_control:
-      - { path: ^/privado, roles: ROLE_USUARIO }
+      - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/gerente, roles: ROLE_GERENTE }
+      - { path: ^/recepcion, roles: ROLE_RECEPCION }
+      - { path: ^/jefetaller, roles: ROLE_JEFETALLER }
+      - { path: ^/*, roles: ROLE_USUARIO }
+      #- { path: ^/privado, roles: ROLE_USUARIO }
 
     encoders:
       Piddo\UsuarioBundle\Entity\Usuario: { algorithm: sha512, iterations: 10 }

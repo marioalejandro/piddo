@@ -260,7 +260,7 @@ class Usuario implements UserInterface
     }
 
     public function getRoles() {
-        return array('ROLE_USUARIO');
+        return array('ROLE_USUARIO','ROLE_GERENTE','ROLE_RECEPCION');
         return $this->getCargo();
     }
 

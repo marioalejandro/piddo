@@ -143,6 +143,41 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::privadoAction',  '_route' => 'usuario_privado',);
         }
 
+        // usuario_gerente
+        if ($pathinfo === '/gerente') {
+            return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::gerenteAction',  '_route' => 'usuario_gerente',);
+        }
+
+        // usuario_recepcion
+        if ($pathinfo === '/recepcion') {
+            return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::recepcionAction',  '_route' => 'usuario_recepcion',);
+        }
+
+        // usuario_jefe_taller
+        if ($pathinfo === '/jefetaller') {
+            return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::jefeTallerAction',  '_route' => 'usuario_jefe_taller',);
+        }
+
+        // usario_repuestos
+        if ($pathinfo === '/repuestos') {
+            return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::repuestosAction',  '_route' => 'usario_repuestos',);
+        }
+
+        // usuario_administracion
+        if ($pathinfo === '/administracion') {
+            return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::administracionAction',  '_route' => 'usuario_administracion',);
+        }
+
+        // usuario_desarme
+        if ($pathinfo === '/desarme') {
+            return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::desarmeAction',  '_route' => 'usuario_desarme',);
+        }
+
+        // usuario_taller
+        if ($pathinfo === '/taller') {
+            return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::tallerAction',  '_route' => 'usuario_taller',);
+        }
+
         // usuario_registro
         if ($pathinfo === '/registro') {
             return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::registroAction',  '_route' => 'usuario_registro',);

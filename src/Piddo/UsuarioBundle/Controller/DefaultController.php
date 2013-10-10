@@ -19,6 +19,18 @@ class DefaultController extends Controller
     {
         return $this->render('UsuarioBundle:Default:privado.html.twig');
     }
+    public function gerenteAction()
+    {
+        return $this->render('UsuarioBundle:Default:gerente.html.twig');
+    }
+    public function jefeTallerAction()
+    {
+        return $this->render('UsuarioBundle:Default:jefetaller.html.twig');
+    }
+    public function recepcionAction()
+    {
+        return $this->render('UsuarioBundle:Default:recepcion.html.twig');
+    }
     
     public function registroAction()
     {
