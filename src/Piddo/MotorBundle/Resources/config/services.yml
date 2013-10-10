@@ -1,0 +1,7 @@
+parameters:
+#    motor.example.class: Piddo\MotorBundle\Example
+
+services:
+#    motor.example:
+#        class: %motor.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

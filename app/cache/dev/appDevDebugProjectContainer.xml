@@ -17,6 +17,8 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="UsuarioBundle">Piddo\UsuarioBundle\UsuarioBundle</parameter>
+      <parameter key="MotorBundle">Piddo\MotorBundle\MotorBundle</parameter>
+      <parameter key="AdminBundle">Piddo\AdminBundle\AdminBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -1530,7 +1532,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>525705610f738</argument>
+            <argument>52570e32bb16a</argument>
           </service>
         </argument>
       </argument>
@@ -1816,7 +1818,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>525705610f738</argument>
+            <argument>52570e32bb16a</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2268,6 +2270,7 @@
           <call method="setEntityNamespaces">
             <argument type="collection">
               <argument key="UsuarioBundle">Piddo\UsuarioBundle\Entity</argument>
+              <argument key="MotorBundle">Piddo\MotorBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -2306,10 +2309,23 @@
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
                         <argument>/home/mario/piddo/src/Piddo/UsuarioBundle/Entity</argument>
+                        <argument>/home/mario/piddo/src/Piddo/MotorBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
                   <argument>Piddo\UsuarioBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/home/mario/piddo/src/Piddo/UsuarioBundle/Entity</argument>
+                        <argument>/home/mario/piddo/src/Piddo/MotorBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Piddo\MotorBundle\Entity</argument>
                 </call>
               </service>
             </argument>
@@ -2697,6 +2713,14 @@
       <call method="addPath">
         <argument>/home/mario/piddo/src/Piddo/UsuarioBundle/Resources/views</argument>
         <argument>Usuario</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/mario/piddo/src/Piddo/MotorBundle/Resources/views</argument>
+        <argument>Motor</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/mario/piddo/src/Piddo/AdminBundle/Resources/views</argument>
+        <argument>Admin</argument>
       </call>
       <call method="addPath">
         <argument>/home/mario/piddo/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>

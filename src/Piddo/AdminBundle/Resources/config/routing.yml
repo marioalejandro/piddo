@@ -1,0 +1,7 @@
+portada_gerencia:
+    pattern:  /gerencia/portada
+    defaults: { _controller: AdminBundle:Default:portadaGerencia }
+    
+admin_marcas:
+    pattern:  /gerencia/marcas
+    defaults: { _controller: AdminBundle:Default:marcas }

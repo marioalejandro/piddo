@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+ 
+{% block stylesheets %}
+    <link href="{{ asset('bundles/piddo/css/normalizar.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block javascripts %}{% endblock %}
+
+{% block body %}
+    <header>
+        <h1><a href="{{ path('portada_gerencia') }}">Gerencia</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{{ path('admin_marcas')}}">Marca</a></li>
+                <li><a href="#">Modelo</a></li>
+                <li><a href="#">Series</a></li>
+                <li><a href="#">Otros...</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+    <article>
+        {% block article %}{% endblock %}
+    </article>
+ 
+    <aside>
+        {% block aside %}
+        {% endblock %}
+    </aside>
+{% endblock %}
