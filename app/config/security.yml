@@ -23,7 +23,6 @@ security:
       - { path: ^/recepcion, roles: ROLE_RECEPCION }
       - { path: ^/jefetaller, roles: ROLE_JEFETALLER }
       - { path: ^/*, roles: ROLE_USUARIO }
-      #- { path: ^/privado, roles: ROLE_USUARIO }
 
     encoders:
       Piddo\UsuarioBundle\Entity\Usuario: { algorithm: sha512, iterations: 10 }

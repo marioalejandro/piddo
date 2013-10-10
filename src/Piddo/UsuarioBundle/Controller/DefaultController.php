@@ -89,7 +89,6 @@ class DefaultController extends Controller
                 );
         
         return $this->render('UsuarioBundle:Default:login.html.twig',
-                array('last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
-                    'error' => $error));
+                array('error' => $error));
     }
 }
