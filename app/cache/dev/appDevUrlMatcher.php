@@ -148,6 +148,27 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::registroAction',  '_route' => 'usuario_registro',);
         }
 
+        if (0 === strpos($pathinfo, '/log')) {
+            // usuario_logout
+            if ($pathinfo === '/logout') {
+                return array('_route' => 'usuario_logout');
+            }
+
+            if (0 === strpos($pathinfo, '/login')) {
+                // usuario_login_check
+                if ($pathinfo === '/login_check') {
+                    return array('_route' => 'usuario_login_check');
+                }
+
+                // usuario_login
+                if ($pathinfo === '/login') {
+                    return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::loginAction',  '_route' => 'usuario_login',);
+                }
+
+            }
+
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

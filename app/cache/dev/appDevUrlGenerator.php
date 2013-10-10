@@ -33,6 +33,9 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'usuario_homepage' => array (  0 =>   array (    0 => 'name',  ),  1 =>   array (    '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::indexAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'name',    ),    1 =>     array (      0 => 'text',      1 => '/hello',    ),  ),  4 =>   array (  ),),
         'usuario_privado' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::privadoAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/privado',    ),  ),  4 =>   array (  ),),
         'usuario_registro' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::registroAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/registro',    ),  ),  4 =>   array (  ),),
+        'usuario_logout' => array (  0 =>   array (  ),  1 =>   array (  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/logout',    ),  ),  4 =>   array (  ),),
+        'usuario_login_check' => array (  0 =>   array (  ),  1 =>   array (  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/login_check',    ),  ),  4 =>   array (  ),),
+        'usuario_login' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::loginAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/login',    ),  ),  4 =>   array (  ),),
     );
 
     /**

@@ -46,14 +46,14 @@ class DefaultController extends Controller
         $em->persist($usuario);
         $em->flush();
      
-        $this->get('session')->getFlashBag()->add('info', 'Se ha registrado correctamente');
+       /* $this->get('session')->getFlashBag()->add('info', 'Se ha registrado correctamente');
         $token = new UsernamePasswordToken(
                 $usuario,
                 $usuario->getPassword(),
                 'fronted',
                 $usuario->getRoles()
                 );
-        $this->container->get('security.context')->setToken($token);
+        $this->container->get('security.context')->setToken($token);*/
         
         return $this->redirect($this->generateUrl('usuario_homepage', array(
             'name' => 'seba')
@@ -64,6 +64,20 @@ class DefaultController extends Controller
         return $this->render('UsuarioBundle:Default:registro.html.twig', 
                 array('formulario' => $formulario->createView())
                 );
+    }
+    
+    public function loginAction()
+    {
+        $peticion = $this->getRequest();
+        $sesion = $peticion->getSession();
         
+        $error = $peticion->attributes->get(
+        SecurityContext::AUTHENTICATION_ERROR,
+                $sesion->get(SecurityContext::AUTHENTICATION_ERROR)
+                );
+        
+        return $this->render('UsuarioBundle:Default:login.html.twig',
+                array('last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
+                    'error' => $error));
     }
 }

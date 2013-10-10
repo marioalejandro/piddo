@@ -3,6 +3,13 @@ security:
         prueba:
           pattern: ^/*
           anonymous: ~
+          logout:
+            path: usuario_logout
+            target: /hello/Adios
+          form_login:
+            login_path: usuario_login
+            check_path: usuario_login_check
+            default_target_path: /hello/Usuario
     
     providers:
       usuarios:

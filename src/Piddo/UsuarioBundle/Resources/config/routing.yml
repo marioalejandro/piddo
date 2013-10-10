@@ -9,3 +9,13 @@ usuario_privado:
 usuario_registro:
     pattern:  /registro
     defaults: { _controller: UsuarioBundle:Default:registro }
+
+usuario_logout:
+    path: /logout
+
+usuario_login_check:
+    path: /login_check
+    
+usuario_login:
+    pattern:  /login
+    defaults: { _controller: UsuarioBundle:Default:login }

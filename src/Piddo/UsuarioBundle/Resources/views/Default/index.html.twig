@@ -1,6 +1,15 @@
 Hello {{ name }}!
+
+{% if is_granted('ROLE_USUARIO') %}
+
+<p>Conectado como {{ app.user.nombre ~ ' ' ~ app.user.apellidos }}</p>
+
  {% for tipo, mensajes in app.session.flashbag.all() %}
         {% for mensaje in mensajes %}
             <p class="flash-{{ tipo }}">{{ mensaje }}</p>
         {% endfor %}
-    {% endfor %}
+ {% endfor %}
+            
+ <a href="{{ path('usuario_logout') }}">Cerrar sesión</a>
+ 
+ {% endif %}
