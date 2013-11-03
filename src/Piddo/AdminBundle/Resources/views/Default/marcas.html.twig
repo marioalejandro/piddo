@@ -5,7 +5,22 @@
  
 {% block article %}
     <h1>{{ block('title') }}</h1>
-    <p>...Contenido...</p>
+    <section id="formulario_marca">
+        <h4>Agregar nueva Marca</h4>
+        <form action="{{ path('admin_marcas') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_marcas">
+        {% for marca in marcas %}
+            {{ marca.nombre }}
+        {% endfor %}
+        {% if marcas == null%}
+            {{'no hay marcas registradas'}}
+        {%endif%}
+    </section>
+
 {% endblock %}
  
 {% block aside %}

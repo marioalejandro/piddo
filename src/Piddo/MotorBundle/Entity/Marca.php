@@ -3,6 +3,7 @@
 namespace Piddo\MotorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Piddo\AdminBundle\Util\Util;
 
 /**
  * Marca
@@ -27,6 +28,13 @@ class Marca
      * @ORM\Column(name="nombre", type="string", length=100)
      */
     private $nombre;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=100)
+     */
+    private $slug;
 
 
     /**
@@ -48,6 +56,7 @@ class Marca
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        $this->slug = Util::getSlug($nombre);
     
         return $this;
     }
@@ -60,5 +69,28 @@ class Marca
     public function getNombre()
     {
         return $this->nombre;
+    }
+    
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Marca
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

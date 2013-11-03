@@ -9,7 +9,7 @@ security:
           form_login:
             login_path: usuario_login
             check_path: usuario_login_check
-            default_target_path: /hello/Usuario
+            default_target_path: /gerencia/portada
             always_use_default_target_path:  true
     
     providers:
@@ -19,10 +19,8 @@ security:
     access_control:
       - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-      - { path: ^/gerente, roles: ROLE_GERENTE }
-      - { path: ^/recepcion, roles: ROLE_RECEPCION }
-      - { path: ^/jefetaller, roles: ROLE_JEFETALLER }
-      - { path: ^/*, roles: ROLE_USUARIO }
+      - { path: ^/*, roles: ROLE_ADMIN }
 
     encoders:
-      Piddo\UsuarioBundle\Entity\Usuario: { algorithm: sha512, iterations: 10 }
+      Piddo\UsuarioBundle\Entity\Usuario: plaintext
+      #Piddo\UsuarioBundle\Entity\Usuario: { algorithm: sha512, iterations: 10 }

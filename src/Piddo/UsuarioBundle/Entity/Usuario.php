@@ -69,6 +69,13 @@ class Usuario implements UserInterface
      * @ORM\Column(name="cargo", type="string", length=255)
      */
     private $cargo;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles;
 
 
     /**
@@ -254,15 +261,29 @@ class Usuario implements UserInterface
     {
         return $this->cargo;
     }
+    
+    /**
+     * Set roles
+     *
+     * @param string $cargo
+     * @return Usuario
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    
+        return $this;
+    }
+    public function getRoles() {
+        return array('ROLE_ADMIN');
+        return $this->roles;
+    }
 
     public function eraseCredentials() {
         
     }
 
-    public function getRoles() {
-        return array('ROLE_USUARIO','ROLE_GERENTE','ROLE_RECEPCION');
-        return $this->getCargo();
-    }
+
 
     public function getUsername() {
         return $this->getRut();

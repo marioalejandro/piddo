@@ -5,33 +5,10 @@ namespace Piddo\UsuarioBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Piddo\UsuarioBundle\Entity\Usuario;
 use Piddo\UsuarioBundle\Form\UsuarioType;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
-    {
-        return $this->render('UsuarioBundle:Default:index.html.twig', array('name' => $name));
-    }
-    
-    public function privadoAction()
-    {
-        return $this->render('UsuarioBundle:Default:privado.html.twig');
-    }
-    public function gerenteAction()
-    {
-        return $this->render('UsuarioBundle:Default:gerente.html.twig');
-    }
-    public function jefeTallerAction()
-    {
-        return $this->render('UsuarioBundle:Default:jefetaller.html.twig');
-    }
-    public function recepcionAction()
-    {
-        return $this->render('UsuarioBundle:Default:recepcion.html.twig');
-    }
-    
     public function registroAction()
     {
         $peticion = $this->getRequest();
@@ -48,28 +25,30 @@ class DefaultController extends Controller
                     $usuario->getPassword(),
                     $usuario->getSalt()
                     );
-        
-        $usuario->setPassword($passwordCodificado);
-        $usuario->setFechaIngreso(new \DateTime('now'));
-        $usuario->setExiste(true);
-        $usuario->setCargo('ROLE_RECEPCION');
-        
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($usuario);
-        $em->flush();
-     
-       /* $this->get('session')->getFlashBag()->add('info', 'Se ha registrado correctamente');
-        $token = new UsernamePasswordToken(
-                $usuario,
-                $usuario->getPassword(),
-                'fronted',
-                $usuario->getRoles()
-                );
-        $this->container->get('security.context')->setToken($token);*/
-        
-        return $this->redirect($this->generateUrl('usuario_homepage', array(
-            'name' => 'seba')
-             ));
+            //Borrar estas linea y cambiar de plaintext a la otra mierda
+            $usuario->setSalt('');
+            $passwordCodificado = $usuario->getPassword();
+            //hasta aca
+            $usuario->setPassword($passwordCodificado);
+            $usuario->setFechaIngreso(new \DateTime('now'));
+            $usuario->setExiste(true);
+            $usuario->setCargo('subordinado');
+            $usuario->setRoles(array('ROLE_ADMIN'));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush();
+
+           /* $this->get('session')->getFlashBag()->add('info', 'Se ha registrado correctamente');
+            $token = new UsernamePasswordToken(
+                    $usuario,
+                    $usuario->getPassword(),
+                    'fronted',
+                    $usuario->getRoles()
+                    );
+            $this->container->get('security.context')->setToken($token);*/
+
+            return $this->redirect($this->generateUrl('portada_gerencia'));
         
         }
         
