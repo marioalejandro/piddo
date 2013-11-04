@@ -1,7 +1,15 @@
 portada_gerencia:
-    pattern:  /gerencia/portada
+    pattern:  /administracion/portada
     defaults: { _controller: AdminBundle:Default:portadaGerencia }
     
 admin_marcas:
-    pattern:  /gerencia/marcas
+    pattern:  /administracion/marcas
     defaults: { _controller: AdminBundle:Default:marcas }
+    
+borrar_marca:
+    pattern: /administracion/marcas/borrar-{marca}
+    defaults: { _controller: AdminBundle:Default:borrarMarca }
+
+admin_modelos:
+    pattern: /administracion/{marca}/modelos
+    defaults: { _controller: AdminBundle:Default:modelos }
