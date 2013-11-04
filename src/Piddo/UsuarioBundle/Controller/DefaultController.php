@@ -39,16 +39,10 @@ class DefaultController extends Controller
             $em->persist($usuario);
             $em->flush();
 
-           /* $this->get('session')->getFlashBag()->add('info', 'Se ha registrado correctamente');
-            $token = new UsernamePasswordToken(
-                    $usuario,
-                    $usuario->getPassword(),
-                    'fronted',
-                    $usuario->getRoles()
-                    );
-            $this->container->get('security.context')->setToken($token);*/
+           $this->get('session')->getFlashBag()->add('info', 'Se ha registrado correctamente');
 
-            return $this->redirect($this->generateUrl('portada_gerencia'));
+
+            return $this->redirect($this->generateUrl('usuario_registro'));
         
         }
         

@@ -1,0 +1,41 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}Modelos{% endblock %}
+{% block id 'marcas' %}
+ 
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+    <section id="formulario_marca">
+        <h4>Agregar nuevo Modelo</h4>
+        <form action="{{ path('admin_modelos',{'marca' : marca.slug}) }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_modelos">
+        <table>
+            <tr>
+                <th>Modelo</th>
+                <th>Eliminar</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for modelo in modelos %}
+                <tr>
+                    {{modelo.nombre}}
+                    {#<td><a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a></td>
+                    <td><a href="{{ path('borrar_marca',{'marca': marca.id })}}">{{ 'Eliminar'}}</a></td>#}
+                </tr>
+            {% endfor %}
+        </table>
+        {% if modelos == null%}
+            {{'no hay modelos registrados'}}
+        {%endif%}
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

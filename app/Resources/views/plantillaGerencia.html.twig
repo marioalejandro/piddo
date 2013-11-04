@@ -1,8 +1,6 @@
 {% extends '::base.html.twig' %}
  
-{% block stylesheets %}
-    <link href="{{ asset('bundles/piddo/css/normalizar.css') }}" rel="stylesheet" type="text/css" />
-{% endblock %}
+
 {% block javascripts %}{% endblock %}
 
 {% block body %}
@@ -10,14 +8,26 @@
         <h1><a href="{{ path('portada_gerencia') }}">Gerencia</a></h1>
         <nav>
             <ul>
+                <li><a href="{{ path('usuario_registro')}}">Registrar Usuarios</a></li>
                 <li><a href="{{ path('admin_marcas')}}">Marca</a></li>
-                <li><a href="#">Modelo</a></li>
                 <li><a href="#">Series</a></li>
-                <li><a href="#">Otros...</a></li>
             </ul>
         </nav>
     </header>
- 
+    <section id="mensajes">
+    {% if is_granted('ROLE_ADMIN') %}
+        {% for tipo, mensajes in app.session.flashbag.all() %}
+            {% for mensaje in mensajes %}
+                <p class="flash-{{ tipo }}">{{ mensaje }}</p>
+            {% endfor %}
+        {% endfor %}
+        <p>Conectado como {{ app.user.nombre ~ ' ' ~ app.user.apellidos }}</p>
+        <a href="{{ path('usuario_logout') }}">Cerrar sesión</a>
+
+        {#<a href="{{ path('usuario_perfil') }}">Ver mi perfil</a>#}
+        {#<a href="{{ path('usuario_logout') }}">Cerrar sesión</a>#}
+    {% endif %}
+    </section>    
     <article>
         {% block article %}{% endblock %}
     </article>

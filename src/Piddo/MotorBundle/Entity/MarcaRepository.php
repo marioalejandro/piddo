@@ -12,4 +12,37 @@ use Doctrine\ORM\EntityRepository;
  */
 class MarcaRepository extends EntityRepository
 {
+    public function deleteMarca($marca)
+    {
+        $em = $this->getEntityManager();
+        $consulta = $em->createQuery('DELETE MotorBundle:Marca m WHERE m.id = :marca');
+        $consulta->setParameter('marca',$marca);
+        $consulta->getResult();
+    }
+    public function findMarcas()
+    {
+        $em = $this->getEntityManager();
+ 
+        $dql = 'SELECT m
+                FROM MotorBundle:Marca m
+                ORDER BY m.nombre ASC';
+ 
+        $consulta = $em->createQuery($dql);
+ 
+        return $consulta->getResult();
+    }
+    public function findMarcaModelos($marca)
+    {
+        $em = $this->getEntityManager();
+ 
+        $dql = 'SELECT mo  FROM MotorBundle:Modelo mo
+                WHERE mo.marca = :marca
+                ORDER BY mo.nombre ASC';
+
+ 
+        $consulta = $em->createQuery($dql);
+        $consulta->setParameter('marca', $marca);
+ 
+        return $consulta->getResult();
+    }
 }

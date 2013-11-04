@@ -5,11 +5,11 @@ security:
           anonymous: ~
           logout:
             path: usuario_logout
-            target: /hello/Adios
+            target: /login
           form_login:
             login_path: usuario_login
             check_path: usuario_login_check
-            default_target_path: /gerencia/portada
+            default_target_path: /administracion/portada
             always_use_default_target_path:  true
     
     providers:

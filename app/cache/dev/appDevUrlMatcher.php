@@ -133,15 +133,28 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/gerencia')) {
+        if (0 === strpos($pathinfo, '/administracion')) {
             // portada_gerencia
-            if ($pathinfo === '/gerencia/portada') {
+            if ($pathinfo === '/administracion/portada') {
                 return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::portadaGerenciaAction',  '_route' => 'portada_gerencia',);
             }
 
-            // admin_marcas
-            if ($pathinfo === '/gerencia/marcas') {
-                return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::marcasAction',  '_route' => 'admin_marcas',);
+            if (0 === strpos($pathinfo, '/administracion/marcas')) {
+                // admin_marcas
+                if ($pathinfo === '/administracion/marcas') {
+                    return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::marcasAction',  '_route' => 'admin_marcas',);
+                }
+
+                // borrar_marca
+                if (0 === strpos($pathinfo, '/administracion/marcas/borrar') && preg_match('#^/administracion/marcas/borrar\\-(?P<marca>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'borrar_marca')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::borrarMarcaAction',));
+                }
+
+            }
+
+            // admin_modelos
+            if (preg_match('#^/administracion/(?P<marca>[^/]++)/modelos$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_modelos')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::modelosAction',));
             }
 
         }

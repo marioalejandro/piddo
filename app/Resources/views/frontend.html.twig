@@ -2,10 +2,7 @@
 {% extends '::base.html.twig' %}
 {% set ciudadSeleccionada = app.request.attributes.get('ciudad', ciudad_por_defecto) %}
  
-{% block stylesheets %}
-<link href="{{ asset('bundles/piddo/css/normalizar.css') }}"
-          rel="stylesheet" type="text/css" />
-{% endblock %}
+
 {% block javascripts %}{% endblock %}
 
  

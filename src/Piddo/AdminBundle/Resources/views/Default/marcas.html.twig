@@ -13,9 +13,21 @@
         </form>
     </section>
     <section id="listado_marcas">
-        {% for marca in marcas %}
-            {{ marca.nombre }}
-        {% endfor %}
+        <table>
+            <tr>
+                <th>Marca</th>
+                <th>Eliminar</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for marca in marcas %}
+                <tr>
+                    <td><a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a></td>
+                    <td><a href="{{ path('borrar_marca',{'marca': marca.id })}}">{{ 'Eliminar'}}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
         {% if marcas == null%}
             {{'no hay marcas registradas'}}
         {%endif%}
