@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends '::app.html.twig' %}
 {% block stylesheets %}
-<link href="{{ asset('bundles/piddo/css/normalizar.css') }}"
+<link href="{{ asset('css/estilos.css') }}"
           rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block javascripts %}{% endblock %}
@@ -8,13 +8,12 @@
 {% block title %}Formulario de acceso{% endblock %}
 {% block id 'usuario' %}
 
-{% block body %}
-    <article>
+
         {% block article %}
             {% if error %}
                 <div>{{ error.message }}</div>
             {% endif %}  
-                
+         <div id="centrar">
             <form action="{{ path('usuario_login_check') }}" method="post">
                 <label for="username">Rut:</label>
                 <input type="text" id="username" name="_username"/>
@@ -24,13 +23,8 @@
 
                 <input type="submit" name="login" value="Acceder" />
             </form>
+         </div>
         {% endblock %}
-    </article>
- 
-    <aside>
-
-    </aside>
-{% endblock %}
 
 
 

@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+ 
+{% block stylesheets %}{% endblock %}
+{% block javascripts %}{% endblock %}
+ 
+{% block body %}
+<header>
+    <h1><a href="##">Motores Piddo</a></h1>
+    <div id="usuario">
+        <p></p>
+    </div>
+</header>
+<aside id="derecha">
+    {% block aside %}{% endblock %}
+</aside>
+
+<article>
+    {% block article %}{% endblock %}
+</article>
+ 
+
+{% endblock %}
