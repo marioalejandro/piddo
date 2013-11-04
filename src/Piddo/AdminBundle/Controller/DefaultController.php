@@ -70,8 +70,8 @@ class DefaultController extends Controller
         return $this->render('AdminBundle:Default:modelos.html.twig', 
                 array(
                     'formulario' => $formulario->createView(),
-                    'modelos' => $em->getRepository('MotorBundle:Modelo')->findAll()
-                    //'marca' => $em->getRepository('MotorBundle:Marca')->findMarcaModelos($marca)
+                    'modelos' => $em->getRepository('MotorBundle:Modelo')->findAll(),
+                    'marca' => $em->getRepository('MotorBundle:Marca')->findOneBy(array('slug' => $marca))
                 ));
       }
 }

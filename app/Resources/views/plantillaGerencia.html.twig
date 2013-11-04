@@ -1,8 +1,6 @@
 {% extends '::base.html.twig' %}
  
-{% block stylesheets %}
-    <link href="{{ asset('bundles/piddo/css/normalizar.css') }}" rel="stylesheet" type="text/css" />
-{% endblock %}
+
 {% block javascripts %}{% endblock %}
 
 {% block body %}
@@ -10,9 +8,9 @@
         <h1><a href="{{ path('portada_gerencia') }}">Gerencia</a></h1>
         <nav>
             <ul>
+                <li><a href="{{ path('usuario_registro')}}">Registrar Usuarios</a></li>
                 <li><a href="{{ path('admin_marcas')}}">Marca</a></li>
                 <li><a href="#">Series</a></li>
-                <li><a href="#">Otros...</a></li>
             </ul>
         </nav>
     </header>
@@ -24,6 +22,7 @@
             {% endfor %}
         {% endfor %}
         <p>Conectado como {{ app.user.nombre ~ ' ' ~ app.user.apellidos }}</p>
+        <a href="{{ path('usuario_logout') }}">Cerrar sesión</a>
 
         {#<a href="{{ path('usuario_perfil') }}">Ver mi perfil</a>#}
         {#<a href="{{ path('usuario_logout') }}">Cerrar sesión</a>#}
