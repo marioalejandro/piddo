@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
-    <parameter key="kernel.root_dir">/home/mario/Documentos/piddo/app</parameter>
+    <parameter key="kernel.root_dir">C:/xampp/htdocs/piddo/app</parameter>
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
     <parameter key="kernel.name">app</parameter>
-    <parameter key="kernel.cache_dir">/home/mario/Documentos/piddo/app/cache/dev</parameter>
-    <parameter key="kernel.logs_dir">/home/mario/Documentos/piddo/app/logs</parameter>
+    <parameter key="kernel.cache_dir">C:/xampp/htdocs/piddo/app/cache/dev</parameter>
+    <parameter key="kernel.logs_dir">C:/xampp/htdocs/piddo/app/logs</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
@@ -84,7 +84,7 @@
     <parameter key="debug.errors_logger_listener.class">Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener</parameter>
     <parameter key="debug.event_dispatcher.class">Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher</parameter>
     <parameter key="debug.stopwatch.class">Symfony\Component\Stopwatch\Stopwatch</parameter>
-    <parameter key="debug.container.dump">/home/mario/Documentos/piddo/app/cache/dev/appDevDebugProjectContainer.xml</parameter>
+    <parameter key="debug.container.dump">C:/xampp/htdocs/piddo/app/cache/dev/appDevDebugProjectContainer.xml</parameter>
     <parameter key="debug.controller_resolver.class">Symfony\Component\HttpKernel\Controller\TraceableControllerResolver</parameter>
     <parameter key="kernel.secret">1092dba80b1292b39102cfc1ab62e268fa</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
@@ -100,7 +100,7 @@
     <parameter key="session.handler.native_file.class">Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler</parameter>
     <parameter key="session_listener.class">Symfony\Bundle\FrameworkBundle\EventListener\SessionListener</parameter>
     <parameter key="session.storage.options" type="collection"/>
-    <parameter key="session.save_path">/home/mario/Documentos/piddo/app/cache/dev/sessions</parameter>
+    <parameter key="session.save_path">C:/xampp/htdocs/piddo/app/cache/dev/sessions</parameter>
     <parameter key="form.resolved_type_factory.class">Symfony\Component\Form\ResolvedFormTypeFactory</parameter>
     <parameter key="form.registry.class">Symfony\Component\Form\FormRegistry</parameter>
     <parameter key="form.factory.class">Symfony\Component\Form\FormFactory</parameter>
@@ -156,7 +156,7 @@
     <parameter key="validator.mapping.loader.yaml_files_loader.class">Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader</parameter>
     <parameter key="validator.validator_factory.class">Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory</parameter>
     <parameter key="validator.mapping.loader.xml_files_loader.mapping_files" type="collection">
-      <parameter>/home/mario/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</parameter>
+      <parameter>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/config/validation.xml</parameter>
     </parameter>
     <parameter key="validator.mapping.loader.yaml_files_loader.mapping_files" type="collection"/>
     <parameter key="validator.translation_domain">validators</parameter>
@@ -173,7 +173,7 @@
     <parameter key="data_collector.router.class">Symfony\Bundle\FrameworkBundle\DataCollector\RouterDataCollector</parameter>
     <parameter key="profiler_listener.only_exceptions">false</parameter>
     <parameter key="profiler_listener.only_master_requests">false</parameter>
-    <parameter key="profiler.storage.dsn">file:/home/mario/Documentos/piddo/app/cache/dev/profiler</parameter>
+    <parameter key="profiler.storage.dsn">file:C:/xampp/htdocs/piddo/app/cache/dev/profiler</parameter>
     <parameter key="profiler.storage.username"></parameter>
     <parameter key="profiler.storage.password"></parameter>
     <parameter key="profiler.storage.lifetime">86400</parameter>
@@ -197,7 +197,7 @@
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
-    <parameter key="router.resource">/home/mario/Documentos/piddo/app/cache/dev/assetic/routing.yml</parameter>
+    <parameter key="router.resource">C:/xampp/htdocs/piddo/app/cache/dev/assetic/routing.yml</parameter>
     <parameter key="router.cache_class_prefix">appDev</parameter>
     <parameter key="request_listener.http_port">80</parameter>
     <parameter key="request_listener.https_port">443</parameter>
@@ -300,7 +300,7 @@
       <parameter key="exception_controller">twig.controller.exception:showAction</parameter>
       <parameter key="autoescape_service">null</parameter>
       <parameter key="autoescape_service_method">null</parameter>
-      <parameter key="cache">/home/mario/Documentos/piddo/app/cache/dev/twig</parameter>
+      <parameter key="cache">C:/xampp/htdocs/piddo/app/cache/dev/twig</parameter>
       <parameter key="charset">UTF-8</parameter>
       <parameter key="paths" type="collection"/>
     </parameter>
@@ -353,7 +353,7 @@
     <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
-    <parameter key="swiftmailer.spool.default.memory.path">/home/mario/Documentos/piddo/app/cache/dev/swiftmailer/spool/default</parameter>
+    <parameter key="swiftmailer.spool.default.memory.path">C:/xampp/htdocs/piddo/app/cache/dev/swiftmailer/spool/default</parameter>
     <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
     <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
     <parameter key="swiftmailer.spool.enabled">true</parameter>
@@ -376,7 +376,7 @@
     <parameter key="assetic.worker.ensure_filter.class">Assetic\Factory\Worker\EnsureFilterWorker</parameter>
     <parameter key="assetic.value_supplier.class">Symfony\Bundle\AsseticBundle\DefaultValueSupplier</parameter>
     <parameter key="assetic.node.paths" type="collection"/>
-    <parameter key="assetic.cache_dir">/home/mario/Documentos/piddo/app/cache/dev/assetic</parameter>
+    <parameter key="assetic.cache_dir">C:/xampp/htdocs/piddo/app/cache/dev/assetic</parameter>
     <parameter key="assetic.bundles" type="collection"/>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
@@ -386,10 +386,10 @@
     <parameter key="assetic.debug">true</parameter>
     <parameter key="assetic.use_controller">true</parameter>
     <parameter key="assetic.enable_profiler">false</parameter>
-    <parameter key="assetic.read_from">/home/mario/Documentos/piddo/app/../web</parameter>
-    <parameter key="assetic.write_to">/home/mario/Documentos/piddo/app/../web</parameter>
+    <parameter key="assetic.read_from">C:/xampp/htdocs/piddo/app/../web</parameter>
+    <parameter key="assetic.write_to">C:/xampp/htdocs/piddo/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
-    <parameter key="assetic.java.bin">/usr/bin/java</parameter>
+    <parameter key="assetic.java.bin">C:\Windows\system32\java.EXE</parameter>
     <parameter key="assetic.node.bin">/usr/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
@@ -454,7 +454,7 @@
     <parameter key="doctrine.orm.naming_strategy.default.class">Doctrine\ORM\Mapping\DefaultNamingStrategy</parameter>
     <parameter key="doctrine.orm.naming_strategy.underscore.class">Doctrine\ORM\Mapping\UnderscoreNamingStrategy</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
-    <parameter key="doctrine.orm.proxy_dir">/home/mario/Documentos/piddo/app/cache/dev/doctrine/orm/Proxies</parameter>
+    <parameter key="doctrine.orm.proxy_dir">C:/xampp/htdocs/piddo/app/cache/dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="sensio_framework_extra.view.guesser.class">Sensio\Bundle\FrameworkExtraBundle\Templating\TemplateGuesser</parameter>
     <parameter key="sensio_framework_extra.controller.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener</parameter>
@@ -666,7 +666,7 @@
               <service class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder" public="false">
                 <argument type="service" id="kernel"/>
                 <argument type="service" id="templating.filename_parser"/>
-                <argument>/home/mario/Documentos/piddo/app/Resources</argument>
+                <argument>C:/xampp/htdocs/piddo/app/Resources</argument>
               </service>
             </argument>
             <argument type="service" id="templating.locator"/>
@@ -692,7 +692,7 @@
               <service class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder" public="false">
                 <argument type="service" id="kernel"/>
                 <argument type="service" id="templating.filename_parser"/>
-                <argument>/home/mario/Documentos/piddo/app/Resources</argument>
+                <argument>C:/xampp/htdocs/piddo/app/Resources</argument>
               </service>
             </argument>
           </service>
@@ -714,7 +714,7 @@
     <service id="filesystem" class="Symfony\Component\Filesystem\Filesystem"/>
     <service id="file_locator" class="Symfony\Component\HttpKernel\Config\FileLocator">
       <argument type="service" id="kernel"/>
-      <argument>/home/mario/Documentos/piddo/app/Resources</argument>
+      <argument>C:/xampp/htdocs/piddo/app/Resources</argument>
     </service>
     <service id="uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
       <argument>1092dba80b1292b39102cfc1ab62e268fa</argument>
@@ -786,7 +786,7 @@
         </argument>
       </argument>
       <argument type="collection">
-        <argument key="cache_dir">/home/mario/Documentos/piddo/app/cache/dev/translations</argument>
+        <argument key="cache_dir">C:/xampp/htdocs/piddo/app/cache/dev/translations</argument>
         <argument key="debug">true</argument>
       </argument>
     </service>
@@ -1193,7 +1193,7 @@
     <service id="templating.filename_parser" class="Symfony\Bundle\FrameworkBundle\Templating\TemplateFilenameParser"/>
     <service id="templating.locator" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator" public="false">
       <argument type="service" id="file_locator"/>
-      <argument>/home/mario/Documentos/piddo/app/cache/dev</argument>
+      <argument>C:/xampp/htdocs/piddo/app/cache/dev</argument>
     </service>
     <service id="templating.helper.slots" class="Symfony\Component\Templating\Helper\SlotsHelper">
       <tag name="templating.helper" alias="slots"/>
@@ -1231,7 +1231,7 @@
     <service id="templating.helper.code" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper">
       <tag name="templating.helper" alias="code"/>
       <argument>null</argument>
-      <argument>/home/mario/Documentos/piddo/app</argument>
+      <argument>C:/xampp/htdocs/piddo/app</argument>
       <argument>UTF-8</argument>
     </service>
     <service id="templating.helper.translator" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper">
@@ -1289,7 +1289,7 @@
             <argument type="service">
               <service class="Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader" public="false">
                 <argument type="collection">
-                  <argument>/home/mario/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
+                  <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/config/validation.xml</argument>
                 </argument>
               </service>
             </argument>
@@ -1312,7 +1312,7 @@
       <tag name="monolog.logger" channel="profiler"/>
       <argument type="service">
         <service class="Symfony\Component\HttpKernel\Profiler\FileProfilerStorage" public="false">
-          <argument>file:/home/mario/Documentos/piddo/app/cache/dev/profiler</argument>
+          <argument>file:C:/xampp/htdocs/piddo/app/cache/dev/profiler</argument>
           <argument></argument>
           <argument></argument>
           <argument>86400</argument>
@@ -1532,7 +1532,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5277dfba60a83</argument>
+            <argument>527c7de8e6b7f</argument>
           </service>
         </argument>
       </argument>
@@ -1591,7 +1591,7 @@
     </service>
     <service id="security.secure_random" class="Symfony\Component\Security\Core\Util\SecureRandom">
       <tag name="monolog.logger" channel="security"/>
-      <argument>/home/mario/Documentos/piddo/app/cache/dev/secure_random.seed</argument>
+      <argument>C:/xampp/htdocs/piddo/app/cache/dev/secure_random.seed</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="ignore"/>
     </service>
     <service id="security.rememberme.response_listener" class="Symfony\Component\Security\Http\RememberMe\ResponseListener">
@@ -1785,7 +1785,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5277dfba60a83</argument>
+            <argument>527c7de8e6b7f</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -1873,7 +1873,7 @@
         <argument key="exception_controller">twig.controller.exception:showAction</argument>
         <argument key="autoescape_service">null</argument>
         <argument key="autoescape_service_method">null</argument>
-        <argument key="cache">/home/mario/Documentos/piddo/app/cache/dev/twig</argument>
+        <argument key="cache">C:/xampp/htdocs/piddo/app/cache/dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="paths" type="collection"/>
       </argument>
@@ -1922,7 +1922,7 @@
           <service class="Symfony\Bridge\Twig\Extension\CodeExtension" public="false">
             <tag name="twig.extension"/>
             <argument>null</argument>
-            <argument>/home/mario/Documentos/piddo/app</argument>
+            <argument>C:/xampp/htdocs/piddo/app</argument>
             <argument>UTF-8</argument>
           </service>
         </argument>
@@ -2017,7 +2017,7 @@
       <argument>true</argument>
     </service>
     <service id="monolog.handler.main" class="Monolog\Handler\StreamHandler">
-      <argument>/home/mario/Documentos/piddo/app/logs/dev.log</argument>
+      <argument>C:/xampp/htdocs/piddo/app/logs/dev.log</argument>
       <argument>100</argument>
       <argument>true</argument>
     </service>
@@ -2063,7 +2063,7 @@
             </argument>
             <argument type="service">
               <service class="Assetic\Cache\ConfigCache" public="false">
-                <argument>/home/mario/Documentos/piddo/app/cache/dev/assetic/config</argument>
+                <argument>C:/xampp/htdocs/piddo/app/cache/dev/assetic/config</argument>
               </service>
             </argument>
             <argument>true</argument>
@@ -2077,7 +2077,7 @@
             <tag name="assetic.formula_resource" loader="twig"/>
             <argument type="service" id="templating.loader"/>
             <argument></argument>
-            <argument>/home/mario/Documentos/piddo/app/Resources/views</argument>
+            <argument>C:/xampp/htdocs/piddo/app/Resources/views</argument>
             <argument>/\.[^.]+\.twig$/</argument>
           </service>
         </argument>
@@ -2090,7 +2090,7 @@
       <argument type="service">
         <service class="Symfony\Component\DependencyInjection\ParameterBag\ParameterBag" factory-method="getParameterBag" factory-service="service_container" public="false"/>
       </argument>
-      <argument>/home/mario/Documentos/piddo/app/../web</argument>
+      <argument>C:/xampp/htdocs/piddo/app/../web</argument>
       <argument>true</argument>
       <call method="addWorker">
         <argument type="service">
@@ -2117,7 +2117,7 @@
       </call>
     </service>
     <service id="assetic.cache" class="Assetic\Cache\FilesystemCache" public="false">
-      <argument>/home/mario/Documentos/piddo/app/cache/dev/assetic/assets</argument>
+      <argument>C:/xampp/htdocs/piddo/app/cache/dev/assetic/assets</argument>
     </service>
     <service id="assetic.request_listener" class="Symfony\Bundle\AsseticBundle\EventListener\RequestListener">
       <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
@@ -2211,7 +2211,7 @@
             <argument type="service">
               <service class="Doctrine\Common\Cache\ArrayCache" public="false">
                 <call method="setNamespace">
-                  <argument>sf2orm_default_37e4997ba26c929e48cbf226d0717cb6</argument>
+                  <argument>sf2orm_default_50a18dd11cbd7649f0b468b7be24c8c4</argument>
                 </call>
               </service>
             </argument>
@@ -2220,7 +2220,7 @@
             <argument type="service">
               <service class="Doctrine\Common\Cache\ArrayCache" public="false">
                 <call method="setNamespace">
-                  <argument>sf2orm_default_37e4997ba26c929e48cbf226d0717cb6</argument>
+                  <argument>sf2orm_default_50a18dd11cbd7649f0b468b7be24c8c4</argument>
                 </call>
               </service>
             </argument>
@@ -2229,7 +2229,7 @@
             <argument type="service">
               <service class="Doctrine\Common\Cache\ArrayCache" public="false">
                 <call method="setNamespace">
-                  <argument>sf2orm_default_37e4997ba26c929e48cbf226d0717cb6</argument>
+                  <argument>sf2orm_default_50a18dd11cbd7649f0b468b7be24c8c4</argument>
                 </call>
               </service>
             </argument>
@@ -2242,8 +2242,8 @@
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
-                        <argument>/home/mario/Documentos/piddo/src/Piddo/UsuarioBundle/Entity</argument>
-                        <argument>/home/mario/Documentos/piddo/src/Piddo/MotorBundle/Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\UsuarioBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\MotorBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2254,8 +2254,8 @@
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
-                        <argument>/home/mario/Documentos/piddo/src/Piddo/UsuarioBundle/Entity</argument>
-                        <argument>/home/mario/Documentos/piddo/src/Piddo/MotorBundle/Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\UsuarioBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\MotorBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2265,7 +2265,7 @@
             </argument>
           </call>
           <call method="setProxyDir">
-            <argument>/home/mario/Documentos/piddo/app/cache/dev/doctrine/orm/Proxies</argument>
+            <argument>C:/xampp/htdocs/piddo/app/cache/dev/doctrine/orm/Proxies</argument>
           </call>
           <call method="setProxyNamespace">
             <argument>Proxies</argument>
@@ -2395,7 +2395,7 @@
       <argument>bottom</argument>
     </service>
     <service id="sensio_distribution.webconfigurator" class="Sensio\Bundle\DistributionBundle\Configurator\Configurator">
-      <argument>/home/mario/Documentos/piddo/app</argument>
+      <argument>C:/xampp/htdocs/piddo/app</argument>
     </service>
     <service id="monolog.logger.request" class="Symfony\Bridge\Monolog\Logger">
       <argument>request</argument>
@@ -2537,10 +2537,10 @@
       <argument>true</argument>
     </service>
     <service id="session.storage.filesystem" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage">
-      <argument>/home/mario/Documentos/piddo/app/cache/dev/sessions</argument>
+      <argument>C:/xampp/htdocs/piddo/app/cache/dev/sessions</argument>
     </service>
     <service id="session.handler" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler">
-      <argument>/home/mario/Documentos/piddo/app/cache/dev/sessions</argument>
+      <argument>C:/xampp/htdocs/piddo/app/cache/dev/sessions</argument>
     </service>
     <service id="templating.loader" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\FilesystemLoader">
       <argument type="service" id="templating.locator"/>
@@ -2584,9 +2584,9 @@
     <service id="router" class="Symfony\Bundle\FrameworkBundle\Routing\Router">
       <tag name="monolog.logger" channel="router"/>
       <argument type="service" id="service_container"/>
-      <argument>/home/mario/Documentos/piddo/app/cache/dev/assetic/routing.yml</argument>
+      <argument>C:/xampp/htdocs/piddo/app/cache/dev/assetic/routing.yml</argument>
       <argument type="collection">
-        <argument key="cache_dir">/home/mario/Documentos/piddo/app/cache/dev</argument>
+        <argument key="cache_dir">C:/xampp/htdocs/piddo/app/cache/dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
         <argument key="generator_base_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
@@ -2605,7 +2605,7 @@
       <argument type="service">
         <service class="Doctrine\Common\Annotations\AnnotationReader" public="false"/>
       </argument>
-      <argument>/home/mario/Documentos/piddo/app/cache/dev/annotations</argument>
+      <argument>C:/xampp/htdocs/piddo/app/cache/dev/annotations</argument>
       <argument>true</argument>
     </service>
     <service id="security.encoder_factory" class="Symfony\Component\Security\Core\Encoder\EncoderFactory">
@@ -2623,50 +2623,50 @@
       <argument type="service" id="templating.locator"/>
       <argument type="service" id="templating.name_parser"/>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Bundle\FrameworkBundle/Resources/views</argument>
         <argument>Framework</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Bundle\SecurityBundle/Resources/views</argument>
         <argument>Security</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Bundle\TwigBundle/Resources/views</argument>
         <argument>Twig</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\vendor\symfony\swiftmailer-bundle\Symfony\Bundle\SwiftmailerBundle/Resources/views</argument>
         <argument>Swiftmailer</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\vendor\doctrine\doctrine-bundle\Doctrine\Bundle\DoctrineBundle/Resources/views</argument>
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/src/Piddo/UsuarioBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\src\Piddo\UsuarioBundle/Resources/views</argument>
         <argument>Usuario</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/src/Piddo/MotorBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\src\Piddo\MotorBundle/Resources/views</argument>
         <argument>Motor</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/src/Piddo/AdminBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\src\Piddo\AdminBundle/Resources/views</argument>
         <argument>Admin</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>
         <argument>WebProfiler</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views</argument>
+        <argument>C:\xampp\htdocs\piddo\vendor\sensio\distribution-bundle\Sensio\Bundle\DistributionBundle/Resources/views</argument>
         <argument>SensioDistribution</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/app/Resources/views</argument>
+        <argument>C:/xampp/htdocs/piddo/app/Resources/views</argument>
       </call>
       <call method="addPath">
-        <argument>/home/mario/Documentos/piddo/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form</argument>
+        <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Bridge\Twig/Resources/views/Form</argument>
       </call>
     </service>
     <service id="logger" class="Symfony\Bridge\Monolog\Logger">

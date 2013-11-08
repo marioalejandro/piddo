@@ -5,8 +5,10 @@ namespace Piddo\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Piddo\MotorBundle\Entity\Marca;
 use Piddo\MotorBundle\Entity\Modelo;
+use Piddo\MotorBundle\Entity\Serie;
 use Piddo\AdminBundle\Form\MarcaType;
 use Piddo\AdminBundle\Form\ModeloType;
+use Piddo\AdminBundle\Form\SerieType;
 
 class DefaultController extends Controller
 {
@@ -45,11 +47,37 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info', 'La marca ha sido borrada');
           return $this->redirect($this->generateUrl('admin_marcas'));
       }
+      public function borrarModeloAction($marca, $modelo)
+      {
+          $em = $this->getDoctrine()->getManager();
+          $objetoMarca = $em->getRepository('MotorBundle:Marca')->findOneBy(array('id' => $marca));
+ 
+          $em->getRepository('MotorBundle:Modelo')->deleteModelo($modelo);
+            $this->get('session')->getFlashBag()->add('info', 'El modelo ha sido borrado');
+          return $this->redirect($this->generateUrl('admin_modelos',array('marca'=> $objetoMarca->getSlug())));
+      }
+    public function borrarSerieAction($marca, $modelo,$serie)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $objetoMarca = $em->getRepository('MotorBundle:Marca')->findOneBy(array('id' => $marca));
+        $objetoModelo = $em->getRepository('MotorBundle:Modelo')->findOneBy(array('id' => $modelo));
+        
+        $em->getRepository('MotorBundle:Serie')->deleteSerie($serie);
+        $this->get('session')->getFlashBag()->add('info', 'La serie ha sido borrada');
+        return $this->redirect($this->generateUrl('admin_series',
+              array(
+                  'marca'=> $objetoMarca->getSlug(), 
+                  'modelo' =>$objetoModelo->getSlug()
+              )));
+      }
+      
        public function modelosAction($marca)
        {
+           
         $peticion = $this->getRequest();
         
         $em = $this->getDoctrine()->getManager();
+        $objetoMarca = $em->getRepository('MotorBundle:Marca')->findOneBy(array('slug' => $marca));
         
         $modelo = new Modelo();
         $formulario = $this->createForm(new ModeloType(), $modelo);
@@ -58,7 +86,7 @@ class DefaultController extends Controller
         
         
         if($formulario->isValid()){
-            //$modelo->setMarca($em->getRepository('MotorBundle:Marca')->findBy(array('slug'=>$marca)));
+            $modelo->setMarca($objetoMarca);
             
             $em->persist($modelo);
             $em->flush();
@@ -70,8 +98,47 @@ class DefaultController extends Controller
         return $this->render('AdminBundle:Default:modelos.html.twig', 
                 array(
                     'formulario' => $formulario->createView(),
-                    'modelos' => $em->getRepository('MotorBundle:Modelo')->findAll(),
-                    'marca' => $em->getRepository('MotorBundle:Marca')->findOneBy(array('slug' => $marca))
+                    'modelos' => $em->getRepository('MotorBundle:Modelo')->findModelos($objetoMarca->getID()),
+                    'marca' => $objetoMarca
+                ));
+      }
+       public function seriesAction($marca, $modelo)
+       {
+           
+        $peticion = $this->getRequest();
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $objetoMarca = $em->getRepository('MotorBundle:Marca')->findOneBy(array('slug' => $marca));
+        $objetoModelo = $em->getRepository('MotorBundle:Modelo')->findOneBy(array('slug'=>$modelo, 'marca'=>$objetoMarca->getId()));
+        
+        $serie = new Serie();
+        $formulario = $this->createForm(new SerieType(), $serie);
+        
+        $formulario->handleRequest($peticion);
+        
+        
+        if($formulario->isValid()){
+            $serie->setMarca($objetoMarca);
+            $serie->setModelo($objetoModelo);
+            
+            $em->persist($serie);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('info', 'La serie '.$serie->getNombre().' ha sido registrada correctamente');
+
+            return $this->redirect($this->generateUrl('admin_series',
+                    array(
+                        'marca'=> $marca, 
+                        'modelo' =>$objetoModelo->getSlug()
+                    )));
+        }
+        return $this->render('AdminBundle:Default:series.html.twig', 
+                array(
+                    'formulario' => $formulario->createView(),
+                    'series' => $em->getRepository('MotorBundle:Serie')->findSeries($objetoModelo),
+                    'marca' => $objetoMarca,
+                    'modelo' => $objetoModelo
                 ));
       }
 }

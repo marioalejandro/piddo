@@ -3,6 +3,7 @@
 namespace Piddo\MotorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Piddo\AdminBundle\Util\Util;
 
 /**
  * Modelo
@@ -62,7 +63,7 @@ class Modelo
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-    
+        $this->slug = Util::getSlug($nombre);
         return $this;
     }
 
@@ -100,4 +101,32 @@ class Modelo
     }
 
 
+
+    /**
+     * Set marca
+     *
+     * @param \Piddo\MotorBundle\Entity\Marca $marca
+     * @return Modelo
+     */
+    public function setMarca(\Piddo\MotorBundle\Entity\Marca $marca = null)
+    {
+        $this->marca = $marca;
+    
+        return $this;
+    }
+
+    /**
+     * Get marca
+     *
+     * @return \Piddo\MotorBundle\Entity\Marca 
+     */
+    public function getMarca()
+    {
+        return $this->marca;
+    }
+    
+    public function __toString() {
+        return $this->getNombre();
+    }
+    
 }

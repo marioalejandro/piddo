@@ -1,0 +1,45 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    <a href="{{ path('admin_marcas')}}">Motores</a> > 
+    <a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a> > 
+    <a href="{{ path('admin_series',{'marca': marca.slug, 'modelo' : modelo.slug })}}">{{modelo.nombre}}</a> >
+    Series
+{% endblock %}
+{% block id 'series' %}
+ 
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+    <section id="formulario_series">
+        <h4>Agregar nueva Serie</h4>
+        <form action="{{ path('admin_series',{'marca': marca.slug, 'modelo' : modelo.slug }) }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_modelos">
+        <table>
+            <tr>
+                <th>Serie</th>
+                <th>Eliminar</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for serie in series %}
+                <tr>
+                    <td>{{ serie.nombre }}</td>
+                    <td><a href="{{ path('borrar_serie',{'marca': marca.id, 'modelo': modelo.id, 'serie': serie.id })}}">{{ 'Eliminar'}}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% if series == null%}
+            {{'no existen series registradas'}}
+        {%endif%}
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

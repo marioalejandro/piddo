@@ -31,18 +31,5 @@ class MarcaRepository extends EntityRepository
  
         return $consulta->getResult();
     }
-    public function findMarcaModelos($marca)
-    {
-        $em = $this->getEntityManager();
- 
-        $dql = 'SELECT mo  FROM MotorBundle:Modelo mo
-                WHERE mo.marca = :marca
-                ORDER BY mo.nombre ASC';
 
- 
-        $consulta = $em->createQuery($dql);
-        $consulta->setParameter('marca', $marca);
- 
-        return $consulta->getResult();
-    }
 }

@@ -1,11 +1,15 @@
 {% extends '::plantillaGerencia.html.twig' %}
  
-{% block title %}Modelos{% endblock %}
-{% block id 'marcas' %}
+{% block title %}
+    <a href="{{ path('admin_marcas')}}">Motores</a> > 
+    <a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a> > 
+    Modelos
+{% endblock %}
+{% block id 'modelos' %}
  
 {% block article %}
     <h1>{{ block('title') }}</h1>
-    <section id="formulario_marca">
+    <section id="formulario_modelos">
         <h4>Agregar nuevo Modelo</h4>
         <form action="{{ path('admin_modelos',{'marca' : marca.slug}) }}" method="post" {{ form_enctype(formulario) }}>
         {{ form_widget(formulario) }}
@@ -23,9 +27,8 @@
             </tr>
             {% for modelo in modelos %}
                 <tr>
-                    {{modelo.nombre}}
-                    {#<td><a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a></td>
-                    <td><a href="{{ path('borrar_marca',{'marca': marca.id })}}">{{ 'Eliminar'}}</a></td>#}
+                    <td><a href="{{ path('admin_series',{'marca': marca.slug, 'modelo' : modelo.slug })}}">{{modelo.nombre}}</a></td>
+                    <td><a href="{{ path('borrar_modelo',{'marca': marca.id, 'modelo': modelo.id })}}">{{ 'Eliminar'}}</a></td>
                 </tr>
             {% endfor %}
         </table>

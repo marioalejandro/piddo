@@ -13,3 +13,15 @@ borrar_marca:
 admin_modelos:
     pattern: /administracion/{marca}/modelos
     defaults: { _controller: AdminBundle:Default:modelos }
+
+borrar_modelo:
+    pattern: /administracion/{marca}/borrar-{modelo}
+    defaults: { _controller: AdminBundle:Default:borrarModelo }
+    
+admin_series:
+    pattern: /administracion/{marca}/{modelo}/series
+    defaults: { _controller: AdminBundle:Default:series }
+ 
+borrar_serie:
+    pattern: /administracion/{marca}/{modelo}/borrar-{serie}
+    defaults: { _controller: AdminBundle:Default:borrarSerie }

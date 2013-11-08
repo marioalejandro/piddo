@@ -157,6 +157,21 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_modelos')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::modelosAction',));
             }
 
+            // borrar_modelo
+            if (preg_match('#^/administracion/(?P<marca>[^/]++)/borrar\\-(?P<modelo>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'borrar_modelo')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::borrarModeloAction',));
+            }
+
+            // admin_series
+            if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/series$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_series')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::seriesAction',));
+            }
+
+            // borrar_serie
+            if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/borrar\\-(?P<serie>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'borrar_serie')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::borrarSerieAction',));
+            }
+
         }
 
         // usuario_registro
