@@ -182,6 +182,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\RectificadosController::rectificadosAction',  '_route' => 'admin_rectificados',);
             }
 
+            // admin_piezas
+            if ($pathinfo === '/administracion/piezas') {
+                return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::piezasAction',  '_route' => 'admin_piezas',);
+            }
+
         }
 
         // usuario_registro

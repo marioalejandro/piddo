@@ -29,3 +29,7 @@ borrar_serie:
 admin_rectificados:
     pattern: /administracion/rectificados
     defaults: { _controller: AdminBundle:Rectificados:rectificados }
+    
+admin_piezas:
+    pattern: /administracion/piezas
+    defaults: { _controller: AdminBundle:Default:piezas }

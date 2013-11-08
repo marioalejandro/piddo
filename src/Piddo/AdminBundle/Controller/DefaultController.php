@@ -6,9 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Piddo\MotorBundle\Entity\Marca;
 use Piddo\MotorBundle\Entity\Modelo;
 use Piddo\MotorBundle\Entity\Serie;
+use Piddo\MotorBundle\Entity\Pieza;
+use Piddo\MotorBundle\Entity\GrupoPieza;
 use Piddo\AdminBundle\Form\MarcaType;
 use Piddo\AdminBundle\Form\ModeloType;
 use Piddo\AdminBundle\Form\SerieType;
+use Piddo\AdminBundle\Form\PiezaType;
+use Piddo\AdminBundle\Form\GrupoPiezaType;
 
 class DefaultController extends Controller
 {
@@ -141,4 +145,49 @@ class DefaultController extends Controller
                     'modelo' => $objetoModelo
                 ));
       }
+      
+    public function piezasAction()
+    {
+        $peticion = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+        
+        
+        $grupoPieza = new GrupoPieza();
+        $formulario2 = $this->createForm(new GrupoPiezaType(), $grupoPieza);
+        $formulario2->handleRequest($peticion);
+        if($formulario2->isValid()){
+            $em->persist($grupoPieza);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('info', 'El Grupo '.$grupoPieza->getNombre().' ha sido registrado correctamente');
+            return $this->redirect($this->generateUrl('admin_piezas'));
+        }
+        
+        
+        $pieza = new Pieza();
+        $formulario = $this->createForm(new PiezaType(), $pieza);
+        $formulario->handleRequest($peticion);
+        if($formulario->isValid()){
+            $em->persist($pieza);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('info', 'La Pieza '.$pieza->getNombre().' ha sido registrado correctamente');
+            return $this->redirect($this->generateUrl('admin_piezas'));
+        }
+        
+        return $this->render('AdminBundle:Default:piezas.html.twig', 
+                array(
+                    'formulario' => $formulario->createView(),
+                    'formulario2' => $formulario2->createView(),
+                    'gruposPieza' => $em->getRepository('MotorBundle:GrupoPieza')->findAll()
+                ));
+    }
+    public function listaPiezasAction($grupo)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $piezas = $em->getRepository('MotorBundle:Pieza')->findBy(array('grupoPieza' => $grupo));
+                return $this->render('AdminBundle:Default:listaPiezas.html.twig', 
+                    array(
+                        'piezas' => $piezas
+                    ));
+            }
+      
 }
