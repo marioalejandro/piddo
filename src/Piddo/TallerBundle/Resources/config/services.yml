@@ -1,0 +1,7 @@
+parameters:
+#    taller.example.class: Piddo\TallerBundle\Example
+
+services:
+#    taller.example:
+#        class: %taller.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -25,3 +25,7 @@ admin_series:
 borrar_serie:
     pattern: /administracion/{marca}/{modelo}/borrar-{serie}
     defaults: { _controller: AdminBundle:Default:borrarSerie }
+    
+admin_rectificados:
+    pattern: /administracion/rectificados
+    defaults: { _controller: AdminBundle:Rectificados:rectificados }

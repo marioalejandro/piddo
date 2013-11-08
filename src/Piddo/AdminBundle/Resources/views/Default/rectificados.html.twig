@@ -1,0 +1,45 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    Trabajos > 
+    Todos los trabajos
+{% endblock %}
+{% block id 'trabajos' %}
+ 
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+    <section id="formulario_marca">
+        <h4>Agregar un Grupo de Rectificado</h4>
+        <form action="{{ path('admin_rectificados') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_rectificados">
+        <table>
+            <tr>
+                <th>Area Trabajos</th>
+                <th>Trabajos</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for gr in gruposRectificado %}
+                <tr>
+                    <td>{{gr.nombre}}{#<a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a>#}</td>
+                    <td>
+                        {{gr}}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% if gruposRectificado == null%}
+            {{'no hay trabajos registrados'}}
+        {%endif%}
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

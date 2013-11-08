@@ -133,6 +133,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // taller_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'taller_homepage')), array (  '_controller' => 'Piddo\\TallerBundle\\Controller\\DefaultController::indexAction',));
+        }
+
         if (0 === strpos($pathinfo, '/administracion')) {
             // portada_gerencia
             if ($pathinfo === '/administracion/portada') {
@@ -170,6 +175,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // borrar_serie
             if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/borrar\\-(?P<serie>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'borrar_serie')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::borrarSerieAction',));
+            }
+
+            // admin_rectificados
+            if ($pathinfo === '/administracion/rectificados') {
+                return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\RectificadosController::rectificadosAction',  '_route' => 'admin_rectificados',);
             }
 
         }
