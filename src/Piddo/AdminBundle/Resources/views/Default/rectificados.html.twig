@@ -14,6 +14,11 @@
         {{ form_widget(formulario) }}
                 <input class="boton" type="submit" value="Agregar" />
         </form>
+        <h4>Agregar un Trabajo de Rectificado</h4>
+        <form action="{{ path('admin_rectificados') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario2) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
     </section>
     <section id="listado_rectificados">
         <table>
@@ -28,7 +33,9 @@
                 <tr>
                     <td>{{gr.nombre}}{#<a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a>#}</td>
                     <td>
-                        {{gr}}
+                        {#% render 'AdminBundle:Rectificados:listaRectificados' with { 'grupo': '1' } %#}
+                        {#{ render(controller('AdminBundle:Rectificados:listaRectificados'), with{ 'grupo' : gr.id }) }#}
+                        {% render controller("AdminBundle:Rectificados:listaRectificados", {'grupo': gr.id}) %}
                     </td>
                 </tr>
             {% endfor %}

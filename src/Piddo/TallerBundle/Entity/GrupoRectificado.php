@@ -36,7 +36,8 @@ class GrupoRectificado
      */
     private $slug;
 
-
+    
+    
     /**
      * Get id
      *
@@ -95,7 +96,7 @@ class GrupoRectificado
     }
     
     public function __toString() {
-        return print_r($this);
+       // return print_r($this);
         return $this->getNombre();
     }
 }

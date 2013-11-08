@@ -52,6 +52,16 @@ class RectificadosController extends Controller
                     'gruposRectificado' => $em->getRepository('TallerBundle:GrupoRectificado')->findAll()
                 ));
     }
+    public function listaRectificadosAction($grupo)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $rectificados = $em->getRepository('TallerBundle:Rectificado')->findBy(array('grupoRectificado' => $grupo));
+                return $this->render('AdminBundle:Default:listaRect.html.twig', 
+                    array(
+                        'rectificados' => $rectificados
+                    ));
+            }
+
     public function marcasAction()
     {
         $peticion = $this->getRequest();
