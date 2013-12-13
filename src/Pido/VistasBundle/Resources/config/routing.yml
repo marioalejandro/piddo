@@ -1,0 +1,3 @@
+vistas_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: VistasBundle:Default:index }

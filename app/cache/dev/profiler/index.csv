@@ -1432,3 +1432,5 @@ d26d2d,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,138690002
 90b285,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1386900036,
 3c391a,::1,POST,http://localhost/piddo/web/app_dev.php/registro-cliente,1386900046,
 e74c91,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1386900047,
+bf0a58,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1386900503,
+2832d2,::1,POST,http://localhost/piddo/web/app_dev.php/registro-cliente,1386900503,

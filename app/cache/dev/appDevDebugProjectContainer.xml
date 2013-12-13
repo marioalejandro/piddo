@@ -21,6 +21,7 @@
       <parameter key="AdminBundle">Piddo\AdminBundle\AdminBundle</parameter>
       <parameter key="TallerBundle">Piddo\TallerBundle\TallerBundle</parameter>
       <parameter key="ClienteBundle">Piddo\ClienteBundle\ClienteBundle</parameter>
+      <parameter key="PresupuestoBundle">Pido\PresupuestoBundle\PresupuestoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -1534,7 +1535,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>52aa61f62e3ac</argument>
+            <argument>52ab01e490381</argument>
           </service>
         </argument>
       </argument>
@@ -1787,7 +1788,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>52aa61f62e3ac</argument>
+            <argument>52ab01e490381</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2697,6 +2698,10 @@
       <call method="addPath">
         <argument>C:\xampp\htdocs\piddo\src\Piddo\ClienteBundle/Resources/views</argument>
         <argument>Cliente</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\piddo\src\Pido\PresupuestoBundle/Resources/views</argument>
+        <argument>Presupuesto</argument>
       </call>
       <call method="addPath">
         <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>
