@@ -133,6 +133,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // admin_clientes
+        if ($pathinfo === '/registro-cliente') {
+            return array (  '_controller' => 'Piddo\\ClienteBundle\\Controller\\DefaultController::registroAction',  '_route' => 'admin_clientes',);
+        }
+
         // taller_homepage
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'taller_homepage')), array (  '_controller' => 'Piddo\\TallerBundle\\Controller\\DefaultController::indexAction',));

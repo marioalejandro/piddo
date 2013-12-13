@@ -1,0 +1,3 @@
+admin_clientes:
+    pattern:  /registro-cliente
+    defaults: { _controller: ClienteBundle:Default:registro }

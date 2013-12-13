@@ -1,0 +1,44 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    <a href="{{ path('admin_clientes')}}">Clientes</a>
+{% endblock %}
+{% block id 'marcas' %}
+ 
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+    <section id="formulario_cliente">
+        <h4>Agregar nuevo Cliente</h4>
+        <form action="{{ path('admin_clientes') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_clientes">
+        <table>
+            <tr>
+                <th>Cliente</th>
+                <th>Eliminar</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{cliente.nombre}} {{cliente.apellidos}}</td>
+                    <td>{{ 'Eliminar'}}</td>
+                    {#<td><a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a></td>
+                    <td><a href="{{ path('borrar_marca',{'marca': marca.id })}}">{{ 'Eliminar'}}</a></td>#}
+                </tr>
+            {% endfor %}
+        </table>
+        {% if clientes == null%}
+            {{'no hay clientes registradas'}}
+        {%endif%}
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

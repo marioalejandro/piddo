@@ -1,3 +1,7 @@
+cliente:
+    resource: "@ClienteBundle/Resources/config/routing.yml"
+    prefix:   /
+
 taller:
     resource: "@TallerBundle/Resources/config/routing.yml"
     prefix:   /
