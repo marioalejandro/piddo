@@ -1,0 +1,142 @@
+<?php
+
+namespace Piddo\PresupuestoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Presupuesto
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Presupuesto
+{
+    /************************************************************************
+     *      ATRIBUTOS : IDENTIFICACION DEL PRESUPUESTO                                  
+     ************************************************************************/
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_creacion", type="datetime")
+     */
+    private $fechaCreacion;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=255)
+     */
+    private $estado;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_entrega", type="datetime")
+     */
+    private $fechaEntrega;
+    
+    /************************************************************************
+     *      ATRIBUTOS : IDENTIFICACION DEL MOTOR                                  
+     ************************************************************************/
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="marca", type="string", length=255)
+     */
+    private $marca;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="modelo", type="string", length=255)
+     */
+    private $modelo;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serie", type="string", length=255)
+     */
+    private $serie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numMotor", type="string", length=255)
+     */
+    private $numMotor;
+    
+    /************************************************************************
+     *      ATRIBUTOS : OBJETOS INVOLUCRADOS                                
+     ************************************************************************/
+    
+    /**
+     * @var string
+     * @ORM\ManyToOne(targetEntity="Piddo\ClienteBundle\Entity\Cliente")
+     */
+    private $cliente;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="RMT", type="string", length=255)
+     */
+    private $RMT;
+
+    
+    /************************************************************************
+     *      ATRIBUTOS : TOTALES                                
+     ************************************************************************/
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="total_repuestos", type="integer")
+     */
+    private $totalRepuestos;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="total_rectificados", type="integer")
+     */
+    private $totalRectificados;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="total_general", type="integer")
+     */
+    private $totalGeneral;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="descuento", type="integer")
+     */
+    private $descuento;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="motivoDescuento", type="string", length=255)
+     */
+    private $motivoDescuento;
+    
+    /************************************************************************
+     *      GETTERS & SETTERS : IDENTIFICACION DEL PRESUPUESTO                                  
+     ************************************************************************/
+
+}

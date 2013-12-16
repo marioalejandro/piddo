@@ -18,8 +18,9 @@ class ClienteType extends AbstractType
         $builder
             ->add('rut')
             ->add('nombre')
-            ->add('apellidos')
-            ->add('telefono', new TelefonoType())
+            ->add('apellidos',NULL, array(
+                'required' => false,
+            ))
             ->add('telefonos', 'collection', array(
                 'type' => new TelefonoType(),
                 'allow_add'    => true,

@@ -133,17 +133,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/hello')) {
-            // vistas_homepage
-            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'vistas_homepage')), array (  '_controller' => 'Pido\\VistasBundle\\Controller\\DefaultController::indexAction',));
-            }
-
-            // presupuesto_homepage
-            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_homepage')), array (  '_controller' => 'Pido\\PresupuestoBundle\\Controller\\DefaultController::indexAction',));
-            }
-
+        // nuevo_presupuesto
+        if ($pathinfo === '/nuevo-presupuesto') {
+            return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
         }
 
         // admin_clientes

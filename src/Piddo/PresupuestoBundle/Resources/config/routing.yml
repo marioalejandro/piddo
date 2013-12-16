@@ -1,0 +1,3 @@
+nuevo_presupuesto:
+    pattern:  /nuevo-presupuesto
+    defaults: { _controller: PresupuestoBundle:Default:nuevo }

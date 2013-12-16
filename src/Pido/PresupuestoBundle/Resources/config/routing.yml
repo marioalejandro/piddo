@@ -1,3 +1,0 @@
-presupuesto_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: PresupuestoBundle:Default:index }

@@ -21,9 +21,7 @@ class DefaultController extends Controller
         $formulario->handleRequest($peticion);
         
         if($formulario->isValid()){
-            $cliente->getTelefono()->setCliente($cliente);
             $em->persist($cliente);
-            $em->persist($cliente->getTelefono());
             $em->flush();
             
             $mensaje = $formulario->get('mensaje')->isClicked()

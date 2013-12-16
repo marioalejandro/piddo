@@ -40,7 +40,7 @@ class Telefono
    /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Piddo\ClienteBundle\Entity\Cliente", inversedBy="telefonos")
+     * @ORM\ManyToOne(targetEntity="Piddo\ClienteBundle\Entity\Cliente", inversedBy="telefonos", cascade={"persist"})
      */
     private $cliente;
 

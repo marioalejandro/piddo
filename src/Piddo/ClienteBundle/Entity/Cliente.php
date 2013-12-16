@@ -5,12 +5,14 @@ namespace Piddo\ClienteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Cliente
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Piddo\ClienteBundle\Entity\ClienteRepository")
+ * @UniqueEntity("rut")
  */
 class Cliente
 {
@@ -19,59 +21,51 @@ class Cliente
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+   
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="rut", type="string", length=255, unique=true)
      */
     private $rut;
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank()
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="apellidos", type="string", length=255)
+     * @ORM\Column(name="apellidos", type="string", length=255, nullable=true)
      */
     private $apellidos;
     
     /**
-     * @ORM\OneToMany(targetEntity="Piddo\ClienteBundle\Entity\Telefono", mappedBy="cliente")
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\ClienteBundle\Entity\Telefono", mappedBy="cliente", cascade={"persist"})
      */
     protected $telefonos;
+    
+    /*****************************************
+     * CONSTRUCTOR
+     *****************************************/
  
     public function __construct()
     {
         $this->telefonos = new ArrayCollection();
     }
     
+    /*******************************************
+     * GETTERS & SETTERS
+     ******************************************/
     
-    
-    
-    /**
-     * Set rut
-     *
-     * @param integer $rut
-     * @return Cliente
-     */
-    public function setRut($rut)
-    {
-        $this->rut = $rut;
-    
-        return $this;
-    }
-
-    /**
-     * Get rut
-     *
-     * @return integer 
-     */
-    public function getRut()
-    {
-        return $this->rut;
-    }
-
     /**
      * Set nombre
      *
@@ -118,10 +112,6 @@ class Cliente
         return $this->apellidos;
     }
     
-    public function __toString() {
-        
-        return $this->getNombre();
-    }
 
     /**
      * Add telefonos
@@ -156,24 +146,47 @@ class Cliente
         return $this->telefonos;
     }
     
-    
-    
-    
-    /********************************************/
-     /**
-     * @Assert\Type(type="Piddo\ClienteBundle\Entity\Telefono")
+   
+    /**
+     * Get id
+     *
+     * @return integer 
      */
-    protected $telefono;
- 
-    // ...
- 
-    public function getTelefono()
+    public function getId()
     {
-        return $this->telefono;
+        return $this->id;
     }
- 
-    public function setTelefono(\Piddo\ClienteBundle\Entity\Telefono $telefono = null)
+
+    /**
+     * Set rut
+     *
+     * @param string $rut
+     * @return Cliente
+     */
+    public function setRut($rut)
     {
-        $this->telefono = $telefono;
+        $this->rut = $rut;
+    
+        return $this;
+    }
+
+    /**
+     * Get rut
+     *
+     * @return string 
+     */
+    public function getRut()
+    {
+        return $this->rut;
+    }
+    
+    /*******************************************
+     * METODOS
+     ******************************************/
+    
+    
+    public function __toString() {
+        
+        return $this->getNombre();
     }
 }

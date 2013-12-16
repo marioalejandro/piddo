@@ -28,17 +28,7 @@
                 {{ form_widget(formulario.apellidos) }}
             </div>
             {{'Telefono -----------------------------------'}}
-            <div>
-                {{ form_label(formulario.telefono.numero) }}
-                {{ form_errors(formulario.telefono.numero) }}
-                {{ form_widget(formulario.telefono.numero) }}
-            </div>
-            <div>
-                {{ form_label(formulario.telefono.descripcion) }}
-                {{ form_errors(formulario.telefono.descripcion) }}
-                {{ form_widget(formulario.telefono.descripcion) }}
-            </div>
-            {{'Mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm'}}
+
         <ul id="fono-fields-list" data-prototype="{{ form_widget(formulario.telefonos.vars.prototype) | e }}">
             {% for fono in formulario.telefonos %}
                 <li>
@@ -57,8 +47,8 @@
 
                         jQuery(document).ready(function() {
                             jQuery('#agregar_fono').click(function() {
-                                alert("I am an alert box!");
-                                /*var fonoList = jQuery('#fono-fields-list');
+                                //alert("I am an alert box!");
+                                var fonoList = jQuery('#fono-fields-list');
 
                                 // grab the prototype template
                                 var newWidget = fonoList.attr('data-prototype');
@@ -70,13 +60,13 @@
 
                                 // create a new list element and add it to the list
                                 var newLi = jQuery('<li></li>').html(newWidget);
-                                newLi.appendTo(jQuery('#fono-fields-list')); */
+                                newLi.appendTo(jQuery('#fono-fields-list'));
 
                                 return false;
                             });
                         });
                     </script> /**/
-
+            {{ form_widget(formulario.Guardar) }}
             {{ form_rest(formulario) }}
         {{ form_end(formulario) }}
         {#</form>#}

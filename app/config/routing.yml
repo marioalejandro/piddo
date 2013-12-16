@@ -1,7 +1,3 @@
-vistas:
-    resource: "@VistasBundle/Resources/config/routing.yml"
-    prefix:   /
-
 presupuesto:
     resource: "@PresupuestoBundle/Resources/config/routing.yml"
     prefix:   /

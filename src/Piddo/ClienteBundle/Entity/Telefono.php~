@@ -3,6 +3,7 @@
 namespace Piddo\ClienteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Telefono
@@ -23,6 +24,7 @@ class Telefono
 
     /**
      * @var integer
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="numero", type="integer")
      */
@@ -38,8 +40,7 @@ class Telefono
    /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Piddo\ClienteBundle\Entity\Cliente", inversedBy="telefonos")
-     * @ORM\JoinColumn(name="cliente_id", referencedColumnName="rut")
+     * @ORM\ManyToOne(targetEntity="Piddo\ClienteBundle\Entity\Cliente", inversedBy="telefonos", cascade={"persist"})
      */
     private $cliente;
 
@@ -99,5 +100,34 @@ class Telefono
     public function getCliente()
     {
         return $this->cliente;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     * @return Telefono
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+    
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string 
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+    
+    
+    public function __toString() {
+        
+        return (string)$this->getNumero();
     }
 }
