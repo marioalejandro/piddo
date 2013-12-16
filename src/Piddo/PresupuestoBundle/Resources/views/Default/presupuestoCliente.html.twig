@@ -17,10 +17,10 @@
                 //alert($(this).val());
                 $.ajax({
                     type: 'post',
-                    url: '{{ path("nuevo_presupuesto") }}',
+                    url: '{{ path("seleccionar_modelo") }}',
                     data: data,
                     success: function(data) {
-                        //alert('jnh');
+                        alert(data);
                         $('#piddo_presupuestobundle_presupuesto_modelo').html(data);
                         $('#piddo_presupuestobundle_presupuesto_serie').html("<option>Serieoooo</option>");
                     }

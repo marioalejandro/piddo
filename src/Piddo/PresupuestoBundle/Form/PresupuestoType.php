@@ -21,17 +21,18 @@ class PresupuestoType extends AbstractType
         $builder->add('cliente');
         $builder->add('RMT');
         //Motor
+        /*
         $factory = $builder->getFormFactory();
         $serieSubscriber = new AddSerieFieldSubscriber($factory);
         $builder->addEventSubscriber($serieSubscriber);
         $modeloSubscriber = new AddModeloFieldSubscriber($factory);
         $builder->addEventSubscriber($modeloSubscriber);
         $marcaSubscriber = new AddMarcaFieldSubscriber($factory);
-        $builder->addEventSubscriber($marcaSubscriber);
+        $builder->addEventSubscriber($marcaSubscriber); /**/
         
-        //$builder->add('marca');
-        //$builder->add('modelo');
-        //$builder->add('serie');
+        $builder->add('marca');
+        $builder->add('modelo');
+        $builder->add('serie'); /**/
         
         $builder->add('numMotor');
         //Botones

@@ -14,20 +14,43 @@ class DefaultController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         
-        /*****  CREACION FORMULARIO   *****/
+        /*****  CREACION FORMULARIO CLIENTE + MOTOR  *****/
         $presupuesto = new Presupuesto();
         $formulario = $this->createForm(new PresupuestoType(), $presupuesto);
 
         /*****  VALIDACION FORMULARIO   *****/
         $formulario->handleRequest($peticion);
         
+        if($formulario->isSubmitted()){
+            
+            
+            
+        }
+        
         if($formulario->isValid()){
+            $presupuesto->setFechaCreacion(new \DateTime('now'));
+            $presupuesto->setFechaEntrega(new \DateTime('tomorrow'));
+            $presupuesto->setEstado('PENDIENTE');
+            
+            $presupuesto->setDescuento(0);
+            $presupuesto->setTotalGeneral(0);
+            $presupuesto->setTotalRectificados(0);
+            $presupuesto->setTotalRepuestos(0);
+            $presupuesto->setMotivoDescuento('NO HAY');
+            
             $em->persist($presupuesto);
             $em->flush();
             
+            if($formulario->get('Siguiente')->isClicked()){
+                return $this->render('PresupuestoBundle:Default:presupuestoRecepcion.html.twig', 
+                     array(
+                         'form' => $formulario->createView(),
+                     ));     
+            }
+            
             /*$mensaje = $formulario->get('mensaje')->isClicked()
                 ? 'mensaje!!!!'
-                : 'El cliente se ha agregado correctamente';*/
+                : 'El cliente se ha agregado correctamente';/**/
            $mensaje = 'El cliente se ha agregado correctamente';
            $this->get('session')->getFlashBag()->add('info', $mensaje);
 
@@ -52,9 +75,7 @@ class DefaultController extends Controller
         $modelos = $em->getRepository('MotorBundle:Modelo')->findByMarca($marca_id);
 
             
-        return array(
-            'modelos' => $modelos
-        );
+        return array( 'modelos' => $modelos);
     }
 
     public function seriesAction()
