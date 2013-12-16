@@ -104,4 +104,27 @@ class Rectificado
     public function __toString() {
         return $this->getNombre();
     }
+
+    /**
+     * Set grupoRectificado
+     *
+     * @param \Piddo\TallerBundle\Entity\GrupoRectificado $grupoRectificado
+     * @return Rectificado
+     */
+    public function setGrupoRectificado(\Piddo\TallerBundle\Entity\GrupoRectificado $grupoRectificado = null)
+    {
+        $this->grupoRectificado = $grupoRectificado;
+    
+        return $this;
+    }
+
+    /**
+     * Get grupoRectificado
+     *
+     * @return \Piddo\TallerBundle\Entity\GrupoRectificado 
+     */
+    public function getGrupoRectificado()
+    {
+        return $this->grupoRectificado;
+    }
 }

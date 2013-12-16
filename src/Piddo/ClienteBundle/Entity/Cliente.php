@@ -3,6 +3,8 @@
 namespace Piddo\ClienteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cliente
@@ -33,6 +35,19 @@ class Cliente
      * @ORM\Column(name="apellidos", type="string", length=255)
      */
     private $apellidos;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Piddo\ClienteBundle\Entity\Telefono", mappedBy="cliente")
+     */
+    protected $telefonos;
+ 
+    public function __construct()
+    {
+        $this->telefonos = new ArrayCollection();
+    }
+    
+    
+    
     
     /**
      * Set rut
@@ -106,5 +121,59 @@ class Cliente
     public function __toString() {
         
         return $this->getNombre();
+    }
+
+    /**
+     * Add telefonos
+     *
+     * @param \Piddo\ClienteBundle\Entity\Telefono $telefonos
+     * @return Cliente
+     */
+    public function addTelefono(\Piddo\ClienteBundle\Entity\Telefono $telefonos)
+    {
+        $this->telefonos[] = $telefonos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove telefonos
+     *
+     * @param \Piddo\ClienteBundle\Entity\Telefono $telefonos
+     */
+    public function removeTelefono(\Piddo\ClienteBundle\Entity\Telefono $telefonos)
+    {
+        $this->telefonos->removeElement($telefonos);
+    }
+
+    /**
+     * Get telefonos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTelefonos()
+    {
+        return $this->telefonos;
+    }
+    
+    
+    
+    
+    /********************************************/
+     /**
+     * @Assert\Type(type="Piddo\ClienteBundle\Entity\Telefono")
+     */
+    protected $telefono;
+ 
+    // ...
+ 
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+ 
+    public function setTelefono(\Piddo\ClienteBundle\Entity\Telefono $telefono = null)
+    {
+        $this->telefono = $telefono;
     }
 }

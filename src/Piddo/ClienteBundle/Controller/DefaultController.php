@@ -4,6 +4,7 @@ namespace Piddo\ClienteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Piddo\ClienteBundle\Entity\Cliente;
+use Piddo\ClienteBundle\Entity\Telefono;
 use Piddo\ClienteBundle\Form\ClienteType;
 
 class DefaultController extends Controller
@@ -20,10 +21,16 @@ class DefaultController extends Controller
         $formulario->handleRequest($peticion);
         
         if($formulario->isValid()){
+            $cliente->getTelefono()->setCliente($cliente);
             $em->persist($cliente);
+            $em->persist($cliente->getTelefono());
             $em->flush();
+            
+            $mensaje = $formulario->get('mensaje')->isClicked()
+                ? 'mensaje!!!!'
+                : 'El cliente se ha agregado correctamente';
 
-           $this->get('session')->getFlashBag()->add('info', 'Se ha registrado correctamente');
+           $this->get('session')->getFlashBag()->add('info', $mensaje);
 
 
             return $this->redirect($this->generateUrl('admin_clientes'));

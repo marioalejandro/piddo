@@ -19,7 +19,7 @@ security:
     access_control:
       - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-      - { path: ^/*, roles: ROLE_ADMIN }
+      #- { path: ^/*, roles: ROLE_ADMIN }
 
     encoders:
       Piddo\UsuarioBundle\Entity\Usuario: plaintext

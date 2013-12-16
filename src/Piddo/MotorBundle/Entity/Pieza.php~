@@ -105,4 +105,27 @@ class Pieza
     public function __toString() {
         return $this->getNombre();
     }
+
+    /**
+     * Set grupoPieza
+     *
+     * @param \Piddo\MotorBundle\Entity\GrupoPieza $grupoPieza
+     * @return Pieza
+     */
+    public function setGrupoPieza(\Piddo\MotorBundle\Entity\GrupoPieza $grupoPieza = null)
+    {
+        $this->grupoPieza = $grupoPieza;
+    
+        return $this;
+    }
+
+    /**
+     * Get grupoPieza
+     *
+     * @return \Piddo\MotorBundle\Entity\GrupoPieza 
+     */
+    public function getGrupoPieza()
+    {
+        return $this->grupoPieza;
+    }
 }

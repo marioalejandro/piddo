@@ -5,6 +5,7 @@ namespace Piddo\ClienteBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Piddo\ClienteBundle\Form\TelefonoType;
 
 class ClienteType extends AbstractType
 {
@@ -18,6 +19,16 @@ class ClienteType extends AbstractType
             ->add('rut')
             ->add('nombre')
             ->add('apellidos')
+            ->add('telefono', new TelefonoType())
+            ->add('telefonos', 'collection', array(
+                'type' => new TelefonoType(),
+                'allow_add'    => true,
+                'by_reference' => false,
+                'allow_delete' => true
+            ))    
+            
+            ->add('Guardar', 'submit')
+            ->add('mensaje', 'submit')
         ;
     }
     
@@ -27,9 +38,11 @@ class ClienteType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Piddo\ClienteBundle\Entity\Cliente'
+            'data_class' => 'Piddo\ClienteBundle\Entity\Cliente',
+            'cascade_validation' => true
         ));
     }
+ 
 
     /**
      * @return string
