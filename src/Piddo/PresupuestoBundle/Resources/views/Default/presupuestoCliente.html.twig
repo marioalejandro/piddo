@@ -6,6 +6,44 @@
 {% block id 'presupuesto' %}
  
 {% block article %}
+    <script>
+        jQuery(document).ready(function() {
+        $(function(){
+            $("#piddo_presupuestobundle_presupuesto_marca").change(function(){
+               // alert('fsdfasdfa');
+                var data = {
+                    marca_id: $(this).val()
+                };
+                //alert($(this).val());
+                $.ajax({
+                    type: 'post',
+                    url: '{{ path("nuevo_presupuesto") }}',
+                    data: data,
+                    success: function(data) {
+                        //alert('jnh');
+                        $('#piddo_presupuestobundle_presupuesto_modelo').html(data);
+                        $('#piddo_presupuestobundle_presupuesto_serie').html("<option>Serieoooo</option>");
+                    }
+                });
+            });
+
+            $("#location_province").change(function(){
+                var data = {
+                    modelo_id: $(this).val()
+                };
+
+                $.ajax({
+                    type: 'post',
+                    url: '{{ path("seleccionar_serie") }}',
+                    data: data,
+                    success: function(data) {
+                        $('#piddo_presupuestobundle_presupuesto_serie').html(data);
+                    }
+                });
+            });
+        });
+        });
+    </script>
     <h1>{{ block('title') }}</h1>
     <section id="formulario_cliente">
         <h4>IDENTIFICACION DEL CLIENTE</h4>
@@ -15,6 +53,9 @@
             {{ form_rest(form) }}
         {{ form_end(form) }}
     </section>
+    
+    
+    
 
 
 {% endblock %}

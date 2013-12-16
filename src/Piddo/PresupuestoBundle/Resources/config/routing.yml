@@ -1,3 +1,11 @@
 nuevo_presupuesto:
     pattern:  /nuevo-presupuesto
     defaults: { _controller: PresupuestoBundle:Default:nuevo }
+    
+seleccionar_modelo:
+    pattern: /seleccionando-modelo
+    defaults: { _controller: PresupuestoBundle:Default:modelos }
+    
+seleccionar_serie:
+    pattern: /seleccionando-serie
+    defaults: { _controller: PresupuestoBundle:Default:series }

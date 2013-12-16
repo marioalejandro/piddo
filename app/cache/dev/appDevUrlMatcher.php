@@ -138,6 +138,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
         }
 
+        if (0 === strpos($pathinfo, '/seleccionando-')) {
+            // seleccionar_modelo
+            if ($pathinfo === '/seleccionando-modelo') {
+                return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::modelosAction',  '_route' => 'seleccionar_modelo',);
+            }
+
+            // seleccionar_serie
+            if ($pathinfo === '/seleccionando-serie') {
+                return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::seriesAction',  '_route' => 'seleccionar_serie',);
+            }
+
+        }
+
         // admin_clientes
         if ($pathinfo === '/registro-cliente') {
             return array (  '_controller' => 'Piddo\\ClienteBundle\\Controller\\DefaultController::registroAction',  '_route' => 'admin_clientes',);

@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Doctrine\ORM\EntityRepository;
 use Piddo\MotorBundle\Entity\Serie;
+use Piddo\MotorBundle\Entity\Modelo;
  
 class AddSerieFieldSubscriber implements EventSubscriberInterface
 {
@@ -26,23 +27,24 @@ class AddSerieFieldSubscriber implements EventSubscriberInterface
         );
     }
  
-    private function addCityForm($form, $province)
+    private function addSerieForm($form, $modelo)
     {
-        $form->add($this->factory->createNamed('city','entity', null, array(
-            'class'         => 'MainBundle:City',
-            'empty_value'   => 'Ciudad',
-            'query_builder' => function (EntityRepository $repository) use ($province) {
-                $qb = $repository->createQueryBuilder('city')
-                    ->innerJoin('city.province', 'province');
-                if ($province instanceof Province) {
-                    $qb->where('city.province = :province')
-                    ->setParameter('province', $province);
-                } elseif (is_numeric($province)) {
-                    $qb->where('province.id = :province')
-                    ->setParameter('province', $province);
+        $form->add($this->factory->createNamed('serie','entity', null, array(
+            'class'         => 'MotorBundle:Serie',
+            'empty_value'   => 'Serie',
+            'auto_initialize' => false,
+            'query_builder' => function (EntityRepository $repository) use ($modelo) {
+                $qb = $repository->createQueryBuilder('serie')
+                    ->innerJoin('serie.modelo', 'modelo');
+                if ($modelo instanceof Modelo) {
+                    $qb->where('serie.modelo = :modelo')
+                    ->setParameter('modelo', $modelo);
+                } elseif (is_numeric($modelo)) {
+                    $qb->where('modelo.id = :modelo')
+                    ->setParameter('modelo', $modelo);
                 } else {
-                    $qb->where('province.name = :province')
-                    ->setParameter('province', null);
+                    $qb->where('modelo.nombre = :modelo')
+                    ->setParameter('modelo', null);
                 }
  
                 return $qb;
@@ -59,8 +61,8 @@ class AddSerieFieldSubscriber implements EventSubscriberInterface
             return;
         }
  
-        $province = ($data->city) ? $data->city->getProvince() : null ;
-        $this->addCityForm($form, $province);
+        $modelo = ($data->getSerie()) ? $data->getSerie()->getModelo() : null ;
+        $this->addSerieForm($form, $modelo);
     }
  
     public function preBind(FormEvent $event)
@@ -72,7 +74,7 @@ class AddSerieFieldSubscriber implements EventSubscriberInterface
             return;
         }
  
-        $province = array_key_exists('province', $data) ? $data['province'] : null;
-        $this->addCityForm($form, $province);
+        $modelo = array_key_exists('modelo', $data) ? $data['modelo'] : null;
+        $this->addSerieForm($form, $modelo);
     }
 }
