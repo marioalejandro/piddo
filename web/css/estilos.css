@@ -33,7 +33,25 @@ aside#lateral a:hover{
 }
 /**********fin barras y floats*******/
 
+header div#usuario{
+    float: right;
+    padding-left:40px;
+}
 
+header p{
+    margin:0px;
+    paddin:0px;
+    margin-top: 7px;
+}
+
+header a{
+    text-decoration: none;
+    color: red;
+}
+
+header a:hover{
+    color:blue;
+}
 /*
 
  ,adPPYba,  88       88  8b,dPPYba,    ,adPPYba,   8b,dPPYba, 
@@ -994,9 +1012,9 @@ header a, header a:visited {
     border-bottom: 1px solid;
     text-decoration: none;
 }
-header a:hover {
+/*header a:hover {
     color: #FF0A85 !important;
-}
+}*/
 
 header h1 {
     position: absolute;

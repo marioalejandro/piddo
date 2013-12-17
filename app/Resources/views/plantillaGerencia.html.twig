@@ -16,8 +16,14 @@
                 <li><a href="{{ path('nuevo_presupuesto')}}">NP</a></li>
             </ul>
         </nav>#}
+                
+        <div id="usuario">
+            <p>{{ app.user.nombre ~ ' ' ~ app.user.apellidos }}</p>
+            <a href="{{ path('usuario_logout') }}">Salir</a>
+        </div>
+
     </header>
-    
+       
 <aside id="lateral">
     <h1>Menú</h1>
     <ul>
@@ -31,7 +37,16 @@
 </aside>
 
     <section id="mensajes">
-    {% if is_granted('ROLE_ADMIN') %}
+        
+      {% if is_granted('ROLE_ADMIN') %}
+            {% for tipo, mensajes in app.session.flashbag.all() %}
+                {% for mensaje in mensajes %}
+                    <p class="flash-{{ tipo }}">{{ mensaje }}</p>
+                {% endfor %}
+            {% endfor %}
+      {% endif %}
+ 
+{#   {% if is_granted('ROLE_ADMIN') %}
         {% for tipo, mensajes in app.session.flashbag.all() %}
             {% for mensaje in mensajes %}
                 <p class="flash-{{ tipo }}">{{ mensaje }}</p>
@@ -40,9 +55,10 @@
         <p>Conectado como {{ app.user.nombre ~ ' ' ~ app.user.apellidos }}</p>
         <a href="{{ path('usuario_logout') }}">Cerrar sesión</a>
 
-        {#<a href="{{ path('usuario_perfil') }}">Ver mi perfil</a>#}
-        {#<a href="{{ path('usuario_logout') }}">Cerrar sesión</a>#}
-    {% endif %}
+        <a href="{{ path('usuario_perfil') }}">Ver mi perfil</a>
+        <a href="{{ path('usuario_logout') }}">Cerrar sesión</a>
+{% endif %}#}
+                    
     </section>    
     <article>
         {% block article %}{% endblock %}
