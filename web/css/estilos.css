@@ -1,11 +1,19 @@
 #centrar{
 
-        border: 3px solid black;
+border: 3px solid black;
 -webkit-border-radius: 13px;
 -moz-border-radius: 13px;
 border-radius: 13px;
 margin: 2em;
 padding: 2em;
+}
+
+aside#lateral{
+    float: left;
+}
+
+section#mensajes{
+    float: left;
 }
 
 /*
@@ -944,10 +952,10 @@ a:active  { position: relative; top: 1px; }
     box-shadow: 0 1px 5px #444;
 }
 
-#contenedor > article {
+/*#contenedor > article {
     min-height: 400px;
 }
-
+*/
 footer {
     clear: both;
 }
