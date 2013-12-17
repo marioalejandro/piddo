@@ -42,9 +42,57 @@ class DefaultController extends Controller
             $em->flush();
             
             if($formulario->get('Siguiente')->isClicked()){
+
+                $serie = $presupuesto->getSerie();
+                $piezasSerie = $em->getRepository('MotorBundle:ColPiezas')->findBy(array('serie' => $serie->getID()));
+
+                $defaultData = array();
+                $builder = $this->createFormBuilder($defaultData);
+
+                $i=0;
+                while($i < sizeof($piezasSerie))
+                    {
+                        $pieza = $em->getRepository('MotorBundle:Pieza')->findOneBy(array('id' => $piezasSerie[$i]->getPieza()));
+                        $builder->add($pieza->getNombre(),'number',array(
+                            'label' => $pieza->getNombre(),
+                            'data' => 0,
+                        ));
+                    $i++;
+                    }
+                 $form= $builder->getForm();
+
+                 $form->handleRequest($peticion);
+
+                    if ($form->isValid()) {
+                        // data es un array con claves 'name', 'email', y 'message'
+                        $data = $form->getData();
+                        $i = 0;
+                        while($i < sizeof($gruposPieza))
+                            {
+                            $piezas = $em->getRepository('MotorBundle:Pieza')->findBy(array('grupoPieza' => $gruposPieza[$i]->getID()));
+                            $j=0;
+                             while($j<sizeof($piezas))
+                                 {
+                                 //print_r($data[$piezas[$j]->getNombre()]);
+                                 if($data[$piezas[$j]->getNombre()]>0){
+                                     $colPieza = new ColPiezas();
+                                     $colPieza->setMaximo($data[$piezas[$j]->getNombre()]);
+                                     $colPieza->setPieza($piezas[$j]);
+                                     $colPieza->setSerie($oSerie);
+                                     $em->persist($colPieza);
+
+                                 }
+
+                                 $j++;
+                                 }
+                            $i++;
+                            }
+                            $em->flush();
+                        //print_r($data);
+                    }
                 return $this->render('PresupuestoBundle:Default:presupuestoRecepcion.html.twig', 
                      array(
-                         'form' => $formulario->createView(),
+                         'form' => $form->createView(),
                      ));     
             }
             
