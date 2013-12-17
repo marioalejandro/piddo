@@ -35,7 +35,7 @@ class DefaultController extends Controller
             $presupuesto->setDescuento(0);
             $presupuesto->setTotalGeneral(0);
             $presupuesto->setTotalRectificados(0);
-            $presupuesto->setTotalRepuestos(0);
+            $presupuesto->setTotalRepuestos(1);
             $presupuesto->setMotivoDescuento('NO HAY');
             
             $em->persist($presupuesto);
@@ -51,7 +51,7 @@ class DefaultController extends Controller
             /*$mensaje = $formulario->get('mensaje')->isClicked()
                 ? 'mensaje!!!!'
                 : 'El cliente se ha agregado correctamente';/**/
-           $mensaje = 'El cliente se ha agregado correctamente';
+           $mensaje = 'El Presupuesto se ha guardado correctamente';
            $this->get('session')->getFlashBag()->add('info', $mensaje);
 
 

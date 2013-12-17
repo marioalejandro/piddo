@@ -1,0 +1,46 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    Piezas > 
+    Todas las piezas
+{% endblock %}
+{% block id 'piezas' %}
+ 
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+    <section id="formulario_marca">
+        <h4>Agregar un Coleccion de Piezas</h4>
+        <form action="{{ path('serie_col_piezas',{'marca': marca, 'modelo' : modelo, 'serie': serie })}}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+                <input class="boton" type="submit" value="Guardar" />
+        </form>
+
+    </section>
+    <section id="listado_rectificados">
+        <table>
+            <tr>
+                <th>Grupo Piezas</th>
+                <th>Piezas</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for gp in gruposPieza %}
+                <tr>
+                    <td>{{gp.nombre}}{#<a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a>#}</td>
+                    <td>
+                        {% render controller("AdminBundle:Default:listaPiezas", {'grupo': gp.id}) %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% if gruposPieza == null%}
+            {{'no hay piezas registrados'}}
+        {%endif%}
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

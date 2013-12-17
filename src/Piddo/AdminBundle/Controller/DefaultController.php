@@ -193,35 +193,101 @@ class DefaultController extends Controller
             }
             
     public function ColPiezasAction($marca, $modelo, $serie)
-        {
-            $peticion = $this->getRequest();
-            
-            $em = $this->getDoctrine()->getManager();
-
-
-            $grupoPieza = new GrupoPieza();
-            $formulario2 = $this->createForm(new GrupoPiezaType(), $grupoPieza);
-            $formulario2->handleRequest($peticion);
-            if($formulario2->isValid()){
-                $em->persist($grupoPieza);
-                $em->flush();
-                $this->get('session')->getFlashBag()->add('info', 'El Grupo '.$grupoPieza->getNombre().' ha sido registrado correctamente');
-            return $this->redirect($this->generateUrl('admin_piezas'));}
+        { 
+        $peticion = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+        
+        $gruposPieza = $em->getRepository('MotorBundle:GrupoPieza')->findAll();
+        $oSerie = $em->getRepository('MotorBundle:Serie')->findOneBy(array('slug' => $serie));
+        $piezasSerie = $em->getRepository('MotorBundle:ColPiezas')->findBy(array('serie' => $oSerie->getID()));
+        
+          $defaultData = array();
+            $builder = $this->createFormBuilder($defaultData);
                 
-                
-            
-            $em = $this->getDoctrine()->getManager();
-            $objetoMarca = $em->getRepository('MotorBundle:Marca')->findOneBy(array('id' => $marca));
-            $objetoModelo = $em->getRepository('MotorBundle:Modelo')->findOneBy(array('id' => $modelo));
-
-            $em->getRepository('MotorBundle:Serie')->deleteSerie($serie);
-            $this->get('session')->getFlashBag()->add('info', 'La serie ha sido borrada');
-            return $this->redirect($this->generateUrl('admin_series',
-                  array(
-                      'marca'=> $objetoMarca->getSlug(), 
-                      'modelo' =>$objetoModelo->getSlug(),
-                      'gruposPieza' => $em->getRepository('MotorBundle:GrupoPieza')->findAll()
-                  )));
+        
+        //print_r($piezasSerie);
+        
+        $i=0;
+        while($i < sizeof($gruposPieza))
+            {
+            $piezas = $em->getRepository('MotorBundle:Pieza')->findBy(array('grupoPieza' => $gruposPieza[$i]->getID()));
+            $j=0;
+             while($j<sizeof($piezas))
+                 {
+                 //print_r($piezas[$j].'***');
+                 $builder->add($piezas[$j]->getNombre(),'number',array(
+                     'label' => $piezas[$j]->getNombre(),
+                     'data' => 0,
+                 ));
+                 $j++;
+                 }
+            $i++;
+            }
+         $form= $builder->getForm();
+         
+         $form->handleRequest($peticion);
+ 
+            if ($form->isValid()) {
+                // data es un array con claves 'name', 'email', y 'message'
+                $data = $form->getData();
+                $i = 0;
+                while($i < sizeof($gruposPieza))
+                    {
+                    $piezas = $em->getRepository('MotorBundle:Pieza')->findBy(array('grupoPieza' => $gruposPieza[$i]->getID()));
+                    $j=0;
+                     while($j<sizeof($piezas))
+                         {
+                         //print_r($data[$piezas[$j]->getNombre()]);
+                         if($data[$piezas[$j]->getNombre()]>0){
+                             $colPieza = new ColPiezas();
+                             $colPieza->setMaximo($data[$piezas[$j]->getNombre()]);
+                             $colPieza->setPieza($piezas[$j]);
+                             $colPieza->setSerie($oSerie);
+                             $em->persist($colPieza);
+                             
+                         }
+                       
+                         $j++;
+                         }
+                    $i++;
+                    }
+                    $em->flush();
+                //print_r($data);
+            }
+         
+         
+         
+        /*
+        
+        
+        
+        $formulario2->handleRequest($peticion);
+        if($formulario2->isValid()){
+            $em->persist($grupoPieza);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('info', 'El Grupo '.$grupoPieza->getNombre().' ha sido registrado correctamente');
+            return $this->redirect($this->generateUrl('admin_piezas'));
+        }
+        
+        
+        $pieza = new Pieza();
+        $formulario = $this->createForm(new PiezaType(), $pieza);
+        $formulario->handleRequest($peticion);
+        if($formulario->isValid()){
+            $em->persist($pieza);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('info', 'La Pieza '.$pieza->getNombre().' ha sido registrado correctamente');
+            return $this->redirect($this->generateUrl('admin_piezas'));
+        }/**/
+        
+        return $this->render('AdminBundle:Default:colPiezas.html.twig', 
+                array(
+                    'form' => $form->createView(),
+                    'gruposPieza' => $gruposPieza,
+                    'marca' => $marca,
+                    'modelo' => $modelo,
+                    'serie' => $serie
+                ));
         }
       
 }
