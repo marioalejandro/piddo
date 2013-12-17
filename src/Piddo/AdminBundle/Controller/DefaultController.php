@@ -206,7 +206,7 @@ class DefaultController extends Controller
                 $em->persist($grupoPieza);
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', 'El Grupo '.$grupoPieza->getNombre().' ha sido registrado correctamente');
-                return $this->redirect($this->generateUrl('admin_piezas'));
+            return $this->redirect($this->generateUrl('admin_piezas'));}
                 
                 
             

@@ -2005,3 +2005,4 @@ b8316b,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_for
 33f93b,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/rectificados,1387246175,
 b30a14,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ARectificados%253AlistaRectificados,1387246175,33f93b
 >>>>>>> 91d36258464db293dfbb869de75125e558990fd5
+97f266,::1,GET,http://localhost/piddo/web/app_dev.php/registro,1387246712,
