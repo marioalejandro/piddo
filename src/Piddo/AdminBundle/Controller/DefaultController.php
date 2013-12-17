@@ -8,11 +8,13 @@ use Piddo\MotorBundle\Entity\Modelo;
 use Piddo\MotorBundle\Entity\Serie;
 use Piddo\MotorBundle\Entity\Pieza;
 use Piddo\MotorBundle\Entity\GrupoPieza;
+use Piddo\MotorBundle\Entity\ColPiezas;
 use Piddo\AdminBundle\Form\MarcaType;
 use Piddo\AdminBundle\Form\ModeloType;
 use Piddo\AdminBundle\Form\SerieType;
 use Piddo\AdminBundle\Form\PiezaType;
 use Piddo\AdminBundle\Form\GrupoPiezaType;
+
 
 class DefaultController extends Controller
 {
@@ -189,5 +191,37 @@ class DefaultController extends Controller
                         'piezas' => $piezas
                     ));
             }
+            
+    public function ColPiezasAction($marca, $modelo, $serie)
+        {
+            $peticion = $this->getRequest();
+            
+            $em = $this->getDoctrine()->getManager();
+
+
+            $grupoPieza = new GrupoPieza();
+            $formulario2 = $this->createForm(new GrupoPiezaType(), $grupoPieza);
+            $formulario2->handleRequest($peticion);
+            if($formulario2->isValid()){
+                $em->persist($grupoPieza);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'El Grupo '.$grupoPieza->getNombre().' ha sido registrado correctamente');
+                return $this->redirect($this->generateUrl('admin_piezas'));
+                
+                
+            
+            $em = $this->getDoctrine()->getManager();
+            $objetoMarca = $em->getRepository('MotorBundle:Marca')->findOneBy(array('id' => $marca));
+            $objetoModelo = $em->getRepository('MotorBundle:Modelo')->findOneBy(array('id' => $modelo));
+
+            $em->getRepository('MotorBundle:Serie')->deleteSerie($serie);
+            $this->get('session')->getFlashBag()->add('info', 'La serie ha sido borrada');
+            return $this->redirect($this->generateUrl('admin_series',
+                  array(
+                      'marca'=> $objetoMarca->getSlug(), 
+                      'modelo' =>$objetoModelo->getSlug(),
+                      'gruposPieza' => $em->getRepository('MotorBundle:GrupoPieza')->findAll()
+                  )));
+        }
       
 }

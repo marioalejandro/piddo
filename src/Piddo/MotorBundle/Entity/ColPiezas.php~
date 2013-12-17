@@ -1,0 +1,45 @@
+<?php
+
+namespace Piddo\MotorBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ColPiezas
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class ColPiezas
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie")
+     */
+    private $serie;
+
+    /**
+     * @var string
+     *
+     * * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Pieza")
+     */
+    private $pieza;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="maximo", type="integer")
+     */
+    private $maximo;
+
+}

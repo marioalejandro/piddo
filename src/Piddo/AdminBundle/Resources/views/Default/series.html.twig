@@ -28,7 +28,7 @@
             </tr>
             {% for serie in series %}
                 <tr>
-                    <td>{{ serie.nombre }}</td>
+                    <td><a href="{{ path('serie_col_piezas',{'marca': marca.slug, 'modelo' : modelo.slug, 'serie': serie.slug })}}">{{serie.nombre}}</a></td>
                     <td><a href="{{ path('borrar_serie',{'marca': marca.id, 'modelo': modelo.id, 'serie': serie.id })}}">{{ 'Eliminar'}}</a></td>
                 </tr>
             {% endfor %}

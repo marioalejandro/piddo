@@ -33,3 +33,7 @@ admin_rectificados:
 admin_piezas:
     pattern: /administracion/piezas
     defaults: { _controller: AdminBundle:Default:piezas }
+
+serie_col_piezas:
+    pattern: /administracion/{marca}/{modelo}/{serie}/piezas
+    defaults: { _controller: AdminBundle:Default:ColPiezas }
