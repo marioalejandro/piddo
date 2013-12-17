@@ -6,7 +6,7 @@
 {% block body %}
     <header>
         <h1><a href="{{ path('portada_gerencia') }}">Gerencia</a></h1>
-        <nav>
+        {#<nav>
             <ul>
                 <li><a href="{{ path('usuario_registro')}}">Registrar Usuarios</a></li>
                 <li><a href="{{ path('admin_marcas')}}">Motores</a></li>
@@ -15,8 +15,20 @@
                 <li><a href="{{ path('admin_clientes')}}">Clientes</a></li>
                 <li><a href="{{ path('nuevo_presupuesto')}}">NP</a></li>
             </ul>
-        </nav>
+        </nav>#}
     </header>
+    
+<aside id="lateral">
+    <ul>
+        <li><a href="{{ path('usuario_registro')}}">Registrar Usuarios</a></li>
+        <li><a href="{{ path('admin_marcas')}}">Motores</a></li>
+        <li><a href="{{ path('admin_piezas')}}">Piezas</a></li>
+        <li><a href="{{ path('admin_rectificados')}}">Trabajos</a></li>
+        <li><a href="{{ path('admin_clientes')}}">Clientes</a></li>
+        <li><a href="{{ path('nuevo_presupuesto')}}">NP</a></li>
+    </ul>
+</aside>
+
     <section id="mensajes">
     {% if is_granted('ROLE_ADMIN') %}
         {% for tipo, mensajes in app.session.flashbag.all() %}
