@@ -210,6 +210,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::piezasAction',  '_route' => 'admin_piezas',);
             }
 
+            // serie_col_piezas
+            if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/(?P<serie>[^/]++)/piezas$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'serie_col_piezas')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::ColPiezasAction',));
+            }
+
         }
 
         // usuario_registro

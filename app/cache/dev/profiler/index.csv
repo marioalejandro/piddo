@@ -1961,6 +1961,14 @@ ccd1d2,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_for
 6e605c,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1387230595,0c319a
 dcac7d,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1387230595,0c319a
 829b7f,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1387230595,0c319a
+<<<<<<< HEAD
+110eb0,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387240162,
+454008,::1,GET,http://localhost/piddo/web/app_dev.php/registro,1387240776,
+7be852,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/marcas,1387240904,
+c82b78,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/volkswagen/modelos,1387240907,
+ca3a87,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/volkswagen/gol/series,1387240909,
+7feb80,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/volkswagen/gol/series,1387241301,
+=======
 40d3b7,::1,GET,http://localhost/piddo/web/app_dev.php/registro,1387245527,
 377be3,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/marcas,1387245534,
 c5e9a1,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/marcas,1387245619,
@@ -1996,6 +2004,7 @@ b8316b,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_for
 8dd2c2,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387246132,
 33f93b,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/rectificados,1387246175,
 b30a14,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ARectificados%253AlistaRectificados,1387246175,33f93b
+<<<<<<< HEAD
 6a2eb0,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/marcas,1387246380,
 85ddbb,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/rectificados,1387246383,
 1c3a50,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ARectificados%253AlistaRectificados,1387246383,85ddbb
@@ -2031,3 +2040,7 @@ d3abe1,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/kia/kia2200
 141ae8,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/piezas,1387249037,
 756bbe,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1387249037,141ae8
 0b954b,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1387249037,141ae8
+=======
+>>>>>>> 91d36258464db293dfbb869de75125e558990fd5
+97f266,::1,GET,http://localhost/piddo/web/app_dev.php/registro,1387246712,
+>>>>>>> 624f9b1b00171104ea0d31e9fb9471a7cb1d19ae
