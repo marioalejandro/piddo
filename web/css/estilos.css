@@ -8,26 +8,31 @@ margin: 2em;
 padding: 2em;
 }
 
+/*********Barra lateral y floats*********/
 aside#lateral{
     float: left;
    
 }
-
 section#mensajes{
     float: left;
 }
 aside#lateral ul{
+    margin:0px;
+    padding: 0px;
     list-style: none;
     text-decoration: none;
 }
-
 aside#lateral a{
-    margin:0;
     text-decoration: none;
     font-size: 18px;
     display: block;
-    padding: 0;
 }
+aside#lateral a:hover{
+    border-right-color: red;
+    border-right-style: solid;
+}
+/**********fin barras y floats*******/
+
 
 /*
 
