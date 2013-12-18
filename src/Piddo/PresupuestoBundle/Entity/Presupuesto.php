@@ -74,7 +74,7 @@ class Presupuesto
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     * 
      * @ORM\Column(name="numMotor", type="string", length=100, nullable=true)
      */
     private $numMotor;
