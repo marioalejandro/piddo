@@ -29,7 +29,6 @@ class ClienteType extends AbstractType
             ))    
             
             ->add('Guardar', 'submit')
-            ->add('mensaje', 'submit')
         ;
     }
     

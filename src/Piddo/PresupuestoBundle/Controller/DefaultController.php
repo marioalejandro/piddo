@@ -16,30 +16,28 @@ class DefaultController extends Controller
         
         /*****  CREACION FORMULARIO CLIENTE + MOTOR  *****/
         $presupuesto = new Presupuesto();
+        $presupuesto->setFechaCreacion(new \DateTime('now'));
+        $presupuesto->setFechaEntrega(new \DateTime('tomorrow'));
+        $presupuesto->setEstado('PENDIENTE');
+
+        $presupuesto->setDescuento(0);
+        $presupuesto->setTotalGeneral(0);
+        $presupuesto->setTotalRectificados(0);
+        $presupuesto->setTotalRepuestos(0);
+        $presupuesto->setMotivoDescuento('');
+        
         $formulario = $this->createForm(new PresupuestoType(), $presupuesto);
 
         /*****  VALIDACION FORMULARIO   *****/
         $formulario->handleRequest($peticion);
         
         if($formulario->isSubmitted()){
-            
-            
-            
         }
         
         if($formulario->isValid()){
-            $presupuesto->setFechaCreacion(new \DateTime('now'));
-            $presupuesto->setFechaEntrega(new \DateTime('tomorrow'));
-            $presupuesto->setEstado('PENDIENTE');
-            
-            $presupuesto->setDescuento(0);
-            $presupuesto->setTotalGeneral(0);
-            $presupuesto->setTotalRectificados(0);
-            $presupuesto->setTotalRepuestos(1);
-            $presupuesto->setMotivoDescuento('NO HAY');
-            
             $em->persist($presupuesto);
             $em->flush();
+            print_r($presupuesto->getId());
             
             if($formulario->get('Siguiente')->isClicked()){
 
@@ -113,6 +111,11 @@ class DefaultController extends Controller
                     'form' => $formulario->createView(),
                 ));
     }
+    
+    
+    
+    
+    
 
     public function modelosAction()
     {

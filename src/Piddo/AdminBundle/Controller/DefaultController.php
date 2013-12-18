@@ -228,6 +228,7 @@ class DefaultController extends Controller
                 $builder->add($piezas[$j]->getId(),'number',array(
                     'label' => $piezas[$j]->getNombre(),
                     'data' => $maximo,
+                    'invalid_message' => 'Ingrese solo números'
                 ));
                 $j++;
             }

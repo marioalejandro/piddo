@@ -24,9 +24,7 @@ class DefaultController extends Controller
             $em->persist($cliente);
             $em->flush();
             
-            $mensaje = $formulario->get('mensaje')->isClicked()
-                ? 'mensaje!!!!'
-                : 'El cliente se ha agregado correctamente';
+            $mensaje ='El cliente se ha agregado correctamente';
 
            $this->get('session')->getFlashBag()->add('info', $mensaje);
 
