@@ -2935,3 +2935,6 @@ ea2e13,::1,POST,http://localhost/piddo/web/app_dev.php/seleccionando-modelo,1387
 ccab16,::1,GET,http://localhost/piddo/web/app_dev.php/seleccionando-modelo,1387382330,
 957695,::1,POST,http://localhost/piddo/web/app_dev.php/seleccionando-modelo,1387382330,
 bb86f5,::1,POST,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387382456,
+2a968b,::1,POST,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387383441,
+5bc53f,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387383446,
+9ce3f9,::1,POST,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387383455,
