@@ -2613,6 +2613,16 @@ c0e7ab,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,13873742
 89124f,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387374238,
 578ec0,::1,POST,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387374238,
 3ad2a4,::1,POST,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387374317,
+<<<<<<< HEAD
+2db67b,::1,GET,http://localhost/piddo/web/app_dev.php/login,1387377117,
+3c0f7f,::1,GET,http://localhost/piddo/web/app_dev.php/registro,1387377124,
+af0017,::1,GET,http://localhost/piddo/web/app_dev.php/registro,1387377364,
+bf140a,::1,POST,http://localhost/piddo/web/app_dev.php/registro,1387377393,
+9381aa,::1,GET,http://localhost/piddo/web/app_dev.php/registro,1387377394,
+821141,::1,GET,http://localhost/piddo/web/app_dev.php/login,1387377411,
+5f176b,::1,POST,http://localhost/piddo/web/app_dev.php/login_check,1387377423,
+f73963,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/portada,1387377424,
+=======
 c9b398,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387374672,
 dc041c,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/piezas,1387374677,
 586486,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1387374677,dc041c
@@ -2648,6 +2658,7 @@ f8f9b6,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/marcas,1387
 a28447,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/peugeot/miranda/psa-9hw/piezas,1387377297,
 8473e3,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/peugeot/miranda/psa-9hw/piezas,1387377336,
 9b8c6a,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/peugeot/miranda/psa-9hw/piezas,1387377423,
+<<<<<<< HEAD
 86fb81,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/peugeot/miranda/psa-9hw/piezas,1387377659,
 d7f52a,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/piezas,1387377697,
 fc1259,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1387377697,d7f52a
@@ -2720,3 +2731,6 @@ bbf3e5,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/peugeot/mir
 3b7904,::1,POST,http://localhost/piddo/web/app_dev.php/administracion/peugeot/miranda/psa-9hw/piezas,1387381662,
 825e8a,::1,POST,http://localhost/piddo/web/app_dev.php/administracion/peugeot/miranda/psa-9hw/piezas,1387381690,
 a00c87,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387381731,
+=======
+>>>>>>> c9c0e3e6af2de729d0ac64f0f7bf38c7793b6ea3
+>>>>>>> 3728686af5d418e367883448e7c40e3a0532370d
