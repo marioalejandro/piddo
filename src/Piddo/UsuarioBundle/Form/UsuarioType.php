@@ -15,8 +15,8 @@ class UsuarioType extends AbstractType
                 ->add('apellidos')
                 ->add('password', 'repeated', array(
                     'type' => 'password',
-                    'invalid_message' => 'Las contraseñas no son iguales',
-                    'options' => array('label' => 'contraseña')
+                    'invalid_message' => 'Las contraseñas no coinciden',
+                    'options' => array('label' => 'Contraseña')
                 ))
         ;
     }
