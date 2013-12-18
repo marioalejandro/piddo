@@ -2455,3 +2455,10 @@ b058dc,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/rectificado
 8c65aa,::1,POST,http://localhost/piddo/web/app_dev.php/administracion/rectificados,1387287615,
 fef326,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/rectificados,1387287616,
 4d1525,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ARectificados%253AlistaRectificados,1387287616,fef326
+d9f15b,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387370816,
+0bc0e9,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387370816,
+2c944a,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387370994,
+b8b900,::1,GET,http://localhost/piddo/web/app_dev.php/registro,1387371087,
+42ac65,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/marcas,1387371091,
+49cbd5,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387371095,
+8eec56,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387371099,
