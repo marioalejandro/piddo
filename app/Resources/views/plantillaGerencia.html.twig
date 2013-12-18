@@ -18,9 +18,10 @@
         </nav>#}
                 
       {% if is_granted('ROLE_ADMIN') %}
-
-        <p>Conectado como {{ app.user.nombre ~ ' ' ~ app.user.apellidos }}</p>
-        <a href="{{ path('usuario_logout') }}">Cerrar sesión</a>
+        <div id="derecha">
+            <p>Conectado como {{ app.user.nombre ~ ' ' ~ app.user.apellidos }}</p>
+            <a href="{{ path('usuario_logout') }}">Cerrar sesión</a>
+        </div>
       {% endif %}  
 
 

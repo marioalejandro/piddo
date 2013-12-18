@@ -212,15 +212,26 @@ class DefaultController extends Controller
             {
             $piezas = $em->getRepository('MotorBundle:Pieza')->findBy(array('grupoPieza' => $gruposPieza[$i]->getID()));
             $j=0;
-             while($j<sizeof($piezas))
-                 {
-                 //print_r($piezas[$j].'***');
-                 $builder->add($piezas[$j]->getSlug(),'number',array(
-                     'label' => $piezas[$j]->getNombre(),
-                     'data' => 0,
-                 ));
-                 $j++;
-                 }
+            while($j<sizeof($piezas))
+            {
+                $maximo = 0;
+                //Vemos si el motor ya tiene agregada esa pieza
+                $k=0;
+                while($k < sizeof($piezasSerie))
+                    {
+                    if($piezasSerie[$k] == $piezas[$j])
+                        {
+                            $data = $piezasSerie[$k]->getMaximo();
+                        }
+                    $k++;
+                    }
+                //Creamos el input en el formulario
+                $builder->add($piezas[$j]->getId(),'number',array(
+                    'label' => $piezas[$j]->getNombre(),
+                    'data' => $maximo,
+                ));
+                $j++;
+            }
             $i++;
             }
          $form= $builder->getForm();
@@ -238,9 +249,9 @@ class DefaultController extends Controller
                      while($j<sizeof($piezas))
                          {
                          //print_r($data[$piezas[$j]->getNombre()]);
-                         if($data[$piezas[$j]->getSlug()]>0){
+                         if($data[$piezas[$j]->getId()]>0){
                              $colPieza = new ColPiezas();
-                             $colPieza->setMaximo($data[$piezas[$j]->getSlug()]);
+                             $colPieza->setMaximo($data[$piezas[$j]->getId()]);
                              $colPieza->setPieza($piezas[$j]);
                              $colPieza->setSerie($oSerie);
                              $em->persist($colPieza);
