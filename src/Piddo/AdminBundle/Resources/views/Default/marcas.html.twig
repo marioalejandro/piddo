@@ -27,7 +27,7 @@
             {% for marca in marcas %}
                 <tr>
                     <td><a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a></td>
-                    <td><a href="{{ path('borrar_marca',{'marca': marca.id })}}">{{ 'Eliminar'}}</a></td>
+                    {#<td><a href="{{ path('borrar_marca',{'marca': marca.id })}}">{{ 'Eliminar'}}</a></td>#}
                 </tr>
             {% endfor %}
         </table>
