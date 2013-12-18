@@ -3,6 +3,7 @@
 namespace Piddo\PresupuestoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Presupuesto
@@ -52,28 +53,28 @@ class Presupuesto
     
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Marca")
      */
     private $marca;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Modelo")
      */
     private $modelo;
     
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie")
      */
     private $serie;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="numMotor", type="string", length=100, nullable=true)
      */
     private $numMotor;
@@ -84,14 +85,15 @@ class Presupuesto
     
     /**
      * @var string
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Piddo\ClienteBundle\Entity\Cliente")
      */
     private $cliente;
     
     /**
      * @var string
-     *
-     * @ORM\Column(name="RMT", type="string", length=255)
+     * 
+     * @ORM\Column(name="RMT", type="string", length=255, nullable=true)
      */
     private $RMT;
 
@@ -220,7 +222,7 @@ class Presupuesto
     }
 
     /************************************************************************
-     *      GETTERS & SETTERS : IDENTIFICACION DEL MOTOR                                 
+     *      GETTERS & SETTERS : IDENTIFICACION DEL MOTOR                    *            
      ************************************************************************/
     
     /**
