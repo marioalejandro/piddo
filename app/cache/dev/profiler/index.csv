@@ -2734,3 +2734,8 @@ a00c87,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,13873817
 =======
 >>>>>>> c9c0e3e6af2de729d0ac64f0f7bf38c7793b6ea3
 >>>>>>> 3728686af5d418e367883448e7c40e3a0532370d
+11c47f,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387381861,
+64bf85,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387382122,
+8bf63e,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387382124,
+31de70,::1,POST,http://localhost/piddo/web/app_dev.php/registro-cliente,1387382137,
+8cd040,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387382138,
