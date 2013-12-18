@@ -53,7 +53,7 @@ class DefaultController extends Controller
                 while($i < sizeof($piezasSerie))
                     {
                         $pieza = $em->getRepository('MotorBundle:Pieza')->findOneBy(array('id' => $piezasSerie[$i]->getPieza()));
-                        $builder->add($pieza->getNombre(),'number',array(
+                        $builder->add($pieza->getSlug(),'number',array(
                             'label' => $pieza->getNombre(),
                             'data' => 0,
                         ));

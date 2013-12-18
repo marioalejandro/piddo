@@ -215,7 +215,7 @@ class DefaultController extends Controller
              while($j<sizeof($piezas))
                  {
                  //print_r($piezas[$j].'***');
-                 $builder->add($piezas[$j]->getNombre(),'number',array(
+                 $builder->add($piezas[$j]->getSlug(),'number',array(
                      'label' => $piezas[$j]->getNombre(),
                      'data' => 0,
                  ));
@@ -238,9 +238,9 @@ class DefaultController extends Controller
                      while($j<sizeof($piezas))
                          {
                          //print_r($data[$piezas[$j]->getNombre()]);
-                         if($data[$piezas[$j]->getNombre()]>0){
+                         if($data[$piezas[$j]->getSlug()]>0){
                              $colPieza = new ColPiezas();
-                             $colPieza->setMaximo($data[$piezas[$j]->getNombre()]);
+                             $colPieza->setMaximo($data[$piezas[$j]->getSlug()]);
                              $colPieza->setPieza($piezas[$j]);
                              $colPieza->setSerie($oSerie);
                              $em->persist($colPieza);
@@ -254,31 +254,6 @@ class DefaultController extends Controller
                     $em->flush();
                 //print_r($data);
             }
-         
-         
-         
-        /*
-        
-        
-        
-        $formulario2->handleRequest($peticion);
-        if($formulario2->isValid()){
-            $em->persist($grupoPieza);
-            $em->flush();
-            $this->get('session')->getFlashBag()->add('info', 'El Grupo '.$grupoPieza->getNombre().' ha sido registrado correctamente');
-            return $this->redirect($this->generateUrl('admin_piezas'));
-        }
-        
-        
-        $pieza = new Pieza();
-        $formulario = $this->createForm(new PiezaType(), $pieza);
-        $formulario->handleRequest($peticion);
-        if($formulario->isValid()){
-            $em->persist($pieza);
-            $em->flush();
-            $this->get('session')->getFlashBag()->add('info', 'La Pieza '.$pieza->getNombre().' ha sido registrado correctamente');
-            return $this->redirect($this->generateUrl('admin_piezas'));
-        }/**/
         
         return $this->render('AdminBundle:Default:colPiezas.html.twig', 
                 array(

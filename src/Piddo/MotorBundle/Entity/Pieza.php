@@ -4,6 +4,7 @@ namespace Piddo\MotorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Piddo\AdminBundle\Util\Util;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Pieza
@@ -38,7 +39,7 @@ class Pieza
 
      /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\GrupoPieza")
      */
     private $grupoPieza;

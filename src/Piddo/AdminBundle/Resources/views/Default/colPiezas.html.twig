@@ -16,28 +16,6 @@
         </form>
 
     </section>
-    <section id="listado_rectificados">
-        <table>
-            <tr>
-                <th>Grupo Piezas</th>
-                <th>Piezas</th>                   
-            </tr>
-            <tr>
-                
-            </tr>
-            {% for gp in gruposPieza %}
-                <tr>
-                    <td>{{gp.nombre}}{#<a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a>#}</td>
-                    <td>
-                        {% render controller("AdminBundle:Default:listaPiezas", {'grupo': gp.id}) %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-        {% if gruposPieza == null%}
-            {{'no hay piezas registrados'}}
-        {%endif%}
-    </section>
 
 {% endblock %}
  
