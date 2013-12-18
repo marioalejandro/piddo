@@ -205,7 +205,6 @@ class DefaultController extends Controller
             $builder = $this->createFormBuilder($defaultData);
                 
         
-        //print_r($piezasSerie);
         
         $i=0;
         while($i < sizeof($gruposPieza))
@@ -214,14 +213,14 @@ class DefaultController extends Controller
             $j=0;
             while($j<sizeof($piezas))
             {
-                $maximo = 0;
                 //Vemos si el motor ya tiene agregada esa pieza
                 $k=0;
+                $maximo = 0;
                 while($k < sizeof($piezasSerie))
                     {
-                    if($piezasSerie[$k] == $piezas[$j])
+                    if($piezasSerie[$k]->getPieza() == $piezas[$j])
                         {
-                            $data = $piezasSerie[$k]->getMaximo();
+                            $maximo = $piezasSerie[$k]->getMaximo();
                         }
                     $k++;
                     }
@@ -239,7 +238,6 @@ class DefaultController extends Controller
          $form->handleRequest($peticion);
  
             if ($form->isValid()) {
-                // data es un array con claves 'name', 'email', y 'message'
                 $data = $form->getData();
                 $i = 0;
                 while($i < sizeof($gruposPieza))
@@ -249,15 +247,25 @@ class DefaultController extends Controller
                      while($j<sizeof($piezas))
                          {
                          //print_r($data[$piezas[$j]->getNombre()]);
-                         if($data[$piezas[$j]->getId()]>0){
-                             $colPieza = new ColPiezas();
-                             $colPieza->setMaximo($data[$piezas[$j]->getId()]);
-                             $colPieza->setPieza($piezas[$j]);
-                             $colPieza->setSerie($oSerie);
-                             $em->persist($colPieza);
-                             
+                         if($data[$piezas[$j]->getId()]>0)
+                         {
+                            $colPieza = new ColPiezas();
+                            $k=0;
+                            $maximo = 0;
+                            while($k < sizeof($piezasSerie))
+                            {
+                                if($piezasSerie[$k]->getPieza() == $piezas[$j])
+                                    {
+                                    print_r($piezasSerie[$k]->getID());
+                                        $colPieza = $em->getRepository('MotorBundle:ColPiezas')->findOneBy(array('id' => $piezasSerie[$k]->getID()));
+                                    }
+                                $k++;
+                            }
+                            $colPieza->setMaximo($data[$piezas[$j]->getId()]);
+                            $colPieza->setPieza($piezas[$j]);
+                            $colPieza->setSerie($oSerie);
+                            $em->persist($colPieza);
                          }
-                       
                          $j++;
                          }
                     $i++;

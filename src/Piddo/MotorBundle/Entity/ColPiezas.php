@@ -42,6 +42,18 @@ class ColPiezas
      */
     private $maximo;
 
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return ColPiezas
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    
+        return $this;
+    }
 
     /**
      * Get id
