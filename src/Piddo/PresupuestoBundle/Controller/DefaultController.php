@@ -16,6 +16,7 @@ class DefaultController extends Controller
         
         /*****  CREACION FORMULARIO CLIENTE + MOTOR  *****/
         $presupuesto = new Presupuesto();
+        
         $presupuesto->setFechaCreacion(new \DateTime('now'));
         $presupuesto->setFechaEntrega(new \DateTime('tomorrow'));
         $presupuesto->setEstado('PENDIENTE');
@@ -37,7 +38,6 @@ class DefaultController extends Controller
         if($formulario->isValid()){
             $em->persist($presupuesto);
             $em->flush();
-            print_r($presupuesto->getId());
             
             if($formulario->get('Siguiente')->isClicked()){
 
