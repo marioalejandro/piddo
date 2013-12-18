@@ -2928,3 +2928,10 @@ f4c085,::1,POST,http://localhost/piddo/web/app_dev.php/seleccionando-modelo,1387
 =======
 >>>>>>> 3728686af5d418e367883448e7c40e3a0532370d
 >>>>>>> 01c4dec7e49eeba66895e839ef2972535eca540a
+d3b2f3,::1,GET,http://localhost/piddo/web/app_dev.php/registro-cliente,1387382069,
+4b7862,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387382303,
+5efaf6,::1,GET,http://localhost/piddo/web/app_dev.php/seleccionando-modelo,1387382313,
+ea2e13,::1,POST,http://localhost/piddo/web/app_dev.php/seleccionando-modelo,1387382313,
+ccab16,::1,GET,http://localhost/piddo/web/app_dev.php/seleccionando-modelo,1387382330,
+957695,::1,POST,http://localhost/piddo/web/app_dev.php/seleccionando-modelo,1387382330,
+bb86f5,::1,POST,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1387382456,
