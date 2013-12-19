@@ -23,6 +23,7 @@
       <parameter key="ClienteBundle">Piddo\ClienteBundle\ClienteBundle</parameter>
       <parameter key="PresupuestoBundle">Piddo\PresupuestoBundle\PresupuestoBundle</parameter>
       <parameter key="RepuestoBundle">Piddo\RepuestoBundle\RepuestoBundle</parameter>
+      <parameter key="RecepcionBundle">Piddo\RecepcionBundle\RecepcionBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -1536,7 +1537,11 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
+<<<<<<< HEAD
+            <argument>52b29c2129725</argument>
+=======
             <argument>52b292abbea6e</argument>
+>>>>>>> 8d12d1801eb578507ac3f83eb3a5a21a1bfde3e4
           </service>
         </argument>
       </argument>
@@ -1778,7 +1783,11 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
+<<<<<<< HEAD
+            <argument>52b29c2129725</argument>
+=======
             <argument>52b292abbea6e</argument>
+>>>>>>> 8d12d1801eb578507ac3f83eb3a5a21a1bfde3e4
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2727,6 +2736,10 @@
       <call method="addPath">
         <argument>C:\xampp\htdocs\piddo\src\Piddo\RepuestoBundle/Resources/views</argument>
         <argument>Repuesto</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\piddo\src\Piddo\RecepcionBundle/Resources/views</argument>
+        <argument>Recepcion</argument>
       </call>
       <call method="addPath">
         <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>

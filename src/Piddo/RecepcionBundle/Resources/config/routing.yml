@@ -1,0 +1,12 @@
+recepcion_portada:
+    pattern:  /recepcion/
+    defaults: { _controller: RecepcionBundle:Default:portadaRecepcion }
+recepcion_crear_presupuesto:
+    pattern:  /creauno/presupuesto/
+    defaults: { _controller: RecepcionBundle:Default:crearPresupuesto }
+recepcion_crear_motor:
+    pattern:  /creados/motor/
+    defaults: { _controller: RecepcionBundle:Default:crearMotor }
+recepcion_agregar_cliente:
+    pattern:  /agregar/cliente/
+    defaults: { _controller: RecepcionBundle:Default:agregarCliente }

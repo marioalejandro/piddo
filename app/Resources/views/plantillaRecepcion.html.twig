@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+ 
+
+{% block javascripts %}{% endblock %}
+
+{% block body %}
+    <header>
+        <h1><a href="{{ path('recepcion_portada') }}">Recepción</a></h1>
+                
+      {% if is_granted('ROLE_ADMIN') %}
+        <div id="derecha">
+            <p>Conectado como {{ app.user.nombre ~ ' ' ~ app.user.apellidos }}</p>
+            <a href="{{ path('usuario_logout') }}">Cerrar sesión</a>
+        </div>
+      {% endif %}  
+
+    </header>
+       
+<aside id="lateral">
+    <h1>Menú</h1>
+    <ul>
+        <li><a href="{{ path('recepcion_portada') }}">Inicio</a></li>
+        <li><a href="{{ path('recepcion_crear_presupuesto') }}">Crear un Presupuesto</a></li>
+        <li><a href="{{ path('recepcion_crear_motor') }}">Crear un Motor</a></li>
+        <li><a href="{{ path('recepcion_agregar_cliente') }}">Agregar nuevo Cliente</a></li>
+        <li><a href="#"></a></li>
+      {#<li><a href="{{ path('admin_rectificados')}}">Trabajos</a></li>
+        <li><a href="{{ path('admin_clientes')}}">Clientes</a></li>
+        <li><a href="{{ path('nuevo_presupuesto')}}">Nuevo Presupuesto</a></li>#}
+    </ul>
+</aside>
+
+<section id="mensajes">
+    
+{% if is_granted('ROLE_ADMIN') %}
+    {% for tipo, mensajes in app.session.flashbag.all() %}
+        {% for mensaje in mensajes %}
+            <p class="flash-{{ tipo }}">{{ mensaje }}</p>
+        {% endfor %}
+    {% endfor %}
+{% endif %}  
+        
+{% if is_granted('ROLE_ADMIN') %}
+    {% for tipo, mensajes in app.session.flashbag.all() %}
+        {% for mensaje in mensajes %}
+            <p class="flash-{{ tipo }}">{{ mensaje }}</p>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+ 
+</section>    
+
+    <article>
+        {% block article %}{% endblock %}
+    </article>
+ 
+    <aside id="lado2">
+        {% block aside %}{% endblock %}
+    </aside>
+
+{% endblock body %}
