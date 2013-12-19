@@ -76,9 +76,10 @@ class DefaultController extends Controller
                         {
                         $recepcion = new \Piddo\MotorBundle\Entity\Recepcion();
                         $recepcion->setCantidad(0);
+                        $recepcion->setCantidad(0);
                         $recepcion->setPresupuesto($presupuesto);
                         $recepcion->setColPieza($motorProfile[$k]);
-                        print_r($recepcion->getColPieza()->getPieza()->getNombre());
+                        //print_r($recepcion->getColPieza()->getPieza()->getNombre());
                         $presupuesto->getRecepcionPiezas()->add($recepcion);
                         }
                     $k++;
@@ -91,7 +92,7 @@ class DefaultController extends Controller
         //3.- Agregar los Recepcion a el presupuesto(hecho)
         //4.- Creacion de formulario
         $formRecepcion = $this->createForm(new PresupuestoRecepcionType(), $presupuesto);
-        
+        //print_r($formRecepcion->getViewData());
         $formRecepcion->handleRequest($peticion);
         
         if($formRecepcion->isValid()){

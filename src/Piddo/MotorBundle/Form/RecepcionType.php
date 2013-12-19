@@ -14,10 +14,13 @@ class RecepcionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        print_r($builder->getData());
         $builder
-            ->add('cantidad')
+            ->add('cantidad','integer',array(
+                'data' => 0
+            ))
             ->add('colPieza',null,array());
-        //$builder->getData()->getRecepcion
+    
     }
     
     /**

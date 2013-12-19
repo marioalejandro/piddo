@@ -18,9 +18,8 @@ class PresupuestoRecepcionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-       // $builder->add('piezasDisponibles', 'collection', array('type' => new ColPiezasType()));
         $builder->add('recepcionPiezas','collection',array(
-            'type' => new RecepcionType()
+            'type' => new RecepcionType(),
         ));
         //Botones
         
@@ -45,6 +44,6 @@ class PresupuestoRecepcionType extends AbstractType
      */
     public function getName()
     {
-        return 'piddo_presupuestobundle_presupuesto';
+        return 'piddo_presupuestobundle_presupuestoR';
     }
 }
