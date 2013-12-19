@@ -1,0 +1,52 @@
+{% extends '::plantillaRecepcion.html.twig' %}
+
+{% block title %}
+    Crear Motor | Modelos
+{% endblock title %}
+
+{% block id 'modelos' %}    
+
+{% block article %}
+<h3>
+    <a href="{{ path('recepcion_crear_motor') }}">Marcas</a> > 
+    <a href="{{ path('recepcion_crear_motor_modelo', { 'marca': marca.slug }) }}">Modelos</a>
+</h3>
+    
+<h1>
+    Crear Motor
+</h1>
+
+<h2>Ingrese algún modelo en un grupo de marcas</h2>
+
+<section id="formulario_modelos">
+    <h4>Agregar nuevo Modelo</h4>
+    <form action="{{ path('recepcion_crear_motor_modelo',{'marca' : marca.slug}) }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+        <input class="boton" type="submit" value="Agregar" />
+    </form>
+</section>
+    
+<section id="listado_modelos">
+    <table>
+        <tr>
+            <th>Modelo</th>                
+        </tr>
+        <tr>
+        </tr>
+        {% for modelo in modelos %}
+        <tr>
+            <td><a href="{{ path('recepcion_crear_motor_modelo_serie',{'marca': marca.slug, 'modelo' : modelo.slug })}}">{{ modelo.nombre }}</a></td>
+           {# <td><a href="{{ path('borrar_modelo',{'marca': marca.id, 'modelo': modelo.id })}}">{{ 'Eliminar'}}</a></td>#}
+        </tr>
+    {% endfor %}
+    </table>
+    
+{% if modelos == null%}
+    {{'no hay modelos registrados'}}
+{%endif%}
+</section>
+
+{% endblock article %}
+
+{% block aside %}
+{% endblock aside %}

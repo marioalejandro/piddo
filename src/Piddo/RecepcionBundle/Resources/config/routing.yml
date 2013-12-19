@@ -5,8 +5,14 @@ recepcion_crear_presupuesto:
     pattern:  /creauno/presupuesto/
     defaults: { _controller: RecepcionBundle:Default:crearPresupuesto }
 recepcion_crear_motor:
-    pattern:  /creados/motor/
+    pattern:  /crea/motor
     defaults: { _controller: RecepcionBundle:Default:crearMotor }
+recepcion_crear_motor_modelo:
+    pattern:  /crea/{marca}/modelo
+    defaults: { _controller: RecepcionBundle:Default:crearMotorModelo }
+recepcion_crear_motor_modelo_serie:
+    pattern:  /crea/{marca}/{modelo}/serie
+    defaults: { _controller: RecepcionBundle:Default:crearMotorModeloSerie }
 recepcion_agregar_cliente:
     pattern:  /agregar/cliente/
     defaults: { _controller: RecepcionBundle:Default:agregarCliente }

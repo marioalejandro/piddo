@@ -153,12 +153,18 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             // recepcion_crear_motor
-            if (rtrim($pathinfo, '/') === '/creados/motor') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'recepcion_crear_motor');
-                }
-
+            if ($pathinfo === '/crea/motor') {
                 return array (  '_controller' => 'Piddo\\RecepcionBundle\\Controller\\DefaultController::crearMotorAction',  '_route' => 'recepcion_crear_motor',);
+            }
+
+            // recepcion_crear_motor_modelo
+            if (preg_match('#^/crea/(?P<marca>[^/]++)/modelo$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'recepcion_crear_motor_modelo')), array (  '_controller' => 'Piddo\\RecepcionBundle\\Controller\\DefaultController::crearMotorModeloAction',));
+            }
+
+            // recepcion_crear_motor_modelo_serie
+            if (preg_match('#^/crea/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/serie$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'recepcion_crear_motor_modelo_serie')), array (  '_controller' => 'Piddo\\RecepcionBundle\\Controller\\DefaultController::crearMotorModeloSerieAction',));
             }
 
         }

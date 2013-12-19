@@ -28,13 +28,16 @@
             {% for modelo in modelos %}
                 <tr>
                     <td><a href="{{ path('admin_series',{'marca': marca.slug, 'modelo' : modelo.slug })}}">{{modelo.nombre}}</a></td>
-                    <td><a href="{{ path('borrar_modelo',{'marca': marca.id, 'modelo': modelo.id })}}">{{ 'Eliminar'}}</a></td>
+                    {#<td><a href="{{ path('borrar_modelo',{'marca': marca.id, 'modelo': modelo.id })}}">{{ 'Eliminar'}}</a></td>#}
                 </tr>
             {% endfor %}
+                
         </table>
+        
         {% if modelos == null%}
             {{'no hay modelos registrados'}}
         {%endif%}
+        
     </section>
 
 {% endblock %}

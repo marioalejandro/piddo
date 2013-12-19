@@ -1,0 +1,50 @@
+{% extends '::plantillaRecepcion.html.twig' %}
+
+{% block title %}
+    Crear Motor | Series
+{% endblock title %}
+
+{% block id 'series' %}    
+    
+{% block article %}
+<h3>
+    <a href="{{ path('recepcion_crear_motor') }}">Marcas</a> > 
+    <a href="{{ path('recepcion_crear_motor_modelo', { 'marca': marca.slug }) }}">Modelos</a> > 
+    <a href="{{ path('recepcion_crear_motor_modelo_serie',{'marca': marca.slug, 'modelo' : modelo.slug })}}">Series</a>
+</h3>
+<h1>
+    Crear Motor
+</h1>
+<h2>Ingrese alguna serie en un grupo de modelos</h2>
+
+<section id="formulario_series">
+    <form action="{{ path('recepcion_crear_motor_modelo_serie',{'marca': marca.slug, 'modelo' : modelo.slug }) }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+        <input class="boton" type="submit" value="Agregar" />
+    </form>
+</section>
+
+<section id="listado_modelos">
+<table>
+    <tr>
+        <th>Serie</th>               
+    </tr>
+    <tr></tr>
+    
+{% for serie in series %}
+    <tr>
+        <td>{{serie.nombre}}</td>
+    </tr>
+{% endfor %}
+    
+</table>
+    
+{% if series == null%}
+    {{'no existen series registradas'}}
+{%endif%}
+</section>
+
+{% endblock article %}
+
+{% block aside %}
+{% endblock aside %}

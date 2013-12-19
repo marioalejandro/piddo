@@ -23,6 +23,7 @@ class DefaultController extends Controller
     {
         return $this->render('AdminBundle:Default:portadaGerencia.html.twig');
     }
+//------------------------------Marcas-------------------------
     public function marcasAction()
     {
         $peticion = $this->getRequest();
@@ -77,8 +78,9 @@ class DefaultController extends Controller
                   'modelo' =>$objetoModelo->getSlug()
               )));
       }
-      
-       public function modelosAction($marca)
+
+//--------------Modelos acción---------------------
+      public function modelosAction($marca)
        {
            
         $peticion = $this->getRequest();
@@ -109,8 +111,9 @@ class DefaultController extends Controller
                     'marca' => $objetoMarca
                 ));
       }
-       public function seriesAction($marca, $modelo)
-       {
+       
+    public function seriesAction($marca, $modelo)
+    {
            
         $peticion = $this->getRequest();
         
