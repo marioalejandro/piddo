@@ -539,7 +539,7 @@ class appDevDebugProjectContainer extends Container
         $d = new \Doctrine\Common\Cache\ArrayCache();
         $d->setNamespace('sf2orm_default_50a18dd11cbd7649f0b468b7be24c8c4');
 
-        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\UsuarioBundle\\Entity', 1 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\MotorBundle\\Entity', 2 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\TallerBundle\\Entity', 3 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\ClienteBundle\\Entity', 4 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\PresupuestoBundle\\Entity'));
+        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\UsuarioBundle\\Entity', 1 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\MotorBundle\\Entity', 2 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\TallerBundle\\Entity', 3 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\ClienteBundle\\Entity', 4 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\PresupuestoBundle\\Entity', 5 => 'C:\\xampp\\htdocs\\piddo\\src\\Piddo\\RepuestoBundle\\Entity'));
 
         $f = new \Doctrine\ORM\Mapping\Driver\DriverChain();
         $f->addDriver($e, 'Piddo\\UsuarioBundle\\Entity');
@@ -547,9 +547,10 @@ class appDevDebugProjectContainer extends Container
         $f->addDriver($e, 'Piddo\\TallerBundle\\Entity');
         $f->addDriver($e, 'Piddo\\ClienteBundle\\Entity');
         $f->addDriver($e, 'Piddo\\PresupuestoBundle\\Entity');
+        $f->addDriver($e, 'Piddo\\RepuestoBundle\\Entity');
 
         $g = new \Doctrine\ORM\Configuration();
-        $g->setEntityNamespaces(array('UsuarioBundle' => 'Piddo\\UsuarioBundle\\Entity', 'MotorBundle' => 'Piddo\\MotorBundle\\Entity', 'TallerBundle' => 'Piddo\\TallerBundle\\Entity', 'ClienteBundle' => 'Piddo\\ClienteBundle\\Entity', 'PresupuestoBundle' => 'Piddo\\PresupuestoBundle\\Entity'));
+        $g->setEntityNamespaces(array('UsuarioBundle' => 'Piddo\\UsuarioBundle\\Entity', 'MotorBundle' => 'Piddo\\MotorBundle\\Entity', 'TallerBundle' => 'Piddo\\TallerBundle\\Entity', 'ClienteBundle' => 'Piddo\\ClienteBundle\\Entity', 'PresupuestoBundle' => 'Piddo\\PresupuestoBundle\\Entity', 'RepuestoBundle' => 'Piddo\\RepuestoBundle\\Entity'));
         $g->setMetadataCacheImpl($b);
         $g->setQueryCacheImpl($c);
         $g->setResultCacheImpl($d);
@@ -1803,7 +1804,11 @@ class appDevDebugProjectContainer extends Container
         $l = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($j, array('always_use_default_target_path' => true, 'default_target_path' => '/administracion/portada', 'login_path' => 'usuario_login', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $l->setProviderKey('prueba');
 
+<<<<<<< HEAD
+        return $this->services['security.firewall.map.context.prueba'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($i, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('security.user.provider.concrete.usuarios')), 'prueba', $a, $c), 2 => $k, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $j, 'prueba', $l, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $j, array('login_path' => 'usuario_login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => 'usuario_login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52b2232d7dae7', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $i, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $j, 'prueba', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $j, 'usuario_login', false), NULL, NULL, $a));
+=======
         return $this->services['security.firewall.map.context.prueba'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($i, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('security.user.provider.concrete.usuarios')), 'prueba', $a, $c), 2 => $k, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $j, 'prueba', $l, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $j, array('login_path' => 'usuario_login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => 'usuario_login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52b20f474f597', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $i, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $j, 'prueba', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $j, 'usuario_login', false), NULL, NULL, $a));
+>>>>>>> c9cbb77ddddb3365d118fcea537b5ed95dfba587
     }
 
     /**
@@ -2836,6 +2841,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('C:\\xampp\\htdocs\\piddo\\src\\Piddo\\TallerBundle/Resources/views', 'Taller');
         $instance->addPath('C:\\xampp\\htdocs\\piddo\\src\\Piddo\\ClienteBundle/Resources/views', 'Cliente');
         $instance->addPath('C:\\xampp\\htdocs\\piddo\\src\\Piddo\\PresupuestoBundle/Resources/views', 'Presupuesto');
+        $instance->addPath('C:\\xampp\\htdocs\\piddo\\src\\Piddo\\RepuestoBundle/Resources/views', 'Repuesto');
         $instance->addPath('C:\\xampp\\htdocs\\piddo\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('C:\\xampp\\htdocs\\piddo\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views', 'SensioDistribution');
         $instance->addPath('C:/xampp/htdocs/piddo/app/Resources/views');
@@ -3088,7 +3094,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
+<<<<<<< HEAD
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.usuarios'), new \Symfony\Component\Security\Core\User\UserChecker(), 'prueba', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52b2232d7dae7')), true);
+=======
         $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.usuarios'), new \Symfony\Component\Security\Core\User\UserChecker(), 'prueba', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52b20f474f597')), true);
+>>>>>>> c9cbb77ddddb3365d118fcea537b5ed95dfba587
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 
@@ -3269,6 +3279,7 @@ class appDevDebugProjectContainer extends Container
                 'TallerBundle' => 'Piddo\\TallerBundle\\TallerBundle',
                 'ClienteBundle' => 'Piddo\\ClienteBundle\\ClienteBundle',
                 'PresupuestoBundle' => 'Piddo\\PresupuestoBundle\\PresupuestoBundle',
+                'RepuestoBundle' => 'Piddo\\RepuestoBundle\\RepuestoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
                 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',

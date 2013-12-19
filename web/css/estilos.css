@@ -625,9 +625,9 @@ aside #condiciones, aside #nosotros {
     margin-left: .5em;
     text-shadow: none;
 }
-#portada #anuncio .boton:hover {
+/*#portada #anuncio .boton:hover {
     background-color: background: rgba(0,128,0, 0.8);
-}
+}*/
 
 /* ===========================================================================
    Ciudad

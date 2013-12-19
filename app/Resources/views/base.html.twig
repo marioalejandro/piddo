@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block title %}{% endblock %} | Motores Piddo</title>
-    {% block stylesheets %}
-<link href="{{ asset('css/estilos.css') }}"
-          rel="stylesheet" type="text/css" />
-
-<script src="{{ asset('js/jquery-2.0.3.js') }}" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+<title>{% block title %}{% endblock %} | Motores Piddo</title>
+{% block stylesheets %}
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('js/jquery-2.0.3.js') }}" type="text/javascript"></script>
 {% endblock %}
 </head>
  
 <body id="{% block id '' %}">
-    <div id="contenedor">
-        {% block body %}{% endblock %}
+<div id="contenedor">
+    {% block body %}{% endblock %}
 
-        <footer>
-            &copy; {{ 'now' | date('Y') }} - Motores Piddo
-        </footer>
+    <footer>
+        &copy; {{ 'now' | date('Y') }} - Motores Piddo
+    </footer>
 
-        {% block javascripts %}{% endblock %}
-    </div>
+    {% block javascripts %}{% endblock %}
+</div>
 </body>
 </html>

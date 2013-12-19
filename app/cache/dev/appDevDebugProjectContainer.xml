@@ -22,6 +22,7 @@
       <parameter key="TallerBundle">Piddo\TallerBundle\TallerBundle</parameter>
       <parameter key="ClienteBundle">Piddo\ClienteBundle\ClienteBundle</parameter>
       <parameter key="PresupuestoBundle">Piddo\PresupuestoBundle\PresupuestoBundle</parameter>
+      <parameter key="RepuestoBundle">Piddo\RepuestoBundle\RepuestoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -1535,7 +1536,11 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
+<<<<<<< HEAD
+            <argument>52b2232d7dae7</argument>
+=======
             <argument>52b20f474f597</argument>
+>>>>>>> c9cbb77ddddb3365d118fcea537b5ed95dfba587
           </service>
         </argument>
       </argument>
@@ -1777,7 +1782,11 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
+<<<<<<< HEAD
+            <argument>52b2232d7dae7</argument>
+=======
             <argument>52b20f474f597</argument>
+>>>>>>> c9cbb77ddddb3365d118fcea537b5ed95dfba587
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2189,6 +2198,7 @@
               <argument key="TallerBundle">Piddo\TallerBundle\Entity</argument>
               <argument key="ClienteBundle">Piddo\ClienteBundle\Entity</argument>
               <argument key="PresupuestoBundle">Piddo\PresupuestoBundle\Entity</argument>
+              <argument key="RepuestoBundle">Piddo\RepuestoBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -2231,6 +2241,7 @@
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\TallerBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\ClienteBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\PresupuestoBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\RepuestoBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2246,6 +2257,7 @@
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\TallerBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\ClienteBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\PresupuestoBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\RepuestoBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2261,6 +2273,7 @@
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\TallerBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\ClienteBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\PresupuestoBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\RepuestoBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2276,6 +2289,7 @@
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\TallerBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\ClienteBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\PresupuestoBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\RepuestoBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -2291,10 +2305,27 @@
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\TallerBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\ClienteBundle\Entity</argument>
                         <argument>C:\xampp\htdocs\piddo\src\Piddo\PresupuestoBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\RepuestoBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
                   <argument>Piddo\PresupuestoBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\UsuarioBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\MotorBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\TallerBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\ClienteBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\PresupuestoBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\piddo\src\Piddo\RepuestoBundle\Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Piddo\RepuestoBundle\Entity</argument>
                 </call>
               </service>
             </argument>
@@ -2700,6 +2731,10 @@
       <call method="addPath">
         <argument>C:\xampp\htdocs\piddo\src\Piddo\PresupuestoBundle/Resources/views</argument>
         <argument>Presupuesto</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\piddo\src\Piddo\RepuestoBundle/Resources/views</argument>
+        <argument>Repuesto</argument>
       </call>
       <call method="addPath">
         <argument>C:\xampp\htdocs\piddo\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>

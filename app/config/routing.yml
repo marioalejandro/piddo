@@ -1,3 +1,7 @@
+repuesto:
+    resource: "@RepuestoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 presupuesto:
     resource: "@PresupuestoBundle/Resources/config/routing.yml"
     prefix:   /

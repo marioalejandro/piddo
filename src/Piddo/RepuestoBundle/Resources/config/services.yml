@@ -1,0 +1,7 @@
+parameters:
+#    repuesto.example.class: Piddo\RepuestoBundle\Example
+
+services:
+#    repuesto.example:
+#        class: %repuesto.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

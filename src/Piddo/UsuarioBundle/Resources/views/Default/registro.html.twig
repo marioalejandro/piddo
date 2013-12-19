@@ -7,8 +7,15 @@
 {% block id 'usuario' %}
 
 {% block article %}
+<h1>Registrar un Usuario</h1>
 <form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
 {{ form_widget(formulario) }}
         <input class="boton" type="submit" value="Registrarse" />
 </form>
 {% endblock %}
+
+{#% block aside %}
+
+<h1>Ultimo Usuario Creado</h1>
+
+{% endblock aside %#}
