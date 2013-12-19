@@ -11,7 +11,9 @@
         <h4>RECEPCION DE PIEZAS</h4>
         {{ form_start(form) }}
             {{ form_errors(form) }}
-      
+               {% for r in form.recepcionPiezas %}
+                <li>{{ form_row(r.colPieza) }} {{ form_row(r.cantidad) }}</li>
+                {% endfor %}
             {{ form_rest(form) }}
         {{ form_end(form) }}
     </section>

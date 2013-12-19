@@ -21,10 +21,10 @@ class Recepcion
      */
     private $id;
 
-    /**
+   /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Piddo\PresupuestoBundle\Entity\Presupuesto")
+     * @ORM\ManyToOne(targetEntity="Piddo\PresupuestoBundle\Entity\Presupuesto", inversedBy="recepcionPiezas", cascade={"persist"})
      */
     private $presupuesto;
 

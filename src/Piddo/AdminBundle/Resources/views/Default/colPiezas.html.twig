@@ -11,9 +11,23 @@
     <section id="formulario_marca">
         <h4>Agregar un Coleccion de Piezas</h4>
         <form action="{{ path('serie_col_piezas',{'marca': marca, 'modelo' : modelo, 'serie': serie })}}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
+         {#{ form_start(form) }#}
+            {{ form_errors(form) }}
+       <h3>Modificar</h3>
+            {{form_row(form.nombre)}}
+            
+       <h3>Piezas</h3>
+        <ul class="piezas">
+            {# itera sobre cada etiqueta existente y reproduce la fila#}
+            {% for p in form.piezasDisponibles %}
+                <li>{{ form_row(p.pieza) }} {{ form_row(p.maximo) }}</li>
+            {% endfor %}
+        </ul>
+           
+            {{ form_rest(form) }}
+            {#{ form_end(form) }#}
                 <input class="boton" type="submit" value="Guardar" />
-        </form>
+            </form>
 
     </section>
 

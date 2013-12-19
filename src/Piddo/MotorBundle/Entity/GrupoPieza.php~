@@ -36,7 +36,14 @@ class GrupoPieza
      */
     private $slug;
 
-
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\MotorBundle\Entity\Pieza", mappedBy="grupoPieza")
+     */
+    
+    private $piezas;
     /**
      * Get id
      *
@@ -96,5 +103,45 @@ class GrupoPieza
     
     public function __toString() {
         return $this->getNombre();
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->piezas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add piezas
+     *
+     * @param \Piddo\MotorBundle\Entity\Pieza $piezas
+     * @return GrupoPieza
+     */
+    public function addPieza(\Piddo\MotorBundle\Entity\Pieza $piezas)
+    {
+        $this->piezas[] = $piezas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove piezas
+     *
+     * @param \Piddo\MotorBundle\Entity\Pieza $piezas
+     */
+    public function removePieza(\Piddo\MotorBundle\Entity\Pieza $piezas)
+    {
+        $this->piezas->removeElement($piezas);
+    }
+
+    /**
+     * Get piezas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPiezas()
+    {
+        return $this->piezas;
     }
 }

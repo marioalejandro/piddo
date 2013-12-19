@@ -40,7 +40,7 @@ class Pieza
      /**
      * @var string
      * @Assert\NotBlank(message="Primero crea un grupo")
-     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\GrupoPieza")
+     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\GrupoPieza", inversedBy = "piezas")
      */
     private $grupoPieza;
 
@@ -106,6 +106,8 @@ class Pieza
     public function __toString() {
         return $this->getNombre();
     }
+
+ 
 
     /**
      * Set grupoPieza

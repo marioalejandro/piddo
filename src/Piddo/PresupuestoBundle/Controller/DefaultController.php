@@ -5,11 +5,15 @@ namespace Piddo\PresupuestoBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Piddo\PresupuestoBundle\Entity\Presupuesto;
 use Piddo\PresupuestoBundle\Form\PresupuestoType;
+use Piddo\PresupuestoBundle\Form\PresupuestoRecepcionType;
 
 class DefaultController extends Controller
 {
     public function nuevoAction()
     {
+        /******************************************************
+        *                PARTE 1
+        ****************************************************/
         $peticion = $this->getRequest();
         
         $em = $this->getDoctrine()->getManager();
@@ -38,19 +42,81 @@ class DefaultController extends Controller
         if($formulario->isValid()){
             $em->persist($presupuesto);
             $em->flush();
-            
+            /******************************************************
+             *                PARTE 2
+             ****************************************************/
             if($formulario->get('Siguiente')->isClicked()){
 
                 $serie = $presupuesto->getSerie();
-                $piezasSerie = $em->getRepository('MotorBundle:ColPiezas')->findBy(array('serie' => $serie->getID()));
+                $motorProfile = $serie->getPiezasDisponibles();
+                $gruposPieza = $em->getRepository('MotorBundle:GrupoPieza')->findAll();
+                //Formulario de Recepcion (Coleccion de ColPiezas)
+                /**************************************************************
+         * NUEVO FORMULARIO CON OBJETOS
+         **************************************************************/
+        //1.- Creacion de objeto presupuesto (creado) $presupuesto
+        //2.- Creacion de los objetos Recepcion
+              //Datos desde BD
+        $i=0;
+        //Recorremos los grupos
+       while($i < sizeof($gruposPieza))
+            {
+            $piezas = $em->getRepository('MotorBundle:Pieza')->findBy(array('grupoPieza' => $gruposPieza[$i]->getID()));
+            $j=0;
+            //Recorremos las piezas por grupo
+            while($j<sizeof($piezas))
+            {
+                //Vemos si el motor ya tiene agregada esa pieza
+                //para cargar el valor de maximo
+                $k=0;
+                $nuevo = true;
+                while($k < sizeof($motorProfile))
+                    {
+                    if($motorProfile[$k]->getPieza() == $piezas[$j])
+                        {
+                        $recepcion = new \Piddo\MotorBundle\Entity\Recepcion();
+                        $recepcion->setCantidad(0);
+                        $recepcion->setPresupuesto($presupuesto);
+                        $recepcion->setColPieza($motorProfile[$k]);
+                        print_r($recepcion->getColPieza()->getPieza()->getNombre());
+                        $presupuesto->getRecepcionPiezas()->add($recepcion);
+                        }
+                    $k++;
+                    }
+                $j++;
+            }
+            $i++;
+            }
 
-                $defaultData = array();
+        //3.- Agregar los Recepcion a el presupuesto(hecho)
+        //4.- Creacion de formulario
+        $formRecepcion = $this->createForm(new PresupuestoRecepcionType(), $presupuesto);
+        
+        $formRecepcion->handleRequest($peticion);
+        
+        if($formRecepcion->isValid()){
+            $em->persist($presupuesto);
+            $em->flush();
+            
+            $mensaje ='El Presupuesto se ha modificado correctamente';
+
+           $this->get('session')->getFlashBag()->add('info', $mensaje);
+
+
+            //return $this->redirect($this->generateUrl('admin_clientes'));
+        
+        }/**/
+        /**************************************************************
+         * FIN NUEVO FORMULARIO CON OBJETOS
+         **************************************************************/
+          /*      $defaultData = array();
                 $builder = $this->createFormBuilder($defaultData);
 
                 $i=0;
                 while($i < sizeof($piezasSerie))
                     {
-                        $pieza = $em->getRepository('MotorBundle:Pieza')->findOneBy(array('id' => $piezasSerie[$i]->getPieza()));
+                        $pieza = $piezasSerie[$i]->getPieza();
+                        //$pieza = $em->getRepository('MotorBundle:Pieza')->findOneBy(array('id' => $piezasSerie[$i]->getPieza()));
                         $builder->add($pieza->getSlug(),'number',array(
                             'label' => $pieza->getNombre(),
                             'data' => 0,
@@ -87,10 +153,10 @@ class DefaultController extends Controller
                             }
                             $em->flush();
                         //print_r($data);
-                    }
+                    }/**/
                 return $this->render('PresupuestoBundle:Default:presupuestoRecepcion.html.twig', 
                      array(
-                         'form' => $form->createView(),
+                         'form' => $formRecepcion->createView(),
                      ));     
             }
             

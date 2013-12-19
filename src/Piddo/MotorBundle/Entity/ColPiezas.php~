@@ -24,7 +24,7 @@ class ColPiezas
     /**
      * @var string
      *
-     * * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie")
+     * * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie", inversedBy="piezasDisponibles")
      */
     private $serie;
 
