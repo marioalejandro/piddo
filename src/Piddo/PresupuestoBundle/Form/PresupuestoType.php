@@ -38,7 +38,7 @@ class PresupuestoType extends AbstractType
         $builder->add('numMotor');
         //Botones
         $builder->add('Guardar', 'submit');
-        $builder->add('Siguiente', 'submit');
+        $builder->add('Recepcion', 'submit');
         
         
     }

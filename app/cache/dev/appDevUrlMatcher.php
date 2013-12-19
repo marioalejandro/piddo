@@ -215,17 +215,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
         }
 
-        if (0 === strpos($pathinfo, '/seleccionando-')) {
-            // seleccionar_modelo
-            if ($pathinfo === '/seleccionando-modelo') {
-                return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::modelosAction',  '_route' => 'seleccionar_modelo',);
-            }
-
-            // seleccionar_serie
-            if ($pathinfo === '/seleccionando-serie') {
-                return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::seriesAction',  '_route' => 'seleccionar_serie',);
-            }
-
+        // presupuesto_recepcion
+        if (0 === strpos($pathinfo, '/presupuesto/recepcion') && preg_match('#^/presupuesto/recepcion/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_recepcion')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::recepcionAction',));
         }
 
         // admin_clientes
@@ -290,6 +282,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // serie_col_piezas
             if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/(?P<serie>[^/]++)/piezas$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'serie_col_piezas')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::ColPiezasAction',));
+            }
+
+            // perfil_rectificado
+            if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/(?P<serie>[^/]++)/perfil\\-rectificado$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'perfil_rectificado')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::perfilRectificadoAction',));
             }
 
         }

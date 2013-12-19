@@ -9,14 +9,15 @@
     <h1>{{ block('title') }}</h1>
     <section id="formulario_cliente">
         <h4>RECEPCION DE PIEZAS</h4>
+        {#<form action="{{ path('nuevo_presupuesto') }}" method="post" {{ form_enctype(form) }}>#}
         {{ form_start(form) }}
             {{ form_errors(form) }}
                {% for r in form.recepcionPiezas %}
-                
-                <li>{{ form_row(r.colPieza) }} {{ form_row(r.cantidad) }}{{form_row(r.maximo)}}</li>
+                <li>{{ form_row(r.grupoPieza) }}{{ form_row(r.colPieza) }} {{ form_row(r.cantidad) }}{{form_row(r.maximo)}}</li>
                 {% endfor %}
             {{ form_rest(form) }}
         {{ form_end(form) }}
+        </form>
     </section>
 
 

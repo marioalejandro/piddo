@@ -3,6 +3,8 @@
 namespace Piddo\MotorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * Recepcion
@@ -36,8 +38,7 @@ class Recepcion
     private $colPieza;
 
     /**
-     * @var integer
-     *
+
      * @ORM\Column(name="cantidad", type="integer")
      */
     private $cantidad;
@@ -129,5 +130,22 @@ class Recepcion
     public function getMaximo()
     {
         return $this->colPieza->getMaximo();
+    }
+    
+    public function getGrupoPieza()
+    {
+        return $this->colPieza->getPieza()->getGrupoPieza();
+    }
+    
+    
+    
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('cantidad', new Assert\Range(array(
+            'min'        => 0,
+            'max'        => 3,
+            'minMessage' => 'Vous devez faire au moins 120cm pour entrer',
+            'maxMessage' => 'Vous ne devez pas dépasser 180cm',
+        )));
     }
 }

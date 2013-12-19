@@ -1,0 +1,154 @@
+<?php
+
+namespace Piddo\TallerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ColRectificado
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Piddo\TallerBundle\Entity\ColRectificadoRepository")
+ */
+class ColRectificado
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+   /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="Piddo\PresupuestoBundle\Entity\Presupuesto", inversedBy="rectificados", cascade={"persist"})
+     */
+    private $presupuesto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rectificado", type="string", length=255)
+     */
+    private $rectificado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serie", type="string", length=255)
+     */
+    private $serie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cantidad", type="string", length=255)
+     */
+    private $cantidad;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set presupuesto
+     *
+     * @param string $presupuesto
+     * @return ColRectificado
+     */
+    public function setPresupuesto($presupuesto)
+    {
+        $this->presupuesto = $presupuesto;
+    
+        return $this;
+    }
+
+    /**
+     * Get presupuesto
+     *
+     * @return string 
+     */
+    public function getPresupuesto()
+    {
+        return $this->presupuesto;
+    }
+
+    /**
+     * Set rectificado
+     *
+     * @param string $rectificado
+     * @return ColRectificado
+     */
+    public function setRectificado($rectificado)
+    {
+        $this->rectificado = $rectificado;
+    
+        return $this;
+    }
+
+    /**
+     * Get rectificado
+     *
+     * @return string 
+     */
+    public function getRectificado()
+    {
+        return $this->rectificado;
+    }
+
+    /**
+     * Set serie
+     *
+     * @param string $serie
+     * @return ColRectificado
+     */
+    public function setSerie($serie)
+    {
+        $this->serie = $serie;
+    
+        return $this;
+    }
+
+    /**
+     * Get serie
+     *
+     * @return string 
+     */
+    public function getSerie()
+    {
+        return $this->serie;
+    }
+
+    /**
+     * Set cantidad
+     *
+     * @param string $cantidad
+     * @return ColRectificado
+     */
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+    
+        return $this;
+    }
+
+    /**
+     * Get cantidad
+     *
+     * @return string 
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+}
