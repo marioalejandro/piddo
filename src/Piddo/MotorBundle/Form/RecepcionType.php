@@ -16,11 +16,22 @@ class RecepcionType extends AbstractType
     {
         
         $builder
-            ->add('maximo','integer')
-            ->add('cantidad','integer',array(
-                'data' => 0
+            ->add('grupoPieza',null, array(
+                'data_class' => '\Piddo\MotorBundle\Entity\GrupoPieza',
+                'disabled' => true,
+                'label' => 'grupo pieza'
             ))
-            ->add('colPieza',null,array());
+            ->add('maximo','integer', array(
+                'disabled' => true,
+                'label' => 'cantidad máxima'
+            ))
+            ->add('cantidad','integer',array(
+                'data' => 0,
+            ))
+            ->add('colPieza',null,array(
+                'disabled' =>true,
+                'label' => 'pieza'
+            ));
     print_r($builder->getData());
     }
     

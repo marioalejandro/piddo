@@ -170,17 +170,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
         }
 
-        if (0 === strpos($pathinfo, '/seleccionando-')) {
-            // seleccionar_modelo
-            if ($pathinfo === '/seleccionando-modelo') {
-                return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::modelosAction',  '_route' => 'seleccionar_modelo',);
-            }
-
-            // seleccionar_serie
-            if ($pathinfo === '/seleccionando-serie') {
-                return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::seriesAction',  '_route' => 'seleccionar_serie',);
-            }
-
+        // presupuesto_recepcion
+        if (0 === strpos($pathinfo, '/presupuesto/recepcion') && preg_match('#^/presupuesto/recepcion/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_recepcion')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::recepcionAction',));
         }
 
         // admin_clientes

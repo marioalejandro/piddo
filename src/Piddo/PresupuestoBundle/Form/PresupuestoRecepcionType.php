@@ -24,7 +24,6 @@ class PresupuestoRecepcionType extends AbstractType
         //Botones
         
         $builder->add('Guardar', 'submit');
-        $builder->add('Siguiente', 'submit');
         
         
     }

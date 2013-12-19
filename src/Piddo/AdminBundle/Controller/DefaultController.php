@@ -21,7 +21,12 @@ class DefaultController extends Controller
 {
     public function portadaGerenciaAction()
     {
-        return $this->render('AdminBundle:Default:portadaGerencia.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $presupuestos = $em->getRepository('PresupuestoBundle:Presupuesto')->findAll();
+        return $this->render('AdminBundle:Default:portadaGerencia.html.twig', 
+            array(
+                'presupuestos' => $presupuestos,
+            ));
     }
     public function marcasAction()
     {
