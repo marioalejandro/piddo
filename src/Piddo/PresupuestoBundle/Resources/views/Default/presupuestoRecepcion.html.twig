@@ -12,7 +12,8 @@
         {{ form_start(form) }}
             {{ form_errors(form) }}
                {% for r in form.recepcionPiezas %}
-                <li>{{ form_row(r.colPieza) }} {{ form_row(r.cantidad) }}</li>
+                
+                <li>{{ form_row(r.colPieza) }} {{ form_row(r.cantidad) }}{{form_row(r.maximo)}}</li>
                 {% endfor %}
             {{ form_rest(form) }}
         {{ form_end(form) }}
