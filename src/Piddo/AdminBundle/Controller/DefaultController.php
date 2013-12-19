@@ -15,6 +15,7 @@ use Piddo\AdminBundle\Form\SerieType;
 use Piddo\AdminBundle\Form\PiezaType;
 use Piddo\AdminBundle\Form\GrupoPiezaType;
 use Piddo\AdminBundle\Form\SeriePiezasType;
+use Piddo\TallerBundle\Entity\ColRectificado;
 
 
 class DefaultController extends Controller
@@ -372,5 +373,94 @@ class DefaultController extends Controller
                     //'grupos' =>$gp
                 ));
         }
+        
+        public function perfilRectificadoAction($marca, $modelo, $serie)
+        { 
+        $peticion = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+        
+        
+        //Datos desde BD
+        $rectificados = $em->getRepository('TallerBundle:Rectificado')->findAll();
+        $gruposRectificado = $em->getRepository('TallerBundle:GrupoRectificado')->findAll();
+        $oSerie = $em->getRepository('MotorBundle:Serie')->findOneBy(array('slug' => $serie));
+        $rectSerie = $oSerie->getRectDisponibles();
+        
+        
+        /**************************************************************
+         * NUEVO FORMULARIO CON OBJETOS
+         **************************************************************/
+        //1.- Creacion de objeto serie (creado)
+        //2.- Creacion de los objetos ColRectificado
+        
+        $i=0;
+        //Recorremos los grupos
+       while($i < sizeof($gruposRectificado))
+            {
+            $rect = $em->getRepository('TallerBundle:Rectificado')->findBy(array('grupoRectificado' => $gruposRectificado[$i]->getID()));
+            $j=0;
+            //Recorremos las piezas por grupo
+            while($j<sizeof($rect))
+            {
+
+                //Vemos si el motor ya tiene agregada esa pieza
+                //para cargar el valor de maximo
+                $k=0;
+                $nuevo = true;
+                while($k < sizeof($rectSerie))
+                    {
+                    if($rectSerie[$k]->getRectificado() == $rect[$j])
+                        {
+                        $nuevo = false;
+                        }
+                    $k++;
+                    }
+                    if($nuevo)
+                        {
+                        $cr = new ColRectificado();
+                        $cr->setCantidad(0);
+                        $cr->setPieza($rect[$j]);
+                        $cr->setSerie($oSerie);
+                        $oSerie->getPiezasDisponibles()->add($cp);
+                        }
+                    
+                $j++;
+            }
+            $i++;
+            }
+        
+        //3.- Agregar los ColPiezas a la serie(hecho)
+        //4.- Creacion de formulario
+        $form2 = $this->createForm(new SeriePiezasType(), $oSerie);
+        
+        $form2->handleRequest($peticion);
+        
+        if($form2->isValid()){
+            $em->persist($oSerie);
+            $em->flush();
+            
+            $mensaje ='La serie se ha modeificado correctamente';
+
+           $this->get('session')->getFlashBag()->add('info', $mensaje);
+
+
+            //return $this->redirect($this->generateUrl('admin_clientes'));
+        
+        }/**/
+        /**************************************************************
+         * FIN NUEVO FORMULARIO CON OBJETOS
+         **************************************************************/
+   
+        return $this->render('AdminBundle:Default:colPiezas.html.twig', 
+                array(
+                    'form' => $form2->createView(),
+                    'gruposPieza' => $gruposRectificado,
+                    'marca' => $marca,
+                    'modelo' => $modelo,
+                    'serie' => $serie,
+                    //'grupos' =>$gp
+                ));
+        }
+      
       
 }

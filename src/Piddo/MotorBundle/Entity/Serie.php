@@ -57,6 +57,13 @@ class Serie
      */
     protected $piezasDisponibles;
     
+    
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\ColRectificado", mappedBy="serie", cascade={"persist"})
+     */
+    protected $rectDisponibles;
+    
  
 
     /**
@@ -205,5 +212,38 @@ class Serie
     public function getPiezasDisponibles()
     {
         return $this->piezasDisponibles;
+    }
+
+    /**
+     * Add rectDisponibles
+     *
+     * @param \Piddo\TallerBundle\Entity\ColRectificado $rectDisponibles
+     * @return Serie
+     */
+    public function addRectDisponible(\Piddo\TallerBundle\Entity\ColRectificado $rectDisponibles)
+    {
+        $this->rectDisponibles[] = $rectDisponibles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove rectDisponibles
+     *
+     * @param \Piddo\TallerBundle\Entity\ColRectificado $rectDisponibles
+     */
+    public function removeRectDisponible(\Piddo\TallerBundle\Entity\ColRectificado $rectDisponibles)
+    {
+        $this->rectDisponibles->removeElement($rectDisponibles);
+    }
+
+    /**
+     * Get rectDisponibles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRectDisponibles()
+    {
+        return $this->rectDisponibles;
     }
 }

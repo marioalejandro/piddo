@@ -278,6 +278,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'serie_col_piezas')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::ColPiezasAction',));
             }
 
+            // perfil_rectificado
+            if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/(?P<serie>[^/]++)/perfil\\-rectificado$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'perfil_rectificado')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::perfilRectificadoAction',));
+            }
+
         }
 
         // usuario_registro

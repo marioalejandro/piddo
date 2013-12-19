@@ -103,6 +103,12 @@ class Presupuesto
      */
     protected $recepcionPiezas;
     
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\ColRectificado", mappedBy="presupuesto", cascade={"persist"})
+     */
+    protected $rectificados;
+    
     /************************************************************************
      *      ATRIBUTOS : TOTALES                                
      ************************************************************************/
@@ -540,5 +546,38 @@ class Presupuesto
     public function getRecepcionPiezas()
     {
         return $this->recepcionPiezas;
+    }
+
+    /**
+     * Add rectificados
+     *
+     * @param \Piddo\TallerBundle\Entity\ColRectificado $rectificados
+     * @return Presupuesto
+     */
+    public function addRectificado(\Piddo\TallerBundle\Entity\ColRectificado $rectificados)
+    {
+        $this->rectificados[] = $rectificados;
+    
+        return $this;
+    }
+
+    /**
+     * Remove rectificados
+     *
+     * @param \Piddo\TallerBundle\Entity\ColRectificado $rectificados
+     */
+    public function removeRectificado(\Piddo\TallerBundle\Entity\ColRectificado $rectificados)
+    {
+        $this->rectificados->removeElement($rectificados);
+    }
+
+    /**
+     * Get rectificados
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRectificados()
+    {
+        return $this->rectificados;
     }
 }

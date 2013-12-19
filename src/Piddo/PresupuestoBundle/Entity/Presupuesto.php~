@@ -103,6 +103,12 @@ class Presupuesto
      */
     protected $recepcionPiezas;
     
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\ColRectificado", mappedBy="presupuesto", cascade={"persist"})
+     */
+    protected $rectificados;
+    
     /************************************************************************
      *      ATRIBUTOS : TOTALES                                
      ************************************************************************/

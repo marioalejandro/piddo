@@ -36,6 +36,13 @@ class GrupoRectificado
      */
     private $slug;
 
+     /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\Rectificado", mappedBy="grupoRectificado")
+     */
+    private $rectificados;
     
     
     /**
@@ -98,5 +105,45 @@ class GrupoRectificado
     public function __toString() {
        // return print_r($this);
         return $this->getNombre();
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rectificados = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add rectificados
+     *
+     * @param \Piddo\TallerBundle\Entity\Rectificado $rectificados
+     * @return GrupoRectificado
+     */
+    public function addRectificado(\Piddo\TallerBundle\Entity\Rectificado $rectificados)
+    {
+        $this->rectificados[] = $rectificados;
+    
+        return $this;
+    }
+
+    /**
+     * Remove rectificados
+     *
+     * @param \Piddo\TallerBundle\Entity\Rectificado $rectificados
+     */
+    public function removeRectificado(\Piddo\TallerBundle\Entity\Rectificado $rectificados)
+    {
+        $this->rectificados->removeElement($rectificados);
+    }
+
+    /**
+     * Get rectificados
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRectificados()
+    {
+        return $this->rectificados;
     }
 }
