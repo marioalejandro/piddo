@@ -50,6 +50,14 @@ class Serie
      */
     private $modelo;
 
+    
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\MotorBundle\Entity\ColPiezas", mappedBy="serie", cascade={"persist"})
+     */
+    protected $piezasDisponibles;
+    
+ 
 
     /**
      * Get id
@@ -145,6 +153,10 @@ class Serie
         return $this;
     }
 
+    public function __toString() {
+        return $this->getNombre();
+    }
+
     /**
      * Get modelo
      *
@@ -154,7 +166,44 @@ class Serie
     {
         return $this->modelo;
     }
-    public function __toString() {
-        return $this->getNombre();
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->piezasDisponibles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add piezasDisponibles
+     *
+     * @param \Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles
+     * @return Serie
+     */
+    public function addPiezasDisponible(\Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles)
+    {
+        $this->piezasDisponibles[] = $piezasDisponibles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove piezasDisponibles
+     *
+     * @param \Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles
+     */
+    public function removePiezasDisponible(\Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles)
+    {
+        $this->piezasDisponibles->removeElement($piezasDisponibles);
+    }
+
+    /**
+     * Get piezasDisponibles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPiezasDisponibles()
+    {
+        return $this->piezasDisponibles;
     }
 }

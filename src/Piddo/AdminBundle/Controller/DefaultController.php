@@ -14,6 +14,7 @@ use Piddo\AdminBundle\Form\ModeloType;
 use Piddo\AdminBundle\Form\SerieType;
 use Piddo\AdminBundle\Form\PiezaType;
 use Piddo\AdminBundle\Form\GrupoPiezaType;
+use Piddo\AdminBundle\Form\SeriePiezasType;
 
 
 class DefaultController extends Controller
@@ -194,16 +195,90 @@ class DefaultController extends Controller
             
     public function ColPiezasAction($marca, $modelo, $serie)
         { 
+        
+        
         $peticion = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
         
+        
+        //Datos desde BD
+        $piezas = $em->getRepository('MotorBundle:Pieza')->findAll();
         $gruposPieza = $em->getRepository('MotorBundle:GrupoPieza')->findAll();
         $oSerie = $em->getRepository('MotorBundle:Serie')->findOneBy(array('slug' => $serie));
-        $piezasSerie = $em->getRepository('MotorBundle:ColPiezas')->findBy(array('serie' => $oSerie->getID()));
+        //$piezasSerie = $em->getRepository('MotorBundle:ColPiezas')->findBy(array('serie' => $oSerie->getID()));
+        $piezasSerie = $oSerie->getPiezasDisponibles();
         
-          $defaultData = array();
-            $builder = $this->createFormBuilder($defaultData);
-                
+        
+        /**************************************************************
+         * NUEVO FORMULARIO CON OBJETOS
+         **************************************************************/
+        //1.- Creacion de objeto serie (creado)
+        //2.- Creacion de los objetos ColPiezas
+        
+        $i=0;
+        //Recorremos los grupos
+       while($i < sizeof($gruposPieza))
+            {
+            $piezas = $em->getRepository('MotorBundle:Pieza')->findBy(array('grupoPieza' => $gruposPieza[$i]->getID()));
+            $j=0;
+            //Recorremos las piezas por grupo
+            while($j<sizeof($piezas))
+            {
+
+                //Vemos si el motor ya tiene agregada esa pieza
+                //para cargar el valor de maximo
+                $k=0;
+                $nuevo = true;
+                while($k < sizeof($piezasSerie))
+                    {
+                    if($piezasSerie[$k]->getPieza() == $piezas[$j])
+                        {
+                        $nuevo = false;
+                        }
+                    $k++;
+                    }
+                    if($nuevo)
+                        {
+                        $cp = new ColPiezas();
+                        $cp->setMaximo(0);
+                        $cp->setPieza($piezas[$j]);
+                        $cp->setSerie($oSerie);
+                        $oSerie->getPiezasDisponibles()->add($cp);
+                        }
+                    
+                $j++;
+            }
+            $i++;
+            }
+        
+        //3.- Agregar los ColPiezas a la serie(hecho)
+        //4.- Creacion de formulario
+        $form2 = $this->createForm(new SeriePiezasType(), $oSerie);
+        
+        $form2->handleRequest($peticion);
+        
+        if($form2->isValid()){
+            $em->persist($oSerie);
+            $em->flush();
+            
+            $mensaje ='La serie se ha modeificado correctamente';
+
+           $this->get('session')->getFlashBag()->add('info', $mensaje);
+
+
+            //return $this->redirect($this->generateUrl('admin_clientes'));
+        
+        }/**/
+        /**************************************************************
+         * FIN NUEVO FORMULARIO CON OBJETOS
+         **************************************************************/
+        
+        // creacion Formulario
+        /*
+        
+        $defaultData = array();
+        $builder = $this->createFormBuilder($defaultData);
+        $gp = array();        
         
         
         $i=0;
@@ -214,6 +289,7 @@ class DefaultController extends Controller
             while($j<sizeof($piezas))
             {
                 //Vemos si el motor ya tiene agregada esa pieza
+                //para cargar el valor de maximo
                 $k=0;
                 $maximo = 0;
                 while($k < sizeof($piezasSerie))
@@ -230,15 +306,22 @@ class DefaultController extends Controller
                     'data' => $maximo,
                     'invalid_message' => 'Ingrese solo números'
                 ));
+                //$gp->add($piezas[$j]->getGrupo());
+                $num_piezas = sizeof($piezas[$j]->getGrupoPieza()->getPiezas());
+                array_push($gp,array(
+                    'nombre' => $piezas[$j]->getGrupoPieza()->getNombre(),
+                    'numero' => $num_piezas,
+                    'pieza' => $piezas[$j]->getNombre()
+                        ));
                 $j++;
             }
             $i++;
             }
          $form= $builder->getForm();
          
-         $form->handleRequest($peticion);
+         $form->handleRequest($peticion);/**/
  
-            if ($form->isValid()) {
+      /*      if ($form->isValid()) {
                 $data = $form->getData();
                 $i = 0;
                 while($i < sizeof($gruposPieza))
@@ -257,7 +340,7 @@ class DefaultController extends Controller
                             {
                                 if($piezasSerie[$k]->getPieza() == $piezas[$j])
                                     {
-                                    print_r($piezasSerie[$k]->getID());
+                                    //print_r($piezasSerie[$k]->getID());
                                         $colPieza = $em->getRepository('MotorBundle:ColPiezas')->findOneBy(array('id' => $piezasSerie[$k]->getID()));
                                     }
                                 $k++;
@@ -273,15 +356,15 @@ class DefaultController extends Controller
                     }
                     $em->flush();
                 //print_r($data);
-            }
-        
+            }/**/
         return $this->render('AdminBundle:Default:colPiezas.html.twig', 
                 array(
-                    'form' => $form->createView(),
+                    'form' => $form2->createView(),
                     'gruposPieza' => $gruposPieza,
                     'marca' => $marca,
                     'modelo' => $modelo,
-                    'serie' => $serie
+                    'serie' => $serie,
+                    //'grupos' =>$gp
                 ));
         }
       

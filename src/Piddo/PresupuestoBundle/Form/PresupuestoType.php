@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Piddo\PresupuestoBundle\Form\EventListener\AddMarcaFieldSubscriber;
 use Piddo\PresupuestoBundle\Form\EventListener\AddModeloFieldSubscriber;
 use Piddo\PresupuestoBundle\Form\EventListener\AddSerieFieldSubscriber;
+use Piddo\PresupuestoBundle\Form\PresupuestoRecepcionType;
 
 class PresupuestoType extends AbstractType
 {

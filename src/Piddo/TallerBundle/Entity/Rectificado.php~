@@ -4,6 +4,7 @@ namespace Piddo\TallerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Piddo\AdminBundle\Util\Util;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Rectificado
@@ -38,7 +39,7 @@ class Rectificado
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Primero crea un grupo")
      * @ORM\ManyToOne(targetEntity="Piddo\TallerBundle\Entity\GrupoRectificado")
      */
     private $grupoRectificado;

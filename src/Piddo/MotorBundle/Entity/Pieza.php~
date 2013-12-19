@@ -4,6 +4,7 @@ namespace Piddo\MotorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Piddo\AdminBundle\Util\Util;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Pieza
@@ -38,8 +39,8 @@ class Pieza
 
      /**
      * @var string
-     *
-     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\GrupoPieza")
+     * @Assert\NotBlank(message="Primero crea un grupo")
+     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\GrupoPieza", inversedBy = "piezas")
      */
     private $grupoPieza;
 
@@ -105,6 +106,8 @@ class Pieza
     public function __toString() {
         return $this->getNombre();
     }
+
+ 
 
     /**
      * Set grupoPieza

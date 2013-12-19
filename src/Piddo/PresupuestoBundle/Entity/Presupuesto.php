@@ -97,6 +97,11 @@ class Presupuesto
      */
     private $RMT;
 
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\MotorBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
+     */
+    protected $recepcionPiezas;
     
     /************************************************************************
      *      ATRIBUTOS : TOTALES                                
@@ -495,4 +500,45 @@ class Presupuesto
         return (string)$this->getId();
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->recepcionPiezas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Add recepcionPiezas
+     *
+     * @param \Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas
+     * @return Presupuesto
+     */
+    public function addRecepcionPieza(\Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas)
+    {
+        $this->recepcionPiezas[] = $recepcionPiezas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove recepcionPiezas
+     *
+     * @param \Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas
+     */
+    public function removeRecepcionPieza(\Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas)
+    {
+        $this->recepcionPiezas->removeElement($recepcionPiezas);
+    }
+
+    /**
+     * Get recepcionPiezas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecepcionPiezas()
+    {
+        return $this->recepcionPiezas;
+    }
 }

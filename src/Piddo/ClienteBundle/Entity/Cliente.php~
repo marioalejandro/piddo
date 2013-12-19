@@ -28,7 +28,7 @@ class Cliente
     /**
      * @var string
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message = "No puede quedar en blanco")
      * @ORM\Column(name="rut", type="string", length=255, unique=true)
      */
     private $rut;

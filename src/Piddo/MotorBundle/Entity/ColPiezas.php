@@ -24,7 +24,7 @@ class ColPiezas
     /**
      * @var string
      *
-     * * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie")
+     * * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie", inversedBy="piezasDisponibles")
      */
     private $serie;
 
@@ -42,18 +42,6 @@ class ColPiezas
      */
     private $maximo;
 
-    /**
-     * Set id
-     *
-     * @param integer $id
-     * @return ColPiezas
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    
-        return $this;
-    }
 
     /**
      * Get id
@@ -139,6 +127,6 @@ class ColPiezas
     
     public function __toString() {
         
-        return (string)$this->getId();
+        return $this->getPieza()->getNombre();
     }
 }
