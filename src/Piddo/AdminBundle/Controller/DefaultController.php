@@ -16,6 +16,7 @@ use Piddo\AdminBundle\Form\PiezaType;
 use Piddo\AdminBundle\Form\GrupoPiezaType;
 use Piddo\AdminBundle\Form\SeriePiezasType;
 use Piddo\TallerBundle\Entity\ColRectificado;
+use Piddo\AdminBundle\Form\SerieRectType;
 
 
 class DefaultController extends Controller
@@ -419,9 +420,9 @@ class DefaultController extends Controller
                         {
                         $cr = new ColRectificado();
                         $cr->setCantidad(0);
-                        $cr->setPieza($rect[$j]);
+                        $cr->setRectificado($rect[$j]);
                         $cr->setSerie($oSerie);
-                        $oSerie->getPiezasDisponibles()->add($cp);
+                        $oSerie->getRectDisponibles()->add($cr);
                         }
                     
                 $j++;
@@ -431,7 +432,7 @@ class DefaultController extends Controller
         
         //3.- Agregar los ColPiezas a la serie(hecho)
         //4.- Creacion de formulario
-        $form2 = $this->createForm(new SeriePiezasType(), $oSerie);
+        $form2 = $this->createForm(new SerieRectType(), $oSerie);
         
         $form2->handleRequest($peticion);
         
@@ -451,7 +452,7 @@ class DefaultController extends Controller
          * FIN NUEVO FORMULARIO CON OBJETOS
          **************************************************************/
    
-        return $this->render('AdminBundle:Default:colPiezas.html.twig', 
+        return $this->render('AdminBundle:Default:rectificados.html.twig', 
                 array(
                     'form' => $form2->createView(),
                     'gruposPieza' => $gruposRectificado,
