@@ -11,6 +11,9 @@ use Piddo\AdminBundle\Form\ModeloType;
 use Piddo\AdminBundle\Form\SerieType;
 use Piddo\AdminBundle\Form\GrupoPiezaType;
 use Piddo\AdminBundle\Form\SeriePiezasType;
+use Piddo\ClienteBundle\Entity\Cliente;
+use Piddo\ClienteBundle\Entity\Telefono;
+use Piddo\ClienteBundle\Form\ClienteType;
 
 class DefaultController extends Controller
 {
@@ -133,6 +136,34 @@ class DefaultController extends Controller
  //Creación de un Cliente por parte del recepcionista
     public function agregarClienteAction()
     {
-        return $this->render('RecepcionBundle:Default:agregarCliente.html.twig');
+        $peticion = $this->getRequest();
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $cliente = new Cliente();
+        $formulario = $this->createForm(new ClienteType(), $cliente);
+        
+        $formulario->handleRequest($peticion);
+        
+        if($formulario->isValid()){
+            $em->persist($cliente);
+            $em->flush();
+            
+            $mensaje ='El cliente se ha agregado correctamente';
+
+           $this->get('session')->getFlashBag()->add('info', $mensaje);
+
+
+            return $this->redirect($this->generateUrl('recepcion_agregar_cliente'));
+        
+        }
+        
+        return $this->render('RecepcionBundle:Default:agregarCliente.html.twig', 
+                array(
+                    'formulario' => $formulario->createView(),
+                    'clientes' => $em->getRepository('ClienteBundle:Cliente')->findAll()
+                ));
     }
+       // return $this->render('RecepcionBundle:Default:agregarCliente.html.twig');
+   // }
 }
