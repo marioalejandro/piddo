@@ -121,4 +121,13 @@ class Recepcion
     {
         return $this->colPieza;
     }
+    /**
+     * Get maximo
+     *
+     * @return integer 
+     */
+    public function getMaximo()
+    {
+        return $this->colPieza->getMaximo();
+    }
 }
