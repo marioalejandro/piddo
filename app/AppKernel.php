@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Piddo\ClienteBundle\ClienteBundle(),
             new Piddo\PresupuestoBundle\PresupuestoBundle(),
             new Piddo\RepuestoBundle\RepuestoBundle(),
+            new Piddo\RecepcionBundle\RecepcionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

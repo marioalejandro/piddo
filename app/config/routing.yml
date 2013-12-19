@@ -1,3 +1,7 @@
+recepcion:
+    resource: "@RecepcionBundle/Resources/config/routing.yml"
+    prefix:   /
+
 repuesto:
     resource: "@RepuestoBundle/Resources/config/routing.yml"
     prefix:   /

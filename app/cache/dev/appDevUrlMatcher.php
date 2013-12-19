@@ -133,6 +133,45 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // recepcion_portada
+        if (rtrim($pathinfo, '/') === '/recepcion') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'recepcion_portada');
+            }
+
+            return array (  '_controller' => 'Piddo\\RecepcionBundle\\Controller\\DefaultController::portadaRecepcionAction',  '_route' => 'recepcion_portada',);
+        }
+
+        if (0 === strpos($pathinfo, '/crea')) {
+            // recepcion_crear_presupuesto
+            if (rtrim($pathinfo, '/') === '/creauno/presupuesto') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'recepcion_crear_presupuesto');
+                }
+
+                return array (  '_controller' => 'Piddo\\RecepcionBundle\\Controller\\DefaultController::crearPresupuestoAction',  '_route' => 'recepcion_crear_presupuesto',);
+            }
+
+            // recepcion_crear_motor
+            if (rtrim($pathinfo, '/') === '/creados/motor') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'recepcion_crear_motor');
+                }
+
+                return array (  '_controller' => 'Piddo\\RecepcionBundle\\Controller\\DefaultController::crearMotorAction',  '_route' => 'recepcion_crear_motor',);
+            }
+
+        }
+
+        // recepcion_agregar_cliente
+        if (rtrim($pathinfo, '/') === '/agregar/cliente') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'recepcion_agregar_cliente');
+            }
+
+            return array (  '_controller' => 'Piddo\\RecepcionBundle\\Controller\\DefaultController::agregarClienteAction',  '_route' => 'recepcion_agregar_cliente',);
+        }
+
         // repuesto_portada
         if ($pathinfo === '/repuesto') {
             return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::repuestoAction',  '_route' => 'repuesto_portada',);
