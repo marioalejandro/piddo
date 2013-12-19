@@ -133,6 +133,38 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // repuesto_portada
+        if ($pathinfo === '/repuesto') {
+            return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::repuestoAction',  '_route' => 'repuesto_portada',);
+        }
+
+        // repuesto_lista_solicitudes
+        if (rtrim($pathinfo, '/') === '/solicitudes') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'repuesto_lista_solicitudes');
+            }
+
+            return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaSolicitudesAction',  '_route' => 'repuesto_lista_solicitudes',);
+        }
+
+        // repuesto_presupuestos
+        if (rtrim($pathinfo, '/') === '/presupuestos') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'repuesto_presupuestos');
+            }
+
+            return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaPresupuestosAction',  '_route' => 'repuesto_presupuestos',);
+        }
+
+        // repuesto_lista
+        if (rtrim($pathinfo, '/') === '/lista') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'repuesto_lista');
+            }
+
+            return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaAction',  '_route' => 'repuesto_lista',);
+        }
+
         // nuevo_presupuesto
         if ($pathinfo === '/nuevo-presupuesto') {
             return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
