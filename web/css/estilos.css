@@ -985,7 +985,7 @@ a:active  { position: relative; top: 1px; }
 #contenedor {
     background: #FFF;
     margin: 0 auto 1em;
-    width: 1200px;
+    width: 1100px;
 
     -moz-box-shadow: 0 1px 5px #444;
     -webkit-box-shadow: 0 1px 5px #444;

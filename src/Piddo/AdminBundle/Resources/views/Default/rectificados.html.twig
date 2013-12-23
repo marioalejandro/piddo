@@ -1,34 +1,48 @@
 {% extends '::plantillaGerencia.html.twig' %}
  
 {% block title %}
-    Piezas > 
-    Todas las piezas
+    Trabajos > 
+    Todos los trabajos
 {% endblock %}
-{% block id 'piezas' %}
+{% block id 'trabajos' %}
  
 {% block article %}
     <h1>{{ block('title') }}</h1>
     <section id="formulario_marca">
-        <h4>Agregar un Coleccion de Piezas</h4>
-        <form action="{{ path('serie_col_piezas',{'marca': marca, 'modelo' : modelo, 'serie': serie })}}" method="post" {{ form_enctype(form) }}>
-         {#{ form_start(form) }#}
-            {{ form_errors(form) }}
-       <h3>Modificar</h3>
-            {{form_row(form.nombre)}}
-            
-       <h3>Piezas</h3>
-        <ul class="piezas">
-            {# itera sobre cada etiqueta existente y reproduce la fila#}
-            {% for p in form.rectDisponibles %}
-                <li>{{ form_row(p.rectificado) }} {{ form_row(p.cantidad) }}</li>
+        <h4>Agregar un Grupo de Rectificado</h4>
+        <form action="{{ path('admin_rectificados') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+        <h4>Agregar un Trabajo de Rectificado</h4>
+        <form action="{{ path('admin_rectificados') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario2) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_rectificados">
+        <table>
+            <tr>
+                <th>Area Trabajos</th>
+                <th>Trabajos</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for gr in gruposRectificado %}
+                <tr>
+                    <td>{{gr.nombre}}{#<a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a>#}</td>
+                    <td>
+                        {#% render 'AdminBundle:Rectificados:listaRectificados' with { 'grupo': '1' } %#}
+                        {#{ render(controller('AdminBundle:Rectificados:listaRectificados'), with{ 'grupo' : gr.id }) }#}
+                        {% render controller("AdminBundle:Rectificados:listaRectificados", {'grupo': gr.id}) %}
+                    </td>
+                </tr>
             {% endfor %}
-        </ul>
-           
-            {{ form_rest(form) }}
-            {#{ form_end(form) }#}
-                <input class="boton" type="submit" value="Guardar" />
-            </form>
-
+        </table>
+        {% if gruposRectificado == null%}
+            {{'no hay trabajos registrados'}}
+        {%endif%}
     </section>
 
 {% endblock %}

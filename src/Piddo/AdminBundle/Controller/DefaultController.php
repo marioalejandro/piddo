@@ -455,7 +455,7 @@ class DefaultController extends Controller
          * FIN NUEVO FORMULARIO CON OBJETOS
          **************************************************************/
    
-        return $this->render('AdminBundle:Default:rectificados.html.twig', 
+        return $this->render('AdminBundle:Default:rectificados2.html.twig', 
                 array(
                     'form' => $form2->createView(),
                     'gruposPieza' => $gruposRectificado,

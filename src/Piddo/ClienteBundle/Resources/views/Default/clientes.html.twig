@@ -75,7 +75,7 @@
         <table>
             <tr>
                 <th>Cliente</th>
-                <th>Eliminar</th>                   
+               {# <th>Eliminar</th>  #}                 
             </tr>
             <tr>
                 
@@ -83,7 +83,7 @@
             {% for cliente in clientes %}
                 <tr>
                     <td>{{cliente.nombre}} {{cliente.apellidos}}</td>
-                    <td>{{ 'Eliminar'}}</td>
+                   {# <td>{{ 'Eliminar'}}</td>#}
                     {#<td><a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a></td>
                     <td><a href="{{ path('borrar_marca',{'marca': marca.id })}}">{{ 'Eliminar'}}</a></td>#}
                 </tr>
