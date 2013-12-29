@@ -14,9 +14,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class GrupoComponente
 {
-	/************************************************
-	 * 		ATRIBUTOS
-	 ***********************************************/
+    /************************************************
+     * 		ATRIBUTOS
+     ***********************************************/
 
     /**
      * @var integer
@@ -29,8 +29,8 @@ class GrupoComponente
 
     /**
      * @var string
-	 * 
-	 * @Assert\NotBlank(message="Debe ingresar un nombre para el Grupo")
+     * 
+     * @Assert\NotBlank(message="Debe ingresar un nombre para el Grupo")
      *
      * @ORM\Column(name="nombre", type="string", length=255, unique=true)
      */
@@ -38,14 +38,14 @@ class GrupoComponente
 
     /**
      * @var string
-	 * 
+     * 
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
 
-	/************************************************
-	 * 		GETTERS & SETTERS
-	 ***********************************************/
+    /************************************************
+     * 		GETTERS & SETTERS
+     ***********************************************/
 
     /**
      * Get id
@@ -66,7 +66,7 @@ class GrupoComponente
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-		$this->slug = Util::getSlug($nombre);
+        $this->slug = Util::getSlug($nombre);
     
         return $this;
     }
@@ -104,12 +104,12 @@ class GrupoComponente
         return $this->slug;
     }
 	
-	/************************************************
-	 * 		METODOS
-	 ***********************************************/
+    /************************************************
+     * 		METODOS
+     ***********************************************/
 	
-	public function __toString() 
-	{
+    public function __toString() 
+    {
         return $this->getNombre();
     }
 	

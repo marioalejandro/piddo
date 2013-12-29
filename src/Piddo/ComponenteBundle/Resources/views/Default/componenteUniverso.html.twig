@@ -1,0 +1,53 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    Titulo :D
+{% endblock %}
+{% block id 'piezas' %}
+ 
+{% block article %}
+    <h1>
+        Componente >
+        Universo
+    </h1>
+    <section id="formulario_marca">
+        <h4>Agregar un Grupo de componentes</h4>
+        <form action="{{ path('componente_universo') }}" method="post" {{ form_enctype(formGrupoComponente) }}>
+        {{ form_widget(formGrupoComponente) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+        
+        <h4>Agregar un Componente</h4>
+        <form action="{{ path('componente_universo') }}" method="post" {{ form_enctype(formComponente) }}>
+        {{ form_widget(formComponente) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_componentes">
+        <table>
+            <tr>
+                <th>Grupo Componente</th>
+                <th>Componentes</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for gc in universo %}
+                <tr>
+                    <td>{{gc.nombre}}{#<a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a>#}</td>
+                    <td>
+                        {% render controller("AdminBundle:Default:listaPiezas", {'grupo': gp.id}) %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% if universo == null%}
+            {{'no hay componentes registrados'}}
+        {%endif%}
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

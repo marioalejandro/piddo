@@ -1,5 +1,5 @@
 componente:
-    resource: "@ComponenteBundle/Resources/config/routing.yml"
+    resource: "@ComponenteBundle/Resources/config/componenteRouting.yml"
     prefix:   /componente
 
 recepcion:

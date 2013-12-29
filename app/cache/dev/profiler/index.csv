@@ -4555,3 +4555,13 @@ fec853,::1,POST,http://localhost/piddo/web/app_dev.php/login_check,1388283356,
 224c02,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/piezas,1388283811,
 cbf4a3,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1388283811,224c02
 696ea9,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1388283811,224c02
+10556a,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/piezas,1388289458,
+1ff116,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1388289458,10556a
+8a161c,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DAdminBundle%253ADefault%253AlistaPiezas,1388289458,10556a
+037e14,::1,GET,http://localhost/piddo/web/app_dev.php/componente/universo,1388289613,
+2fed47,::1,GET,http://localhost/piddo/web/app_dev.php/componente/universo,1388289613,
+bc78c8,::1,GET,http://localhost/piddo/web/app_dev.php/componente/universo,1388289660,
+f1c25b,::1,GET,http://localhost/piddo/web/app_dev.php/componente/universo,1388289660,
+07dc55,::1,GET,http://localhost/piddo/web/app_dev.php/componente/universo,1388289693,
+06d397,::1,GET,http://localhost/piddo/web/app_dev.php/componente/universo,1388289693,
+3a1fd2,::1,GET,http://localhost/piddo/web/app_dev.php/componente/universo,1388289719,
