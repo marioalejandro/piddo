@@ -1,0 +1,7 @@
+parameters:
+#    componente.example.class: Piddo\ComponenteBundle\Example
+
+services:
+#    componente.example:
+#        class: %componente.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

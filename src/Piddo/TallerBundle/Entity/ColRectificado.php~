@@ -21,31 +21,25 @@ class ColRectificado
      */
     private $id;
 
-   /**
-     * @var string
-     *
-     * @ORM\ManyToOne(targetEntity="Piddo\PresupuestoBundle\Entity\Presupuesto", inversedBy="rectificados", cascade={"persist"})
-     */
-    private $presupuesto;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rectificado", type="string", length=255)
+     * * @ORM\ManyToOne(targetEntity="Piddo\TallerBundle\Entity\Rectificado")
      */
     private $rectificado;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="serie", type="string", length=255)
+     * * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie", inversedBy="rectDisponibles")
      */
     private $serie;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="cantidad", type="string", length=255)
+     * @ORM\Column(name="cantidad", type="integer")
      */
     private $cantidad;
 
@@ -58,29 +52,6 @@ class ColRectificado
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set presupuesto
-     *
-     * @param string $presupuesto
-     * @return ColRectificado
-     */
-    public function setPresupuesto($presupuesto)
-    {
-        $this->presupuesto = $presupuesto;
-    
-        return $this;
-    }
-
-    /**
-     * Get presupuesto
-     *
-     * @return string 
-     */
-    public function getPresupuesto()
-    {
-        return $this->presupuesto;
     }
 
     /**

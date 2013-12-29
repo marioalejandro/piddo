@@ -1,0 +1,3 @@
+componente_universo:
+    pattern:  /universo
+    defaults: { _controller: ComponenteBundle:Componente:universo }
