@@ -1,7 +1,7 @@
 {% extends '::plantillaGerencia.html.twig' %}
  
 {% block title %}
-    Titulo :D
+    Componentes
 {% endblock %}
 {% block id 'piezas' %}
  
@@ -36,7 +36,7 @@
                 <tr>
                     <td>{{gc.nombre}}{#<a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a>#}</td>
                     <td>
-                        {% render controller("AdminBundle:Default:listaPiezas", {'grupo': gp.id}) %}
+                        {% render controller("ComponenteBundle:Componente:listaComponentes", {'grupo': gc.id}) %}
                     </td>
                 </tr>
             {% endfor %}

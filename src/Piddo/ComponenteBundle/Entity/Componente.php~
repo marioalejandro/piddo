@@ -22,9 +22,9 @@ use Piddo\ComponenteBundle\Entity\GrupoComponente;
  */
 class Componente
 {
-	/************************************************
-	 * 		ATRIBUTOS
-	 ***********************************************/
+    /************************************************
+     * 		ATRIBUTOS
+     ***********************************************/
 	 
     /**
      * @var integer
@@ -38,8 +38,8 @@ class Componente
     /**
      * @var string
      *
-	 * @Assert\NotBlank(message="Debe ingresar un nombre para el Componente")
-	 * 
+     * @Assert\NotBlank(message="Debe ingresar un nombre para el Componente")
+     * 
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
@@ -51,23 +51,23 @@ class Componente
      */
     private $slug;
 	
-	/************************************************
-	 * 		ATRIBUTOS FOREIGN KEY
-	 ***********************************************/
+    /************************************************
+     * 		ATRIBUTOS FOREIGN KEY
+     ***********************************************/
 
     /**
      * @var GrupoComponente
-	 * 
-	 * @Assert\NotBlank(message="Debe escojer un grupo")
-	 * 
+     * 
+     * @Assert\NotBlank(message="Debe escojer un grupo")
+     * 
      * @ORM\ManyToOne(targetEntity="GrupoComponente")
      */
     private $grupoComponente;
 
 
-	/************************************************
-	 * 		GETTERS & SETTERS
-	 ***********************************************/
+    /************************************************
+     * 		GETTERS & SETTERS
+     ***********************************************/
 
     /**
      * Get id
@@ -88,7 +88,7 @@ class Componente
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-		$this->slug = Util::getSlug($nombre);
+        $this->slug = Util::getSlug($nombre);
     
         return $this;
     }
@@ -125,20 +125,11 @@ class Componente
     {
         return $this->slug;
     }
-
-  
 	
-	/************************************************
-	 * 		METODOS
-	 ***********************************************/
-	
-	public function __toString()
-	{
-        return $this->getNombre();
-    }
-	
-	
-
+    /************************************************
+     *      GETTERS & SETTERS FOREIGN KEY
+     ***********************************************/
+	 
     /**
      * Set grupoComponente
      *
@@ -161,4 +152,18 @@ class Componente
     {
         return $this->grupoComponente;
     }
+  
+    
+    /************************************************
+     * 		METODOS
+     ***********************************************/
+	
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+	
+	
+
+
 }

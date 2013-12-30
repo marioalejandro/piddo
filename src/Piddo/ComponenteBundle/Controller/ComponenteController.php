@@ -36,7 +36,7 @@ class ComponenteController extends Controller
             $em->flush();
             //Mensaje Flash
             $this->get('session')->getFlashBag()
-            	->add('info', 'El Grupo '.$grupoPieza->getNombre().' ha sido registrado correctamente');
+            	->add('info', 'El Grupo '.$gComponente->getNombre().' ha sido registrado correctamente');
             //Redireccionamiento	
             return $this->redirect($this->generateUrl('componente_universo'));
         }
@@ -56,7 +56,7 @@ class ComponenteController extends Controller
             $em->flush();
             //Mensaje Flash
             $this->get('session')->getFlashBag()
-                ->add('info', 'El componente '.$pieza->getNombre().' ha sido registrado correctamente');
+                ->add('info', 'El componente '.$componente->getNombre().' ha sido registrado correctamente');
             //Redireccionamiento
             return $this->redirect($this->generateUrl('componente_universo'));
         }
@@ -71,5 +71,17 @@ class ComponenteController extends Controller
                 'formGrupoComponente' => $formGrupoComponente->createView(),
                 'universo' => $universo,
             ));
-	}
+    }
+    
+    public function listaComponentesAction($grupo)
+        {
+            $em = $this->getDoctrine()->getManager();
+            $componentes = $em->getRepository('ComponenteBundle:Componente')
+                                    ->findBy(array('grupoComponente' => $grupo));
+            return $this->render('ComponenteBundle:Includes:listaComponentes.html.twig', 
+                array(
+                    'componentes' => $componentes,
+                ));
+        }
+        
 }

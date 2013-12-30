@@ -5,11 +5,18 @@ namespace Piddo\ComponenteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Piddo\AdminBundle\Util\Util;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * GrupoComponente
  *
  * @ORM\Table()
+ * 
+ * @UniqueEntity(
+ *     fields="nombre",
+ *     message="Este grupo ya existe."
+ * )
+ * 
  * @ORM\Entity(repositoryClass="Piddo\ComponenteBundle\Entity\GrupoComponenteRepository")
  */
 class GrupoComponente

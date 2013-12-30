@@ -1,0 +1,179 @@
+<?php
+
+namespace Piddo\ComponenteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Piddo\ComponenteBundle\Entity\Componente;
+use Piddo\MotorBundle\Entity\Serie;
+
+/**
+ * PerfilComponente
+ *
+ * @UniqueEntity(
+ *     fields={"serie", "componente"},
+ *     errorPath="componente",
+ *     message="Este componente ya existe en este motor."
+ * )
+ * 
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Piddo\ComponenteBundle\Entity\PerfilComponenteRepository")
+ */
+class PerfilComponente
+{
+    
+    /************************************************
+     * 		ATRIBUTOS
+     ***********************************************/
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @Assert\NotBlank(message="Debe ingresar el numero de componentes")
+     * 
+     * @ORM\Column(name="maximo", type="integer")
+     */
+    private $maximo;
+
+    /************************************************
+     * 		ATRIBUTOS FOREIGN KEY
+     ***********************************************/
+    
+    /**
+     * @var Componente
+     * 
+     * @Assert\NotBlank(message="Debe elegir un componente")
+     *
+     * @ORM\ManyToOne(targetEntity="Componente")
+     */
+    private $componente;
+
+    /**
+     * @var string
+     * 
+     * @Assert\NotBlank(message="Debe ingresar una serie")
+     *
+     * @ORM\ManyToOne(targetEntity="Serie")
+     */
+    private $serie;
+
+    /************************************************
+     * 		CONSTRUCTOR
+     ***********************************************/
+    
+    function __construct() 
+    {
+    $this->maximo = 0;
+    }
+
+  
+    /************************************************
+     * 		GETTERS & SETTERS
+     ***********************************************/
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set maximo
+     *
+     * @param integer $maximo
+     * @return PerfilComponente
+     */
+    public function setMaximo($maximo)
+    {
+        $this->maximo = $maximo;
+    
+        return $this;
+    }
+
+    /**
+     * Get maximo
+     *
+     * @return integer 
+     */
+    public function getMaximo()
+    {
+        return $this->maximo;
+    }
+
+    /************************************************
+     *      GETTERS & SETTERS FOREIGN KEY
+     ***********************************************/
+
+    /**
+     * Set componente
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Componente $componente
+     * @return PerfilComponente
+     */
+    public function setComponente(\Piddo\ComponenteBundle\Entity\Componente $componente = null)
+    {
+        $this->componente = $componente;
+    
+        return $this;
+    }
+
+    /**
+     * Get componente
+     *
+     * @return \Piddo\ComponenteBundle\Entity\Componente 
+     */
+    public function getComponente()
+    {
+        return $this->componente;
+    }
+
+    /**
+     * Set serie
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Serie $serie
+     * @return PerfilComponente
+     */
+    public function setSerie(\Piddo\ComponenteBundle\Entity\Serie $serie = null)
+    {
+        $this->serie = $serie;
+    
+        return $this;
+    }
+
+    /**
+     * Get serie
+     *
+     * @return \Piddo\ComponenteBundle\Entity\Serie 
+     */
+    public function getSerie()
+    {
+        return $this->serie;
+    }
+    
+    /************************************************
+     * 		METODOS
+     ***********************************************/
+    
+    public function __toString()
+    {
+        return $this->getComponente()->getNombre();
+    }
+    
+    
+
+}
