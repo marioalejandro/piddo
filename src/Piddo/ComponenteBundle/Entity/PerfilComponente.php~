@@ -114,7 +114,22 @@ class PerfilComponente
     {
         return $this->maximo;
     }
-
+    /************************************************
+     * 		GETTERS EXTRAS
+     ***********************************************/
+    
+    /**
+     * Get grupoComponente
+     *
+     * @return string
+     */
+    public function getGrupoComponente()
+    {
+      
+        return $this->getComponente()->getGrupoComponente()->getNombre();
+    } 
+    
+        
     /************************************************
      *      GETTERS & SETTERS FOREIGN KEY
      ***********************************************/

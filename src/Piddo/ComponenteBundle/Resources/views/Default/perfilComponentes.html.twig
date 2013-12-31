@@ -6,7 +6,13 @@
 {% block id 'piezas' %}
  
 {% block article %}
-    <h1>{{ block('title') }}</h1>
+    <h1>
+    <a href="{{ path('admin_marcas')}}">Motores</a> > 
+    <a href="{{ path('admin_modelos',{'marca': serie.modelo.marca.slug })}}">{{serie.modelo.marca.nombre}}</a> > 
+    <a href="{{ path('admin_series',{'marca': serie.modelo.marca.slug, 'modelo' : serie.modelo.slug })}}">{{serie.modelo.nombre}}</a> >
+    {{serie.nombre}} >
+    Componentes
+    </h1>
     <section id="formulario_marca">
         <h4>Agregar un Coleccion de Piezas</h4>
 	<form action="{{ path('componente_perfil',{'serie': serie.id })}}" method="post" {{ form_enctype(form) }}>

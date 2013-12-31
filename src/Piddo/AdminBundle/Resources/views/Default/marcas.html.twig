@@ -1,13 +1,15 @@
 {% extends '::plantillaGerencia.html.twig' %}
  
 {% block title %}
-    <a href="{{ path('admin_marcas')}}">Motores</a> > 
     Marcas
 {% endblock %}
 {% block id 'marcas' %}
  
 {% block article %}
-    <h1>{{ block('title') }}</h1>
+    <h1>
+        <a href="{{ path('admin_marcas')}}">Motores</a> > 
+        Marcas
+    </h1>
     <section id="formulario_marca">
         <h4>Agregar nueva Marca</h4>
         <form action="{{ path('admin_marcas') }}" method="post" {{ form_enctype(formulario) }}>
