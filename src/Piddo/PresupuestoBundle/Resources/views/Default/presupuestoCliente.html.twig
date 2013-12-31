@@ -10,11 +10,7 @@
     <h1>{{ block('title') }}</h1>
     <section id="formulario_cliente">
         <h4>IDENTIFICACION DEL CLIENTE</h4>
-        {{ form_start(form) }}
-            {{ form_errors(form) }}
-      
-            {{ form_rest(form) }}
-        {{ form_end(form) }}
+        {{ form(form) }}
     </section>
     
     

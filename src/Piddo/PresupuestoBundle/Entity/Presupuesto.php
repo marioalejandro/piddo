@@ -99,7 +99,7 @@ class Presupuesto
 
     /**
      * 
-     * @ORM\OneToMany(targetEntity="Piddo\MotorBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
      */
     protected $recepcionPiezas;
     
@@ -147,6 +147,30 @@ class Presupuesto
      * @ORM\Column(name="motivoDescuento", type="string", length=255)
      */
     private $motivoDescuento;
+
+    /************************************************************************
+     *      CONSTRUCTOR                              
+     ************************************************************************/    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->recepcionPiezas = new \Doctrine\Common\Collections\ArrayCollection();
+        //Valores por defecto
+        $this->setDescuento(0);
+        $this->setTotalGeneral(0);
+        $this->setTotalRectificados(0);
+        $this->setTotalRepuestos(0);
+        $this->setMotivoDescuento('');
+        
+        $this->setFechaCreacion(new \DateTime('now'));
+        $this->setFechaEntrega(new \DateTime('tomorrow'));
+        $this->setEstado('PENDIENTE');
+    }
+    
+    
     
     /************************************************************************
      *      GETTERS & SETTERS : IDENTIFICACION DEL PRESUPUESTO                                  
@@ -378,6 +402,7 @@ class Presupuesto
         return $this->RMT;
     }
 
+    
     /************************************************************************
      *      GETTERS & SETTERS : TOTALES                               
      ************************************************************************/
@@ -506,13 +531,7 @@ class Presupuesto
         return (string)$this->getId();
     }
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->recepcionPiezas = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
 
     /**

@@ -225,12 +225,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // nuevo_presupuesto
         if ($pathinfo === '/nuevo-presupuesto') {
-            return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
+            return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
         }
 
         // presupuesto_recepcion
         if (0 === strpos($pathinfo, '/presupuesto/recepcion') && preg_match('#^/presupuesto/recepcion/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_recepcion')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\DefaultController::recepcionAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_recepcion')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::recepcionAction',));
         }
 
         // admin_clientes

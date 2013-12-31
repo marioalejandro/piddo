@@ -11,7 +11,7 @@ repuesto:
     prefix:   /
 
 presupuesto:
-    resource: "@PresupuestoBundle/Resources/config/routing.yml"
+    resource: "@PresupuestoBundle/Resources/config/presupuestoRouting.yml"
     prefix:   /
 
 cliente:

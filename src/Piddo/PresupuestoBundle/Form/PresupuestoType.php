@@ -5,10 +5,7 @@ namespace Piddo\PresupuestoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Piddo\PresupuestoBundle\Form\EventListener\AddMarcaFieldSubscriber;
-use Piddo\PresupuestoBundle\Form\EventListener\AddModeloFieldSubscriber;
-use Piddo\PresupuestoBundle\Form\EventListener\AddSerieFieldSubscriber;
-use Piddo\PresupuestoBundle\Form\PresupuestoRecepcionType;
+
 
 class PresupuestoType extends AbstractType
 {
@@ -22,14 +19,6 @@ class PresupuestoType extends AbstractType
         $builder->add('cliente');
         $builder->add('RMT');
         //Motor
-        /*
-        $factory = $builder->getFormFactory();
-        $serieSubscriber = new AddSerieFieldSubscriber($factory);
-        $builder->addEventSubscriber($serieSubscriber);
-        $modeloSubscriber = new AddModeloFieldSubscriber($factory);
-        $builder->addEventSubscriber($modeloSubscriber);
-        $marcaSubscriber = new AddMarcaFieldSubscriber($factory);
-        $builder->addEventSubscriber($marcaSubscriber); /**/
         
         $builder->add('marca');
         $builder->add('modelo');
@@ -58,6 +47,6 @@ class PresupuestoType extends AbstractType
      */
     public function getName()
     {
-        return 'piddo_presupuestobundle_presupuesto';
+        return 'presupuesto';
     }
 }

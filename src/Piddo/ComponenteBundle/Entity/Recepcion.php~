@@ -159,6 +159,29 @@ class Recepcion
      *
      * @return integer 
      */
+    
+    /**
+     * Set perfilComponente
+     *
+     * @param \Piddo\ComponenteBundle\Entity\PerfilComponente $perfilComponente
+     * @return Recepcion
+     */
+    public function setPerfilComponente(\Piddo\ComponenteBundle\Entity\PerfilComponente $perfilComponente = null)
+    {
+        $this->perfilComponente = $perfilComponente;
+    
+        return $this;
+    }
+
+    /**
+     * Get perfilComponente
+     *
+     * @return \Piddo\ComponenteBundle\Entity\PerfilComponente 
+     */
+    public function getPerfilComponente()
+    {
+        return $this->perfilComponente;
+    }
 
     /************************************************
      * 		GETTERS & SETTERS EXTRAS
@@ -192,4 +215,6 @@ class Recepcion
             'maxMessage' => 'Vous ne devez pas dépasser 180cm',
         )));
     }
+
+
 }

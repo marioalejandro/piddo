@@ -1,0 +1,7 @@
+nuevo_presupuesto:
+    pattern:  /nuevo-presupuesto
+    defaults: { _controller: PresupuestoBundle:Presupuesto:nuevo }
+    
+presupuesto_recepcion:
+    pattern:  /presupuesto/recepcion/{presupuesto}
+    defaults: { _controller: PresupuestoBundle:Presupuesto:recepcion }
