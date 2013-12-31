@@ -133,9 +133,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // componente_universo
-        if ($pathinfo === '/componente/universo') {
-            return array (  '_controller' => 'Piddo\\ComponenteBundle\\Controller\\ComponenteController::universoAction',  '_route' => 'componente_universo',);
+        if (0 === strpos($pathinfo, '/componente')) {
+            // componente_universo
+            if ($pathinfo === '/componente/universo') {
+                return array (  '_controller' => 'Piddo\\ComponenteBundle\\Controller\\ComponenteController::universoAction',  '_route' => 'componente_universo',);
+            }
+
+            // componente_perfil
+            if (preg_match('#^/componente/(?P<serie>[^/]++)/perfil$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'componente_perfil')), array (  '_controller' => 'Piddo\\ComponenteBundle\\Controller\\ComponenteController::perfilAction',));
+            }
+
         }
 
         // recepcion_portada

@@ -1,3 +1,7 @@
 componente_universo:
     pattern:  /universo
     defaults: { _controller: ComponenteBundle:Componente:universo }
+
+componente_perfil:
+    pattern: /{serie}/perfil
+    defaults: { _controller: ComponenteBundle:Componente:perfil }

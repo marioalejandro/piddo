@@ -7,6 +7,8 @@ use Piddo\AdminBundle\Util\Util;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+use Piddo\ComponenteBundle\Entity\Componente;
+
 /**
  * GrupoComponente
  *
@@ -49,7 +51,32 @@ class GrupoComponente
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
+    
+    /************************************************
+     * 		ATRIBUTOS FOREIGN KEY
+     ***********************************************/
+    
+    /**
+     * @var Componente[]
+     * 
+     * @Assert\NotBlank(message="Debe escojer un componente")
+     * 
+     * @ORM\OneToMany(targetEntity="Componente", mappedBy="grupoComponente")
+     */
+    private $componentes;
 
+    /************************************************
+     * 		CONSTRUCTOR
+     ***********************************************/    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->componentes = new \Doctrine\Common\Collections\ArrayCollection();
+    }    
+    
     /************************************************
      * 		GETTERS & SETTERS
      ***********************************************/
@@ -110,7 +137,45 @@ class GrupoComponente
     {
         return $this->slug;
     }
-	
+
+    /************************************************
+     * 		GETTERS & SETTERS FOREIGN KEY
+     ***********************************************/
+    
+    /**
+     * Add componentes
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Componente $componentes
+     * @return GrupoComponente
+     */
+    public function addComponente(\Piddo\ComponenteBundle\Entity\Componente $componentes)
+    {
+        $this->componentes[] = $componentes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove componentes
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Componente $componentes
+     */
+    public function removeComponente(\Piddo\ComponenteBundle\Entity\Componente $componentes)
+    {
+        $this->componentes->removeElement($componentes);
+    }
+
+    /**
+     * Get componentes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComponentes()
+    {
+        return $this->componentes;
+    }    
+    
+    
     /************************************************
      * 		METODOS
      ***********************************************/
@@ -119,6 +184,5 @@ class GrupoComponente
     {
         return $this->getNombre();
     }
-	
-	
+    
 }

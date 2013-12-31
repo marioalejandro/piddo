@@ -63,7 +63,7 @@ class PerfilComponente
      * 
      * @Assert\NotBlank(message="Debe ingresar una serie")
      *
-     * @ORM\ManyToOne(targetEntity="Serie")
+     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie")
      */
     private $serie;
 
@@ -119,6 +119,52 @@ class PerfilComponente
      *      GETTERS & SETTERS FOREIGN KEY
      ***********************************************/
 
+    /**
+     * Set componente
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Componente $componente
+     * @return PerfilComponente
+     */
+    public function setComponente(\Piddo\ComponenteBundle\Entity\Componente $componente = null)
+    {
+        $this->componente = $componente;
+    
+        return $this;
+    }
+
+    /**
+     * Get componente
+     *
+     * @return \Piddo\ComponenteBundle\Entity\Componente 
+     */
+    public function getComponente()
+    {
+        return $this->componente;
+    }
+
+    /**
+     * Set serie
+     *
+     * @param \Piddo\MotorBundle\Entity\Serie $serie
+     * @return PerfilComponente
+     */
+    public function setSerie(\Piddo\MotorBundle\Entity\Serie $serie = null)
+    {
+        $this->serie = $serie;
+    
+        return $this;
+    }
+
+    /**
+     * Get serie
+     *
+     * @return \Piddo\MotorBundle\Entity\Serie 
+     */
+    public function getSerie()
+    {
+        return $this->serie;
+    }
+    
     /************************************************
      * 		METODOS
      ***********************************************/
@@ -129,4 +175,5 @@ class PerfilComponente
     }
     
     
+
 }

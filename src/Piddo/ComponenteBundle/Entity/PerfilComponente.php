@@ -63,7 +63,7 @@ class PerfilComponente
      * 
      * @Assert\NotBlank(message="Debe ingresar una serie")
      *
-     * @ORM\ManyToOne(targetEntity="Serie")
+     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie")
      */
     private $serie;
 
@@ -114,7 +114,22 @@ class PerfilComponente
     {
         return $this->maximo;
     }
-
+    /************************************************
+     * 		GETTERS EXTRAS
+     ***********************************************/
+    
+    /**
+     * Get grupoComponente
+     *
+     * @return string
+     */
+    public function getGrupoComponente()
+    {
+      
+        return $this->getComponente()->getGrupoComponente()->getNombre();
+    } 
+    
+        
     /************************************************
      *      GETTERS & SETTERS FOREIGN KEY
      ***********************************************/
@@ -145,10 +160,10 @@ class PerfilComponente
     /**
      * Set serie
      *
-     * @param \Piddo\ComponenteBundle\Entity\Serie $serie
+     * @param \Piddo\MotorBundle\Entity\Serie $serie
      * @return PerfilComponente
      */
-    public function setSerie(\Piddo\ComponenteBundle\Entity\Serie $serie = null)
+    public function setSerie(\Piddo\MotorBundle\Entity\Serie $serie = null)
     {
         $this->serie = $serie;
     
@@ -158,7 +173,7 @@ class PerfilComponente
     /**
      * Get serie
      *
-     * @return \Piddo\ComponenteBundle\Entity\Serie 
+     * @return \Piddo\MotorBundle\Entity\Serie 
      */
     public function getSerie()
     {

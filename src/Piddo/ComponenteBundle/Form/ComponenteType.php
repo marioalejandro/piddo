@@ -35,6 +35,6 @@ class ComponenteType extends AbstractType
      */
     public function getName()
     {
-        return 'piddo_componentebundle_componente';
+        return 'comp';
     }
 }

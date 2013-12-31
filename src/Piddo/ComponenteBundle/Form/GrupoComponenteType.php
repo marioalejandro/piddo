@@ -34,6 +34,6 @@ class GrupoComponenteType extends AbstractType
      */
     public function getName()
     {
-        return 'piddo_componentebundle_grupocomponente';
+        return 'grupo_comp';
     }
 }

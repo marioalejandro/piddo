@@ -4,15 +4,30 @@ namespace Piddo\MotorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Piddo\AdminBundle\Util\Util;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+use Piddo\ComponenteBundle\Entity\PerfilComponente;
 
 /**
  * Serie
  *
+ * @UniqueEntity(
+ *     fields={"nombre", "modelo"},
+ *     errorPath="nombre",
+ *     message="Esta serie ya existe en este modelo."
+ * )
+ * 
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Piddo\MotorBundle\Entity\SerieRepository")
  */
 class Serie
 {
+
+    /************************************************
+     * 		ATRIBUTOS
+     ***********************************************/
+    
     /**
      * @var integer
      *
@@ -24,7 +39,9 @@ class Serie
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank(message="Debe ingresar un nombre para la Serie")
+     * 
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
@@ -36,16 +53,13 @@ class Serie
      */
     private $slug;
 
-    /**
-     * @var string
-     *
-     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Marca")
-     */
-    private $marca;
+    /************************************************
+     * 		ATRIBUTOS FOREIGN KEY
+     ***********************************************/    
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Debe elegir un modelo")
      * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Modelo")
      */
     private $modelo;
@@ -53,17 +67,29 @@ class Serie
     
     /**
      * 
-     * @ORM\OneToMany(targetEntity="Piddo\MotorBundle\Entity\ColPiezas", mappedBy="serie", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\PerfilComponente", mappedBy="serie", cascade={"persist"})
      */
-    protected $piezasDisponibles;
+    private $perfilComponentes;
     
     
     /**
      * 
      * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\ColRectificado", mappedBy="serie", cascade={"persist"})
      */
-    protected $rectDisponibles;
+    private $rectDisponibles;
     
+    /************************************************
+     * 		CONSTRUCTOR
+     ***********************************************/
+
+    public function __construct()
+    {
+        $this->perfilComponentes = new \Doctrine\Common\Collections\ArrayCollection();
+    }   
+    
+    /************************************************
+     * 		GETTERS & SETTERS
+     ***********************************************/    
  
 
     /**
@@ -123,19 +149,9 @@ class Serie
         return $this->slug;
     }
 
-
-    /**
-     * Set marca
-     *
-     * @param \Piddo\MotorBundle\Entity\Marca $marca
-     * @return Serie
-     */
-    public function setMarca(\Piddo\MotorBundle\Entity\Marca $marca = null)
-    {
-        $this->marca = $marca;
-    
-        return $this;
-    }
+    /************************************************
+     * 		GETTERS & SETTERS FOREIGN KEY 
+     ***********************************************/    
 
     /**
      * Get marca
@@ -144,7 +160,7 @@ class Serie
      */
     public function getMarca()
     {
-        return $this->marca;
+        return $this->modelo->getMarca();
     }
 
     /**
@@ -159,11 +175,6 @@ class Serie
     
         return $this;
     }
-
-    public function __toString() {
-        return $this->getNombre();
-    }
-
     /**
      * Get modelo
      *
@@ -173,47 +184,41 @@ class Serie
     {
         return $this->modelo;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->piezasDisponibles = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     
     /**
-     * Add piezasDisponibles
+     * Add perfilComponentes
      *
-     * @param \Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles
+     * @param \Piddo\ComponenteBundle\Entity\PerfilComponente $perfilComponentes
      * @return Serie
      */
-    public function addPiezasDisponible(\Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles)
+    public function addPerfilComponente(\Piddo\ComponenteBundle\Entity\PerfilComponente $perfilComponentes)
     {
-        $this->piezasDisponibles[] = $piezasDisponibles;
+        $this->perfilComponentes[] = $perfilComponentes;
     
         return $this;
     }
 
     /**
-     * Remove piezasDisponibles
+     * Remove perfilComponentes
      *
-     * @param \Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles
+     * @param \Piddo\ComponenteBundle\Entity\PerfilComponente $perfilComponentes
      */
-    public function removePiezasDisponible(\Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles)
+    public function removePerfilComponente(\Piddo\ComponenteBundle\Entity\PerfilComponente $perfilComponentes)
     {
-        $this->piezasDisponibles->removeElement($piezasDisponibles);
+        $this->perfilComponentes->removeElement($perfilComponentes);
     }
 
     /**
-     * Get piezasDisponibles
+     * Get perfilComponentes
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getPiezasDisponibles()
+    public function getPerfilComponentes()
     {
-        return $this->piezasDisponibles;
-    }
-
+        return $this->perfilComponentes;
+    }    
+    
+    
     /**
      * Add rectDisponibles
      *
@@ -245,5 +250,54 @@ class Serie
     public function getRectDisponibles()
     {
         return $this->rectDisponibles;
+    }
+
+    /************************************************
+     * 		METODOS
+     ***********************************************/
+    
+    public function __toString() 
+    {
+        return $this->getNombre();
+    }
+
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\MotorBundle\Entity\ColPiezas", mappedBy="serie", cascade={"persist"})
+     */
+    private $piezasDisponibles;
+    
+
+    /**
+     * Add piezasDisponibles
+     *
+     * @param \Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles
+     * @return Serie
+     */
+    public function addPiezasDisponible(\Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles)
+    {
+        $this->piezasDisponibles[] = $piezasDisponibles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove piezasDisponibles
+     *
+     * @param \Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles
+     */
+    public function removePiezasDisponible(\Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles)
+    {
+        $this->piezasDisponibles->removeElement($piezasDisponibles);
+    }
+
+    /**
+     * Get piezasDisponibles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPiezasDisponibles()
+    {
+        return $this->piezasDisponibles;
     }
 }

@@ -59,8 +59,7 @@ class Componente
      * @var GrupoComponente
      * 
      * @Assert\NotBlank(message="Debe escojer un grupo")
-     * 
-     * @ORM\ManyToOne(targetEntity="GrupoComponente")
+     * @ORM\ManyToOne(targetEntity="GrupoComponente", inversedBy="componentes")
      */
     private $grupoComponente;
 
