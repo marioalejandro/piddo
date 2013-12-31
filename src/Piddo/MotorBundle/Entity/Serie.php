@@ -260,44 +260,4 @@ class Serie
     {
         return $this->getNombre();
     }
-
-    /**
-     * 
-     * @ORM\OneToMany(targetEntity="Piddo\MotorBundle\Entity\ColPiezas", mappedBy="serie", cascade={"persist"})
-     */
-    private $piezasDisponibles;
-    
-
-    /**
-     * Add piezasDisponibles
-     *
-     * @param \Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles
-     * @return Serie
-     */
-    public function addPiezasDisponible(\Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles)
-    {
-        $this->piezasDisponibles[] = $piezasDisponibles;
-    
-        return $this;
-    }
-
-    /**
-     * Remove piezasDisponibles
-     *
-     * @param \Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles
-     */
-    public function removePiezasDisponible(\Piddo\MotorBundle\Entity\ColPiezas $piezasDisponibles)
-    {
-        $this->piezasDisponibles->removeElement($piezasDisponibles);
-    }
-
-    /**
-     * Get piezasDisponibles
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPiezasDisponibles()
-    {
-        return $this->piezasDisponibles;
-    }
 }

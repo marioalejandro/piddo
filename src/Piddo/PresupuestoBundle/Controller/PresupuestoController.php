@@ -3,6 +3,7 @@
 namespace Piddo\PresupuestoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Piddo\ComponenteBundle\Entity\Recepcion;
 use Piddo\PresupuestoBundle\Entity\Presupuesto;
 use Piddo\PresupuestoBundle\Form\PresupuestoType;
 use Piddo\PresupuestoBundle\Form\PresupuestoRecepcionType;
@@ -17,10 +18,6 @@ class PresupuestoController extends Controller
 
         /*****  CREACION FORMULARIO CLIENTE + MOTOR  *****/
         $presupuesto = new Presupuesto();
-
-        
-
-
 
         $formulario = $this->createForm(new PresupuestoType(), $presupuesto);
 
@@ -56,48 +53,43 @@ class PresupuestoController extends Controller
 public function recepcionAction($presupuesto)
     {
         $peticion = $this->getRequest();
-        
+       
+        //obtencion de datos del modelo
         $em = $this->getDoctrine()->getManager();
         $presupuesto = $em->getRepository('PresupuestoBundle:Presupuesto')->findOneBy(array('id'=> $presupuesto));
-        //if($formulario->get('Recepcion')->isClicked()){
-
         $serie = $presupuesto->getSerie();
-        $motorProfile = $serie->getPiezasDisponibles();
-        $gruposPieza = $em->getRepository('MotorBundle:GrupoPieza')->findAll();
-        //Formulario de Recepcion (Coleccion de ColPiezas)
+        $perfilComponentes = $serie->getPerfilComponentes();
+        $gruposComponentes = $em->getRepository('ComponenteBundle:GrupoComponente')->findAll();
+        $recepComponentes = $presupuesto->getRecepcionComponentes();
 
-        //1.- Creacion de objeto presupuesto (creado) $presupuesto
+        //1.- Obtencion de objeto presupuesto (listo) $presupuesto
         //2.- Creacion de los objetos Recepcion
-        //Datos desde BD
-        $i=0;
-        //Recorremos los grupos
-        while($i < sizeof($gruposPieza))
+
+        foreach ($gruposComponentes as $gc)
         {
-            $piezas = $em->getRepository('MotorBundle:Pieza')->findBy(array('grupoPieza' => $gruposPieza[$i]->getID()));
-            $j=0;
-            //Recorremos las piezas por grupo
-            while($j<sizeof($piezas))
+            //Recorremos los grupos
+            $componentes = $gc->getComponentes();
+            foreach ($componentes as $c)
             {
-                //Vemos si el motor ya tiene agregada esa pieza
-                //para cargar el valor de maximo
-                $k=0;
-                $nuevo = true;
-                while($k < sizeof($motorProfile))
+                //Recorremos los componentes
+                foreach ($perfilComponentes as $pc)
                 {
-                    if($motorProfile[$k]->getPieza() == $piezas[$j])
-                        {
-                        $recepcion = new \Piddo\MotorBundle\Entity\Recepcion();
-                        $recepcion->setCantidad(0);
+                    if($c == $pc->getComponente())
+                    {
+                        $recepcion = new Recepcion();
                         $recepcion->setPresupuesto($presupuesto);
-                        $recepcion->setColPieza($motorProfile[$k]);
+                        $recepcion->setColPieza($perfilComponentes[$k]);
                         $presupuesto->getRecepcionPiezas()->add($recepcion);
-                        }
-                    $k++;
+                        //Hasta aqui solo crea objetos recepcion
+                        //De acuerdo al Perfil de la serie
+                        //Ordenados según los grupos
+                        //Ahora hay que ver si el presupuesto ya tenia componentes recepcionados
+                        
+                    }
                 }
-                $j++;
             }
-            $i++;
         }
+
 
         //3.- Agregar los Recepcion a el presupuesto(hecho)
         //4.- Creacion de formulario

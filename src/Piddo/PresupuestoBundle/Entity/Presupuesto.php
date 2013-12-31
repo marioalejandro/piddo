@@ -28,21 +28,21 @@ class Presupuesto
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="Debe ingresar una fecha")
      * @ORM\Column(name="fecha_creacion", type="datetime")
      */
     private $fechaCreacion;
     
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Debe elegir un estado")
      * @ORM\Column(name="estado", type="string", length=255)
      */
     private $estado;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="Debe ingresar una fecha de entrega")
      * @ORM\Column(name="fecha_entrega", type="datetime")
      */
     private $fechaEntrega;
@@ -102,6 +102,12 @@ class Presupuesto
      * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
      */
     protected $recepcionPiezas;
+    
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
+     */
+    protected $recepcionComponentes;
     
     /**
      * 

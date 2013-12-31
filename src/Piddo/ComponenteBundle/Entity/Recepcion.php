@@ -37,7 +37,7 @@ class Recepcion
     
     /**
      * 
-     *
+     * @Assert\NotBlank(message="Debe ingresar una cantidad")
      * @ORM\Column(name="cantidad", type="integer")
      */
     private $cantidad;
@@ -52,13 +52,6 @@ class Recepcion
      * @ORM\ManyToOne(targetEntity="Piddo\PresupuestoBundle\Entity\Presupuesto", inversedBy="recepcionPiezas", cascade={"persist"})
      */
     private $presupuesto;
-
-    /**
-     * @var ColPieza
-     *
-     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\ColPiezas")
-     */
-    private $colPieza;
     
     /**
      * @var PerfilComponente
@@ -66,9 +59,15 @@ class Recepcion
      * @ORM\ManyToOne(targetEntity="Piddo\ComponenteBundle\Entity\PerfilComponente")
      */
     private $perfilComponente;
-    
-
     /************************************************
+     * 		CONSTRUCTOR
+     ***********************************************/ 
+    function __construct() 
+    {
+        $this->cantidad = 0;
+    }
+
+      /************************************************
      * 		GETTERS & SETTERS
      ***********************************************/    
 
@@ -132,33 +131,7 @@ class Recepcion
         return $this->presupuesto;
     }
 
-    /**
-     * Set colPieza
-     *
-     * @param \Piddo\MotorBundle\Entity\ColPiezas $colPieza
-     * @return Recepcion
-     */
-    public function setColPieza(\Piddo\MotorBundle\Entity\ColPiezas $colPieza = null)
-    {
-        $this->colPieza = $colPieza;
-    
-        return $this;
-    }
 
-    /**
-     * Get colPieza
-     *
-     * @return \Piddo\MotorBundle\Entity\ColPiezas 
-     */
-    public function getColPieza()
-    {
-        return $this->colPieza;
-    }
-    /**
-     * Get maximo
-     *
-     * @return integer 
-     */
     
     /**
      * Set perfilComponente
@@ -186,15 +159,24 @@ class Recepcion
     /************************************************
      * 		GETTERS & SETTERS EXTRAS
      ***********************************************/  
-    
+    /**
+     * Get maximo
+     *
+     * @return integer 
+     */
     public function getMaximo()
     {
         return $this->colPieza->getMaximo();
     }
     
-    public function getGrupoPieza()
+    /**
+     * Get GrupoComponente
+     *
+     * @return \Piddo\ComponenteBundle\Entity\GrupoComponente
+     */
+    public function getGrupoComponente()
     {
-        return $this->colPieza->getPieza()->getGrupoPieza();
+        return $this->getPerfilComponente()->getComponente()->getGrupoComponente();
     }
     
     /************************************************
