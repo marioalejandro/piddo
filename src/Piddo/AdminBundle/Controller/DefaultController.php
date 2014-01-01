@@ -27,7 +27,7 @@ class DefaultController extends Controller
                 'presupuestos' => $presupuestos,
             ));
     }
-//------------------------------Marcas-------------------------
+
     public function marcasAction()
     {
         $peticion = $this->getRequest();
@@ -127,14 +127,13 @@ class DefaultController extends Controller
         $objetoModelo = $em->getRepository('MotorBundle:Modelo')->findOneBy(array('slug'=>$modelo, 'marca'=>$objetoMarca->getId()));
         
         $serie = new Serie();
+        $serie->setModelo($objetoModelo);
         $formulario = $this->createForm(new SerieType(), $serie);
         
         $formulario->handleRequest($peticion);
         
         
         if($formulario->isValid()){
-            $serie->setMarca($objetoMarca);
-            $serie->setModelo($objetoModelo);
             
             $em->persist($serie);
             $em->flush();

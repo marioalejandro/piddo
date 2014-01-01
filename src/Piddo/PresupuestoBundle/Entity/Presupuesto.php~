@@ -28,21 +28,21 @@ class Presupuesto
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="Debe ingresar una fecha")
      * @ORM\Column(name="fecha_creacion", type="datetime")
      */
     private $fechaCreacion;
     
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Debe elegir un estado")
      * @ORM\Column(name="estado", type="string", length=255)
      */
     private $estado;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="Debe ingresar una fecha de entrega")
      * @ORM\Column(name="fecha_entrega", type="datetime")
      */
     private $fechaEntrega;
@@ -99,9 +99,15 @@ class Presupuesto
 
     /**
      * 
-     * @ORM\OneToMany(targetEntity="Piddo\MotorBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
      */
     protected $recepcionPiezas;
+    
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
+     */
+    protected $recepcionComponentes;
     
     /**
      * 
@@ -147,6 +153,30 @@ class Presupuesto
      * @ORM\Column(name="motivoDescuento", type="string", length=255)
      */
     private $motivoDescuento;
+
+    /************************************************************************
+     *      CONSTRUCTOR                              
+     ************************************************************************/    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->recepcionPiezas = new \Doctrine\Common\Collections\ArrayCollection();
+        //Valores por defecto
+        $this->setDescuento(0);
+        $this->setTotalGeneral(0);
+        $this->setTotalRectificados(0);
+        $this->setTotalRepuestos(0);
+        $this->setMotivoDescuento('');
+        
+        $this->setFechaCreacion(new \DateTime('now'));
+        $this->setFechaEntrega(new \DateTime('tomorrow'));
+        $this->setEstado('PENDIENTE');
+    }
+    
+    
     
     /************************************************************************
      *      GETTERS & SETTERS : IDENTIFICACION DEL PRESUPUESTO                                  
@@ -378,6 +408,7 @@ class Presupuesto
         return $this->RMT;
     }
 
+    
     /************************************************************************
      *      GETTERS & SETTERS : TOTALES                               
      ************************************************************************/
@@ -496,6 +527,9 @@ class Presupuesto
     {
         return $this->motivoDescuento;
     }
+     /************************************************************************
+     *      GETTERS & SETTERS : FOREIGN KEY                             
+     ************************************************************************/
     
     /************************************************************************
      *      METODOS                              
@@ -506,47 +540,8 @@ class Presupuesto
         return (string)$this->getId();
     }
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->recepcionPiezas = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
-    /**
-     * Add recepcionPiezas
-     *
-     * @param \Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas
-     * @return Presupuesto
-     */
-    public function addRecepcionPieza(\Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas)
-    {
-        $this->recepcionPiezas[] = $recepcionPiezas;
-    
-        return $this;
-    }
-
-    /**
-     * Remove recepcionPiezas
-     *
-     * @param \Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas
-     */
-    public function removeRecepcionPieza(\Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas)
-    {
-        $this->recepcionPiezas->removeElement($recepcionPiezas);
-    }
-
-    /**
-     * Get recepcionPiezas
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRecepcionPiezas()
-    {
-        return $this->recepcionPiezas;
-    }
 
     /**
      * Add rectificados
@@ -579,5 +574,71 @@ class Presupuesto
     public function getRectificados()
     {
         return $this->rectificados;
+    }
+
+    /**
+     * Add recepcionPiezas
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas
+     * @return Presupuesto
+     */
+    public function addRecepcionPieza(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas)
+    {
+        $this->recepcionPiezas[] = $recepcionPiezas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove recepcionPiezas
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas
+     */
+    public function removeRecepcionPieza(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas)
+    {
+        $this->recepcionPiezas->removeElement($recepcionPiezas);
+    }
+
+    /**
+     * Get recepcionPiezas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecepcionPiezas()
+    {
+        return $this->recepcionPiezas;
+    }
+
+    /**
+     * Add recepcionComponentes
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes
+     * @return Presupuesto
+     */
+    public function addRecepcionComponente(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes)
+    {
+        $this->recepcionComponentes[] = $recepcionComponentes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove recepcionComponentes
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes
+     */
+    public function removeRecepcionComponente(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes)
+    {
+        $this->recepcionComponentes->removeElement($recepcionComponentes);
+    }
+
+    /**
+     * Get recepcionComponentes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecepcionComponentes()
+    {
+        return $this->recepcionComponentes;
     }
 }

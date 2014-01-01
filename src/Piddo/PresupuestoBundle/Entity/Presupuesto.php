@@ -96,13 +96,7 @@ class Presupuesto
      * @ORM\Column(name="RMT", type="string", length=255, nullable=true)
      */
     private $RMT;
-
-    /**
-     * 
-     * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
-     */
-    protected $recepcionPiezas;
-    
+  
     /**
      * 
      * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
@@ -527,6 +521,9 @@ class Presupuesto
     {
         return $this->motivoDescuento;
     }
+     /************************************************************************
+     *      GETTERS & SETTERS : FOREIGN KEY                             
+     ************************************************************************/
     
     /************************************************************************
      *      METODOS                              
@@ -539,39 +536,6 @@ class Presupuesto
 
 
 
-
-    /**
-     * Add recepcionPiezas
-     *
-     * @param \Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas
-     * @return Presupuesto
-     */
-    public function addRecepcionPieza(\Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas)
-    {
-        $this->recepcionPiezas[] = $recepcionPiezas;
-    
-        return $this;
-    }
-
-    /**
-     * Remove recepcionPiezas
-     *
-     * @param \Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas
-     */
-    public function removeRecepcionPieza(\Piddo\MotorBundle\Entity\Recepcion $recepcionPiezas)
-    {
-        $this->recepcionPiezas->removeElement($recepcionPiezas);
-    }
-
-    /**
-     * Get recepcionPiezas
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRecepcionPiezas()
-    {
-        return $this->recepcionPiezas;
-    }
 
     /**
      * Add rectificados
@@ -604,5 +568,71 @@ class Presupuesto
     public function getRectificados()
     {
         return $this->rectificados;
+    }
+
+    /**
+     * Add recepcionPiezas
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas
+     * @return Presupuesto
+     */
+    public function addRecepcionPieza(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas)
+    {
+        $this->recepcionPiezas[] = $recepcionPiezas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove recepcionPiezas
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas
+     */
+    public function removeRecepcionPieza(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas)
+    {
+        $this->recepcionPiezas->removeElement($recepcionPiezas);
+    }
+
+    /**
+     * Get recepcionPiezas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecepcionPiezas()
+    {
+        return $this->recepcionPiezas;
+    }
+
+    /**
+     * Add recepcionComponentes
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes
+     * @return Presupuesto
+     */
+    public function addRecepcionComponente(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes)
+    {
+        $this->recepcionComponentes[] = $recepcionComponentes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove recepcionComponentes
+     *
+     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes
+     */
+    public function removeRecepcionComponente(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes)
+    {
+        $this->recepcionComponentes->removeElement($recepcionComponentes);
+    }
+
+    /**
+     * Get recepcionComponentes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecepcionComponentes()
+    {
+        return $this->recepcionComponentes;
     }
 }

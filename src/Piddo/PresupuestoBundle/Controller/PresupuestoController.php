@@ -79,11 +79,19 @@ public function recepcionAction($presupuesto)
                         $recepcion = new Recepcion();
                         $recepcion->setPresupuesto($presupuesto);
                         $recepcion->setColPieza($perfilComponentes[$k]);
-                        $presupuesto->getRecepcionPiezas()->add($recepcion);
                         //Hasta aqui solo crea objetos recepcion
                         //De acuerdo al Perfil de la serie
                         //Ordenados según los grupos
                         //Ahora hay que ver si el presupuesto ya tenia componentes recepcionados
+                        foreach ($recepComponentes as $rc)
+                        {
+                            $componenteRecepcionado = $rc->getPerfilComponente()->getComponente();
+                            if($c == $componenteRecepcionado)
+                            {
+                                $recepcion->setCantidad($componenteRecepcionado->getCantidad());
+                            }
+                        }
+                        $presupuesto->getRecepcionPiezas()->add($recepcion);
                         
                     }
                 }
