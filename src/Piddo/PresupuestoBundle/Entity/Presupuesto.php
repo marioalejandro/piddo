@@ -99,7 +99,7 @@ class Presupuesto
   
     /**
      * 
-     * @ORM\OneToMany(targetEntity="Piddo\ComponenteBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Piddo\PresupuestoBundle\Entity\Recepcion", mappedBy="presupuesto", cascade={"persist"})
      */
     protected $recepcionComponentes;
     
@@ -593,23 +593,14 @@ class Presupuesto
         $this->recepcionPiezas->removeElement($recepcionPiezas);
     }
 
-    /**
-     * Get recepcionPiezas
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRecepcionPiezas()
-    {
-        return $this->recepcionPiezas;
-    }
 
     /**
      * Add recepcionComponentes
      *
-     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes
+     * @param \Piddo\PresupuestoBundle\Entity\Recepcion $recepcionComponentes
      * @return Presupuesto
      */
-    public function addRecepcionComponente(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes)
+    public function addRecepcionComponente(\Piddo\PresupuestoBundle\Entity\Recepcion $recepcionComponentes)
     {
         $this->recepcionComponentes[] = $recepcionComponentes;
     
@@ -619,9 +610,9 @@ class Presupuesto
     /**
      * Remove recepcionComponentes
      *
-     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes
+     * @param \Piddo\PresupuestoBundle\Entity\Recepcion $recepcionComponentes
      */
-    public function removeRecepcionComponente(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionComponentes)
+    public function removeRecepcionComponente(\Piddo\PresupuestoBundle\Entity\Recepcion $recepcionComponentes)
     {
         $this->recepcionComponentes->removeElement($recepcionComponentes);
     }

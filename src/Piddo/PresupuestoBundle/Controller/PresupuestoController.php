@@ -3,7 +3,7 @@
 namespace Piddo\PresupuestoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Piddo\ComponenteBundle\Entity\Recepcion;
+use Piddo\PresupuestoBundle\Entity\Recepcion;
 use Piddo\PresupuestoBundle\Entity\Presupuesto;
 use Piddo\PresupuestoBundle\Form\PresupuestoType;
 use Piddo\PresupuestoBundle\Form\PresupuestoRecepcionType;
@@ -67,10 +67,12 @@ public function recepcionAction($presupuesto)
 
         foreach ($gruposComponentes as $gc)
         {
+            
             //Recorremos los grupos
             $componentes = $gc->getComponentes();
             foreach ($componentes as $c)
             {
+                
                 //Recorremos los componentes
                 foreach ($perfilComponentes as $pc)
                 {
@@ -78,7 +80,7 @@ public function recepcionAction($presupuesto)
                     {
                         $recepcion = new Recepcion();
                         $recepcion->setPresupuesto($presupuesto);
-                        $recepcion->setColPieza($perfilComponentes[$k]);
+                        $recepcion->setPerfilComponente($pc);
                         //Hasta aqui solo crea objetos recepcion
                         //De acuerdo al Perfil de la serie
                         //Ordenados según los grupos
@@ -91,7 +93,7 @@ public function recepcionAction($presupuesto)
                                 $recepcion->setCantidad($componenteRecepcionado->getCantidad());
                             }
                         }
-                        $presupuesto->getRecepcionPiezas()->add($recepcion);
+                        $presupuesto->getRecepcionComponentes()->add($recepcion);
                         
                     }
                 }

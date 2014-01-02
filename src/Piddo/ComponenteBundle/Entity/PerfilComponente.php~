@@ -63,7 +63,7 @@ class PerfilComponente
      * 
      * @Assert\NotBlank(message="Debe ingresar una serie")
      *
-     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie")
+     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie", inversedBy="perfilComponentes")
      */
     private $serie;
 

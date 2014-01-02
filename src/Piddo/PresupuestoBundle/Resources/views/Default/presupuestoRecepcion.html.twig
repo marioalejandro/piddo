@@ -12,8 +12,8 @@
         {#<form action="{{ path('nuevo_presupuesto') }}" method="post" {{ form_enctype(form) }}>#}
         {{ form_start(form) }}
             {{ form_errors(form) }}
-               {% for r in form.recepcionPiezas %}
-                <li>{{ form_row(r.grupoPieza) }}{{ form_row(r.colPieza) }} {{ form_row(r.cantidad) }}{{form_row(r.maximo)}}</li>
+               {% for r in form.recepcionComponentes %}
+                <li>{{ form_widget(r.grupoComponente) }}{{ form_widget(r.componente) }} {{ form_widget(r.cantidad) }}{{form_widget(r.maximo)}}</li>
                 {% endfor %}
             {{ form_rest(form) }}
         {{ form_end(form) }}

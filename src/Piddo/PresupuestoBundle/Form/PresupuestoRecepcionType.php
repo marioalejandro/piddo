@@ -5,10 +5,7 @@ namespace Piddo\PresupuestoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Piddo\PresupuestoBundle\Form\EventListener\AddMarcaFieldSubscriber;
-use Piddo\PresupuestoBundle\Form\EventListener\AddModeloFieldSubscriber;
-use Piddo\PresupuestoBundle\Form\EventListener\AddSerieFieldSubscriber;
-use Piddo\MotorBundle\Form\RecepcionType;
+use Piddo\PresupuestoBundle\Form\RecepcionType;
 
 class PresupuestoRecepcionType extends AbstractType
 {
@@ -18,11 +15,10 @@ class PresupuestoRecepcionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('recepcionPiezas','collection',array(
+        $builder->add('recepcionComponentes','collection',array(
             'type' => new RecepcionType(),
         ));
         //Botones
-        
         $builder->add('Guardar', 'submit');
         
         
