@@ -6,21 +6,26 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ColRectificadoType extends AbstractType
+class PerfilRectificadoType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('grupoRectificado',null, array(
+                'disabled' => true,
+            ))
             ->add('cantidad',null, array(
                 'invalid_message' => 'Ingrese solo números'
             ))
             ->add('rectificado',null, array(
                 'disabled' => true
             ));
+
+   
     }
     
     /**
@@ -29,7 +34,7 @@ class ColRectificadoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Piddo\TallerBundle\Entity\ColRectificado'
+            'data_class' => 'Piddo\TallerBundle\Entity\PerfilRectificado'
         ));
     }
 
@@ -38,6 +43,6 @@ class ColRectificadoType extends AbstractType
      */
     public function getName()
     {
-        return 'piddo_tallerbundle_colrectificado';
+        return 'perf_rect';
     }
 }

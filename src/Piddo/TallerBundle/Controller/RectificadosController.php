@@ -7,6 +7,8 @@ use Piddo\TallerBundle\Entity\GrupoRectificado;
 use Piddo\AdminBundle\Form\GrupoRectificadoType;
 use Piddo\TallerBundle\Entity\Rectificado;
 use Piddo\AdminBundle\Form\RectificadoType;
+use Piddo\TallerBundle\Entity\PerfilRectificado;
+use Piddo\TallerBundle\Form\SerieRectificadoType;
 
 
 class RectificadosController extends Controller
@@ -136,7 +138,7 @@ class RectificadosController extends Controller
         //***************************************/
         $em = $this->getDoctrine()->getManager();
         //**************************************************************
-        //* FORMULARIO PERFIL COMPONENTES
+        //* FORMULARIO PERFIL RECTIFICADO
         //**************************************************************/
         
         $peticion = $this->getRequest();
@@ -145,39 +147,38 @@ class RectificadosController extends Controller
         $serie = $em->getRepository('MotorBundle:Serie')->findOneBy(array('id'=>$serie));
         
         //2.- Creacion de los objetos PerfilComponente
-        $gruposComponente = $em->getRepository('TallerBundle:GrupoRectificado')->findAll();
-        $perfilComponente = $em->getRepository('TallerBundle:PerfilComponente')->findBy(array('serie'=>$serie->getId()));
+        $gruposRectificado = $em->getRepository('TallerBundle:GrupoRectificado')->findAll();
+        $perfilRectificado = $em->getRepository('TallerBundle:PerfilRectificado')->findBy(array('serie'=>$serie->getId()));
 
-        foreach ($gruposComponente as $gc)
+        foreach ($gruposRectificado as $gr)
         {
-            //Se revisa cada componente en cada grupo de componentes
-            $rectificados = $gc->getComponentes();
-            foreach ($rectificados as $c)
+            //Se revisa cada rectificado en cada grupo de rectificados
+            $rectificados = $gr->getRectificados();
+            foreach ($rectificados as $r)
             {
                 $nuevo = true;
-                //Se compara cada componente con el perfil de la serie
-                foreach ($perfilComponente as $pc)
+                //Se compara cada rectificado con el perfil de la serie
+                foreach ($perfilRectificado as $pc)
                 {
-                    if($c == $pc->getComponente())
+                    if($r == $pc->getRectificado())
                     {
                         $nuevo = false;
                     }
                 }
                 if($nuevo)
                 {
-                    $nuevoPerfil = new PerfilComponente();
-                    //$nuevoPerfil->setMaximo(0);
-                    $nuevoPerfil->setComponente($c);
+                    $nuevoPerfil = new PerfilRectificado();
+                    $nuevoPerfil->setRectificado($r);
                     $nuevoPerfil->setSerie($serie);
                     //3.- Agregar los perfiles a la serie
-                    $serie->getPerfilComponentes()->add($nuevoPerfil);
+                    $serie->getPerfilRectificados()->add($nuevoPerfil);
                 }
             }
         }
 
         //4.- Creacion de formulario
         $form = $this->createForm(
-                new SerieComponentesType(), 
+                new SerieRectificadoType(), 
                 $serie, 
                 array(
                     'data' => $serie
@@ -191,22 +192,22 @@ class RectificadosController extends Controller
             $em->persist($serie);
             $em->flush();
             
-            $mensaje ='La serie se ha modeificado correctamente';
+            $mensaje ='La serie se ha modificado correctamente';
 
            $this->get('session')->getFlashBag()->add('info', $mensaje);
 
 
-            //return $this->redirect($this->generateUrl('admin_clientes'));
+           // return $this->redirect($this->generateUrl('admin_clientes'));
         
         }
         //**************************************************************
         //*      RETURN POR DEFECTO
         //**************************************************************/
        
-        return $this->render('TallerBundle:Default:perfilComponentes.html.twig', 
+        return $this->render('TallerBundle:Default:perfilRectificados.html.twig', 
             array(
                 'form' => $form->createView(),
-                'gruposComponente' => $gruposComponente,
+                'gruposRectificado' => $gruposRectificado,
                 'serie' => $serie,
             ));
     }

@@ -1,17 +1,17 @@
 <?php
-namespace Piddo\AdminBundle\Form;
+namespace Piddo\TallerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Piddo\TallerBundle\Form\ColRectificadoType;
+use Piddo\TallerBundle\Form\PerfilRectificadoType;
 
-class SerieRectType extends AbstractType
+class SerieRectificadoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) 
     {
         $builder->add('nombre');
-        $builder->add('rectDisponibles', 'collection', array('type' => new ColRectificadoType()));
+        $builder->add('perfilRectificados', 'collection', array('type' => new PerfilRectificadoType()));
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) 
@@ -21,7 +21,7 @@ class SerieRectType extends AbstractType
         ));
     }
     public function getName() {
-        return 'piddo_adminbundle_serieRecttype';
+        return 'serie_rect';
     }    
 }
 

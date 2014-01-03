@@ -244,9 +244,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Piddo\\TallerBundle\\Controller\\RectificadosController::universoAction',  '_route' => 'rectificado_universo',);
             }
 
-            // perfil_rectificado
+            // rectificado_perfil
             if (preg_match('#^/taller/(?P<serie>[^/]++)/perfil$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'perfil_rectificado')), array (  '_controller' => 'Piddo\\TallerBundle\\Controller\\RectificadosController::perfilAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'rectificado_perfil')), array (  '_controller' => 'Piddo\\TallerBundle\\Controller\\RectificadosController::perfilAction',));
             }
 
         }

@@ -66,7 +66,7 @@ class PerfilRectificado
      ***********************************************/
     function __construct() 
     {
-        $this->maximo = 0;
+        $this->cantidad = 0;
     }
 
     /************************************************

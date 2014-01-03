@@ -10,7 +10,7 @@
     <h1>{{ block('title') }}</h1>
     <section id="formulario_marca">
         <h4>Agregar un Coleccion de Piezas</h4>
-        <form action="{{ path('serie_col_piezas',{'marca': marca, 'modelo' : modelo, 'serie': serie })}}" method="post" {{ form_enctype(form) }}>
+        <form action="{{ path('rectificado_perfil',{'serie': serie.id })}}" method="post" {{ form_enctype(form) }}>
          {#{ form_start(form) }#}
             {{ form_errors(form) }}
        <h3>Modificar</h3>
@@ -19,8 +19,8 @@
        <h3>Piezas</h3>
         <ul class="piezas">
             {# itera sobre cada etiqueta existente y reproduce la fila#}
-            {% for p in form.rectDisponibles %}
-                <li>{{ form_row(p.rectificado) }} {{ form_row(p.cantidad) }}</li>
+            {% for p in form.perfilRectificados %}
+                <li>{{ form_widget(p.grupoRectificado) }}{{ form_widget(p.rectificado) }} {{ form_widget(p.cantidad) }}</li>
             {% endfor %}
         </ul>
            
