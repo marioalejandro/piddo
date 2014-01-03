@@ -9,17 +9,26 @@ use Piddo\PresupuestoBundle\Form\PresupuestoType;
 use Piddo\PresupuestoBundle\Form\PresupuestoRecepcionType;
 use Piddo\PresupuestoBundle\Entity\Trabajo;
 use Piddo\PresupuestoBundle\Form\PresupuestoTrabajosType;
+use Piddo\PresupuestoBundle\Form\PresupuestoFinalType;
 
 class PresupuestoController extends Controller
 {
-    public function nuevoAction()
+    public function nuevoAction($presupuesto = null)
     {
         $peticion = $this->getRequest();
 
         $em = $this->getDoctrine()->getManager();
 
         /*****  CREACION FORMULARIO CLIENTE + MOTOR  *****/
-        $presupuesto = new Presupuesto();
+        if($presupuesto == null)
+        {
+            $presupuesto = new Presupuesto();
+        }
+        else
+        {
+            $presupuesto = $em->getRepository('PresupuestoBundle:Presupuesto')->findOneById($presupuesto);
+        }
+        
 
         $formulario = $this->createForm(new PresupuestoType(), $presupuesto);
 
@@ -213,11 +222,63 @@ public function recepcionAction($presupuesto)
         $this->get('session')->getFlashBag()->add('info', $mensaje);
 
         }
+        
+        if($formTrabajos->get('Final')->isClicked())
+        {
+            $pre = $presupuesto->getId();
+            return $this->redirect($this->generateUrl('presupuesto_final',array('presupuesto' => $pre)));
+        }
 
         return $this->render('PresupuestoBundle:Default:presupuestoTrabajos.html.twig', 
          array(
              'form' => $formTrabajos->createView(),
          ));     
+    }
+    public function finalAction($presupuesto)
+    {
+        $peticion = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+
+        /*****  CREACION FORMULARIO FINAL  *****/
+        $presupuesto = $em->getRepository('PresupuestoBundle:Presupuesto')->findOneById($presupuesto);
+        $trabajos = $presupuesto->getTrabajos();
+        
+        $total = 0;
+        foreach ($trabajos as $t)
+        {
+            $total = $total + $t->getPrecio();
+        }
+        $presupuesto->setTotalRectificados($total);
+        
+        $presupuesto->setTotalGeneral(
+                $presupuesto->getTotalRectificados() 
+                + $presupuesto->getTotalRepuestos()
+                - $presupuesto->getDescuento()
+                - $presupuesto->getPagado());
+        
+
+        $formulario = $this->createForm(new PresupuestoFinalType(), $presupuesto);
+
+        /*****  VALIDACION FORMULARIO   *****/
+        $formulario->handleRequest($peticion);
+        
+        if($formulario->isValid()){
+            $em->persist($presupuesto);
+            $em->flush();
+
+           $mensaje = 'El Presupuesto se ha modificado correctamente';
+           $this->get('session')->getFlashBag()->add('info', $mensaje);
+   
+
+            return $this->redirect($this->generateUrl('presupuesto_final',array('presupuesto' => $presupuesto->getId())));
+
+        }
+
+        return $this->render('PresupuestoBundle:Default:presupuestoCliente.html.twig', 
+                array(
+                    'form' => $formulario->createView(),
+                ));
     }
 }
 

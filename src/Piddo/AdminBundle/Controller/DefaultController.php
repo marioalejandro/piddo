@@ -18,13 +18,19 @@ use Piddo\AdminBundle\Form\SerieRectType;
 
 class DefaultController extends Controller
 {
-    public function portadaGerenciaAction()
+    public function portadaGerenciaAction($index = null)
     {
+        if($index == null)
+        {
+            $index = 0;
+        }
+        
         $em = $this->getDoctrine()->getManager();
-        $presupuestos = $em->getRepository('PresupuestoBundle:Presupuesto')->findAll();
+        $presupuestos = $em->getRepository('PresupuestoBundle:Presupuesto')->findBy(array(),array('id' => 'DESC'), 5, 5*$index);
         return $this->render('AdminBundle:Default:portadaGerencia.html.twig', 
             array(
                 'presupuestos' => $presupuestos,
+                'index' => $index
             ));
     }
 

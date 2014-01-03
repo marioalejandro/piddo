@@ -1,6 +1,6 @@
 nuevo_presupuesto:
-    pattern:  /nuevo-presupuesto
-    defaults: { _controller: PresupuestoBundle:Presupuesto:nuevo }
+    pattern:  /nuevo-presupuesto/{presupuesto}
+    defaults: { _controller: PresupuestoBundle:Presupuesto:nuevo, presupuesto : null}
     
 presupuesto_recepcion:
     pattern:  /presupuesto/recepcion/{presupuesto}
@@ -8,4 +8,8 @@ presupuesto_recepcion:
     
 presupuesto_trabajos:
     pattern:  /presupuesto/trabajos/{presupuesto}
-    defaults: { _controller: PresupuestoBundle:Presupuesto:trabajos }    
+    defaults: { _controller: PresupuestoBundle:Presupuesto:trabajos }
+    
+presupuesto_final:
+    pattern:  /presupuesto/final/{presupuesto}
+    defaults: { _controller: PresupuestoBundle:Presupuesto:final }  

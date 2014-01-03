@@ -112,6 +112,30 @@ class Trabajo
         return $this->cantidad;
     }
     
+    /**
+     * Set precio
+     *
+     * @param integer $precio
+     * @return Trabajo
+     */
+    public function setPrecio($precio)
+    {
+        $this->precio = $precio;
+    
+        return $this;
+    }
+
+    /**
+     * Get precio
+     *
+     * @return integer 
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
+    }    
+    
+    
     /************************************************
      * 		GETTERS & SETTERS FOREIGN KEY
      ***********************************************/  
@@ -197,6 +221,7 @@ class Trabajo
             'maxMessage' => 'Vous ne devez pas dépasser 180cm',
         )));
     }
+
 
 
 
