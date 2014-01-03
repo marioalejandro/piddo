@@ -1,0 +1,52 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    Trabajos > 
+    Todos los trabajos
+{% endblock %}
+{% block id 'trabajos' %}
+ 
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+    <section id="formulario_marca">
+        <h4>Agregar un Grupo de Trabajos</h4>
+        <form action="{{ path('rectificado_universo') }}" method="post" {{ form_enctype(formGrupoRectificado) }}>
+        {{ form_widget(formGrupoRectificado) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+        <h4>Agregar un nuevo Trabajo</h4>
+        <form action="{{ path('rectificado_universo') }}" method="post" {{ form_enctype(formRectificado) }}>
+        {{ form_widget(formRectificado) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_rectificados">
+        <table>
+            <tr>
+                <th>Area Trabajos</th>
+                <th>Trabajos</th>                   
+            </tr>
+            <tr>
+                
+            </tr>
+            {% for gr in universo %}
+                <tr>
+                    <td>{{gr.nombre}}{#<a href="{{ path('admin_modelos',{'marca': marca.slug })}}">{{marca.nombre}}</a>#}</td>
+                    <td>
+                        {#% render 'AdminBundle:Rectificados:listaRectificados' with { 'grupo': '1' } %#}
+                        {#{ render(controller('AdminBundle:Rectificados:listaRectificados'), with{ 'grupo' : gr.id }) }#}
+                        {% render controller("TallerBundle:Rectificados:listaRectificados", {'grupo': gr.id}) %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% if universo == null%}
+            {{'no hay trabajos registrados'}}
+        {%endif%}
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

@@ -1,3 +1,0 @@
-taller_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: TallerBundle:Default:index }

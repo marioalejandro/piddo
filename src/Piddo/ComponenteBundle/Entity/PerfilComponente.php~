@@ -136,7 +136,7 @@ class PerfilComponente
      */
     public function getGrupoComponente()
     {
-        return $this->componente->getGrupoComponente();
+        return $this->componente->getGrupoComponente()->getNombre();
     }
     
         

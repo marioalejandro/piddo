@@ -105,9 +105,9 @@ class Presupuesto
     
     /**
      * 
-     * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\ColRectificado", mappedBy="presupuesto", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Piddo\PresupuestoBundle\Entity\Trabajo", mappedBy="presupuesto", cascade={"persist"})
      */
-    protected $rectificados;
+    protected $trabajos;
     
     /************************************************************************
      *      ATRIBUTOS : TOTALES                                
@@ -157,7 +157,8 @@ class Presupuesto
      */
     public function __construct()
     {
-        $this->recepcionPiezas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->recepcionComponentes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trabajos = new \Doctrine\Common\Collections\ArrayCollection();
         //Valores por defecto
         $this->setDescuento(0);
         $this->setTotalGeneral(0);
@@ -525,75 +526,6 @@ class Presupuesto
      *      GETTERS & SETTERS : FOREIGN KEY                             
      ************************************************************************/
     
-    /************************************************************************
-     *      METODOS                              
-     ************************************************************************/
-    
-    public function __toString() {
-        
-        return (string)$this->getId();
-    }
-
-
-
-
-    /**
-     * Add rectificados
-     *
-     * @param \Piddo\TallerBundle\Entity\ColRectificado $rectificados
-     * @return Presupuesto
-     */
-    public function addRectificado(\Piddo\TallerBundle\Entity\ColRectificado $rectificados)
-    {
-        $this->rectificados[] = $rectificados;
-    
-        return $this;
-    }
-
-    /**
-     * Remove rectificados
-     *
-     * @param \Piddo\TallerBundle\Entity\ColRectificado $rectificados
-     */
-    public function removeRectificado(\Piddo\TallerBundle\Entity\ColRectificado $rectificados)
-    {
-        $this->rectificados->removeElement($rectificados);
-    }
-
-    /**
-     * Get rectificados
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRectificados()
-    {
-        return $this->rectificados;
-    }
-
-    /**
-     * Add recepcionPiezas
-     *
-     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas
-     * @return Presupuesto
-     */
-    public function addRecepcionPieza(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas)
-    {
-        $this->recepcionPiezas[] = $recepcionPiezas;
-    
-        return $this;
-    }
-
-    /**
-     * Remove recepcionPiezas
-     *
-     * @param \Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas
-     */
-    public function removeRecepcionPieza(\Piddo\ComponenteBundle\Entity\Recepcion $recepcionPiezas)
-    {
-        $this->recepcionPiezas->removeElement($recepcionPiezas);
-    }
-
-
     /**
      * Add recepcionComponentes
      *
@@ -625,5 +557,51 @@ class Presupuesto
     public function getRecepcionComponentes()
     {
         return $this->recepcionComponentes;
+    }    
+     /**
+     * Add trabajos
+     *
+     * @param \Piddo\PresupuestoBundle\Entity\Trabajo $trabajos
+     * @return Presupuesto
+     */
+    public function addTrabajo(\Piddo\PresupuestoBundle\Entity\Trabajo $trabajos)
+    {
+        $this->trabajos[] = $trabajos;
+    
+        return $this;
     }
+
+    /**
+     * Remove trabajos
+     *
+     * @param \Piddo\PresupuestoBundle\Entity\Trabajo $trabajos
+     */
+    public function removeTrabajo(\Piddo\PresupuestoBundle\Entity\Trabajo $trabajos)
+    {
+        $this->trabajos->removeElement($trabajos);
+    }
+
+    /**
+     * Get trabajos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrabajos()
+    {
+        return $this->trabajos;
+    }
+
+    /************************************************************************
+     *      METODOS                              
+     ************************************************************************/
+    
+    public function __toString() {
+        
+        return (string)$this->getId();
+    }
+
+
+
+
+
 }

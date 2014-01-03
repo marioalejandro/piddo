@@ -9,7 +9,6 @@ use Piddo\ComponenteBundle\Entity\PerfilComponente;
 use Piddo\ComponenteBundle\Form\ComponenteType;
 use Piddo\ComponenteBundle\Form\GrupoComponenteType;
 use Piddo\ComponenteBundle\Form\SerieComponentesType;
-use Piddo\ComponenteBundle\Form\PerfilComponenteType;
 
 class ComponenteController extends Controller
 {

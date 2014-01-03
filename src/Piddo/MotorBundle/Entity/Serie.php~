@@ -219,7 +219,38 @@ class Serie
         return $this->perfilComponentes;
     }    
     
+    /**
+     * Add perfilRectificados
+     *
+     * @param \Piddo\TallerBundle\Entity\PerfilRectificado $perfilRectificados
+     * @return Serie
+     */
+    public function addPerfilRectificado(\Piddo\TallerBundle\Entity\PerfilRectificado $perfilRectificados)
+    {
+        $this->perfilRectificados[] = $perfilRectificados;
     
+        return $this;
+    }
+
+    /**
+     * Remove perfilRectificados
+     *
+     * @param \Piddo\TallerBundle\Entity\PerfilRectificado $perfilRectificados
+     */
+    public function removePerfilRectificado(\Piddo\TallerBundle\Entity\PerfilRectificado $perfilRectificados)
+    {
+        $this->perfilRectificados->removeElement($perfilRectificados);
+    }
+
+    /**
+     * Get perfilRectificados
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPerfilRectificados()
+    {
+        return $this->perfilRectificados;
+    }    
     
     /************************************************
      * 		METODOS
@@ -229,4 +260,6 @@ class Serie
     {
         return $this->getNombre();
     }
+
+   
 }

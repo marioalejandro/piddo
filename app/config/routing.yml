@@ -19,8 +19,8 @@ cliente:
     prefix:   /
 
 taller:
-    resource: "@TallerBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@TallerBundle/Resources/config/rectificadoRouting.yml"
+    prefix:   /taller/
 
 admin:
     resource: "@AdminBundle/Resources/config/routing.yml"

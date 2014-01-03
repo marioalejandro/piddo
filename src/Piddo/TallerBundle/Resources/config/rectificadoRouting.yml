@@ -1,0 +1,7 @@
+rectificado_universo:
+    pattern: /universo
+    defaults: { _controller: TallerBundle:Rectificados:universo }
+    
+perfil_rectificado:
+    pattern: /{serie}/perfil
+    defaults: { _controller: TallerBundle:Rectificados:perfil }

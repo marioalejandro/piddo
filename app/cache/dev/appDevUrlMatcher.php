@@ -238,9 +238,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Piddo\\ClienteBundle\\Controller\\DefaultController::registroAction',  '_route' => 'admin_clientes',);
         }
 
-        // taller_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'taller_homepage')), array (  '_controller' => 'Piddo\\TallerBundle\\Controller\\DefaultController::indexAction',));
+        if (0 === strpos($pathinfo, '/taller')) {
+            // rectificado_universo
+            if ($pathinfo === '/taller/universo') {
+                return array (  '_controller' => 'Piddo\\TallerBundle\\Controller\\RectificadosController::universoAction',  '_route' => 'rectificado_universo',);
+            }
+
+            // perfil_rectificado
+            if (preg_match('#^/taller/(?P<serie>[^/]++)/perfil$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'perfil_rectificado')), array (  '_controller' => 'Piddo\\TallerBundle\\Controller\\RectificadosController::perfilAction',));
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/administracion')) {
@@ -282,11 +290,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'borrar_serie')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::borrarSerieAction',));
             }
 
-            // admin_rectificados
-            if ($pathinfo === '/administracion/rectificados') {
-                return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\RectificadosController::rectificadosAction',  '_route' => 'admin_rectificados',);
-            }
-
             // admin_piezas
             if ($pathinfo === '/administracion/piezas') {
                 return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::piezasAction',  '_route' => 'admin_piezas',);
@@ -295,11 +298,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // serie_col_piezas
             if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/(?P<serie>[^/]++)/piezas$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'serie_col_piezas')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::ColPiezasAction',));
-            }
-
-            // perfil_rectificado
-            if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/(?P<serie>[^/]++)/perfil\\-rectificado$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'perfil_rectificado')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::perfilRectificadoAction',));
             }
 
         }

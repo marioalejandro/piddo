@@ -26,10 +26,6 @@ borrar_serie:
     pattern: /administracion/{marca}/{modelo}/borrar-{serie}
     defaults: { _controller: AdminBundle:Default:borrarSerie }
     
-admin_rectificados:
-    pattern: /administracion/rectificados
-    defaults: { _controller: AdminBundle:Rectificados:rectificados }
-    
 admin_piezas:
     pattern: /administracion/piezas
     defaults: { _controller: AdminBundle:Default:piezas }
@@ -37,7 +33,3 @@ admin_piezas:
 serie_col_piezas:
     pattern: /administracion/{marca}/{modelo}/{serie}/piezas
     defaults: { _controller: AdminBundle:Default:ColPiezas }
-    
-perfil_rectificado:
-    pattern: /administracion/{marca}/{modelo}/{serie}/perfil-rectificado
-    defaults: { _controller: AdminBundle:Default:perfilRectificado }
