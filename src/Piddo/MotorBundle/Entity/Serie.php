@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Piddo\AdminBundle\Util\Util;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Piddo\MotorBundle\Entity\TipoMotor;
 
 use Piddo\ComponenteBundle\Entity\PerfilComponente;
 
@@ -56,6 +57,13 @@ class Serie
     /************************************************
      * 		ATRIBUTOS FOREIGN KEY
      ***********************************************/    
+
+    /**
+     * @var string
+     * @Assert\NotBlank(message="Debe elegir un tipo de motor")
+     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\TipoMotor")
+     */
+    private $tipoMotor;
 
     /**
      * @var string
@@ -152,8 +160,32 @@ class Serie
 
     /************************************************
      * 		GETTERS & SETTERS FOREIGN KEY 
-     ***********************************************/    
+     ***********************************************/ 
+    
+    /**
+     * Set tipoMotor
+     *
+     * @param \Piddo\MotorBundle\Entity\TipoMotor $tipoMotor
+     * @return Serie
+     */
+    public function setTipoMotor(\Piddo\MotorBundle\Entity\TipoMotor $tipoMotor = null)
+    {
+        $this->tipoMotor = $tipoMotor;
+    
+        return $this;
+    }
 
+    /**
+     * Get tipoMotor
+     *
+     * @return \Piddo\MotorBundle\Entity\TipoMotor 
+     */
+    public function getTipoMotor()
+    {
+        return $this->tipoMotor;
+    }
+    
+    
     /**
      * Get marca
      *
@@ -262,4 +294,6 @@ class Serie
     }
 
    
+
+
 }

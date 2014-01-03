@@ -23,6 +23,7 @@
         <table>
             <tr>
                 <th>Serie</th>
+                <th>Tipo</th>
                 <th>Componentes</th>
                 <th>Rectificados</th>
                 <th>Repuestos</th> 
@@ -33,6 +34,7 @@
             {% for serie in series %}
                 <tr>
                     <td>{{serie.nombre}}</td>
+                    <td>{{serie.tipoMotor}}</td>
                     <td><a href="{{ path('componente_perfil',{'serie': serie.id })}}">{{'Componentes'}}</a></td>
                     <td><a href="{{ path('rectificado_perfil',{'serie': serie.id })}}">{{'Trabajos'}}</a></td>
                     {#<td><a href="{{ path('borrar_serie',{'marca': marca.id, 'modelo': modelo.id, 'serie': serie.id })}}">{{ 'Eliminar'}}</a></td>#}

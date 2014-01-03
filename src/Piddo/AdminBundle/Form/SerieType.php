@@ -10,6 +10,7 @@ class SerieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) 
     {
         $builder->add('nombre');
+        $builder->add('tipoMotor');
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) 

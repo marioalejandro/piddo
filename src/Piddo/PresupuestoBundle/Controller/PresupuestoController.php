@@ -7,6 +7,8 @@ use Piddo\PresupuestoBundle\Entity\Recepcion;
 use Piddo\PresupuestoBundle\Entity\Presupuesto;
 use Piddo\PresupuestoBundle\Form\PresupuestoType;
 use Piddo\PresupuestoBundle\Form\PresupuestoRecepcionType;
+use Piddo\PresupuestoBundle\Entity\Trabajo;
+use Piddo\PresupuestoBundle\Form\PresupuestoTrabajosType;
 
 class PresupuestoController extends Controller
 {
@@ -31,14 +33,16 @@ class PresupuestoController extends Controller
             $em->persist($presupuesto);
             $em->flush();
 
-            if($formulario->get('Recepcion')->isClicked())
+
+            
+           $mensaje = 'El Presupuesto se ha guardado correctamente';
+           $this->get('session')->getFlashBag()->add('info', $mensaje);
+           
+           if($formulario->get('Recepcion')->isClicked())
                 {
                 $pre = $presupuesto->getId();
                 return $this->redirect($this->generateUrl('presupuesto_recepcion',array('presupuesto' => $pre)));
                 }
-            
-           $mensaje = 'El Presupuesto se ha guardado correctamente';
-           $this->get('session')->getFlashBag()->add('info', $mensaje);
 
             return $this->redirect($this->generateUrl('nuevo_presupuesto'));
 
@@ -119,6 +123,12 @@ public function recepcionAction($presupuesto)
         $em->flush();
 
         $mensaje ='El Presupuesto se ha modificado correctamente';
+        
+        if($formRecepcion->get('Trabajos')->isClicked())
+                {
+                $pre = $presupuesto->getId();
+                return $this->redirect($this->generateUrl('presupuesto_trabajos',array('presupuesto' => $pre)));
+                }
 
         $this->get('session')->getFlashBag()->add('info', $mensaje);
 
@@ -128,6 +138,80 @@ public function recepcionAction($presupuesto)
          array(
              'form' => $formRecepcion->createView(),
          ));     
+    }
+        
+    public function trabajosAction($presupuesto)
+    {
+        $peticion = $this->getRequest();
+       
+        //obtencion de datos del modelo
+        $em = $this->getDoctrine()->getManager();
+        $presupuesto = $em->getRepository('PresupuestoBundle:Presupuesto')->findOneBy(array('id'=> $presupuesto));
+        $serie = $presupuesto->getSerie();
+        $perfilRectificados = $serie->getPerfilRectificados();
+        $gruposRectificado = $em->getRepository('TallerBundle:GrupoRectificado')->findAll();
+        $trabajos = $presupuesto->getTrabajos();
+
+        //1.- Obtencion de objeto presupuesto (listo) $presupuesto
+        //2.- Creacion de los objetos Trabajo
+
+        foreach ($gruposRectificado as $gr)
+        {
+            
+            //Recorremos los grupos
+            $rectificados = $gr->getRectificados();
+            foreach ($rectificados as $r)
+            {
+                
+                //Recorremos los rectificados
+                foreach ($perfilRectificados as $pr)
+                {
+                    if($r == $pr->getRectificado())
+                    {
+                        $nuevo = true;
+                        foreach ($trabajos as $tr)
+                        {
+                            $trabajoIngresado = $tr->getRectificado();
+                            if($r == $trabajoIngresado)
+                            {
+                                $nuevo = false;
+                            }
+                        }
+                        if($nuevo)
+                        {
+                            $nuevoTrabajo = new Trabajo();
+                            $nuevoTrabajo->setPresupuesto($presupuesto);
+                            $nuevoTrabajo->setRectificado($r);
+                            $presupuesto->getTrabajos()->add($nuevoTrabajo);
+                        }
+                        
+                        
+                    }
+                }
+            }
         }
+
+
+        //3.- Agregar los Recepcion a el presupuesto(hecho)
+        //4.- Creacion de formulario
+        $formTrabajos = $this->createForm(new PresupuestoTrabajosType(), $presupuesto);
+     
+        $formTrabajos->handleRequest($peticion);
+
+        if($formTrabajos->isValid()){
+        $em->persist($presupuesto);
+        $em->flush();
+
+        $mensaje ='El Presupuesto se ha modificado correctamente';
+
+        $this->get('session')->getFlashBag()->add('info', $mensaje);
+
+        }
+
+            return $this->render('PresupuestoBundle:Default:presupuestoTrabajos.html.twig', 
+         array(
+             'form' => $formTrabajos->createView(),
+         ));     
+    }
 }
 

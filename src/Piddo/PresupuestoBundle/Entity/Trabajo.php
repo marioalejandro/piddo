@@ -168,7 +168,7 @@ class Trabajo
      */
     public function getGrupoRectificado()
     {
-        return $this->getRectificado()->getGrupoRectificado();
+        return $this->getRectificado()->getGrupoRectificado()->getNombre();
     }
     
     /************************************************

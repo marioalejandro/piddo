@@ -228,9 +228,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
         }
 
-        // presupuesto_recepcion
-        if (0 === strpos($pathinfo, '/presupuesto/recepcion') && preg_match('#^/presupuesto/recepcion/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_recepcion')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::recepcionAction',));
+        if (0 === strpos($pathinfo, '/presupuesto')) {
+            // presupuesto_recepcion
+            if (0 === strpos($pathinfo, '/presupuesto/recepcion') && preg_match('#^/presupuesto/recepcion/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_recepcion')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::recepcionAction',));
+            }
+
+            // presupuesto_trabajos
+            if (0 === strpos($pathinfo, '/presupuesto/trabajos') && preg_match('#^/presupuesto/trabajos/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_trabajos')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::trabajosAction',));
+            }
+
         }
 
         // admin_clientes

@@ -5,3 +5,7 @@ nuevo_presupuesto:
 presupuesto_recepcion:
     pattern:  /presupuesto/recepcion/{presupuesto}
     defaults: { _controller: PresupuestoBundle:Presupuesto:recepcion }
+    
+presupuesto_trabajos:
+    pattern:  /presupuesto/trabajos/{presupuesto}
+    defaults: { _controller: PresupuestoBundle:Presupuesto:trabajos }    

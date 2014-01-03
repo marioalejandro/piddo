@@ -105,7 +105,7 @@ class Presupuesto
     
     /**
      * 
-     * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\Trabajo", mappedBy="presupuesto", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Piddo\PresupuestoBundle\Entity\Trabajo", mappedBy="presupuesto", cascade={"persist"})
      */
     protected $trabajos;
     
@@ -157,7 +157,8 @@ class Presupuesto
      */
     public function __construct()
     {
-        $this->recepcionPiezas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->recepcionComponentes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trabajos = new \Doctrine\Common\Collections\ArrayCollection();
         //Valores por defecto
         $this->setDescuento(0);
         $this->setTotalGeneral(0);
@@ -557,7 +558,38 @@ class Presupuesto
     {
         return $this->recepcionComponentes;
     }    
+     /**
+     * Add trabajos
+     *
+     * @param \Piddo\PresupuestoBundle\Entity\Trabajo $trabajos
+     * @return Presupuesto
+     */
+    public function addTrabajo(\Piddo\PresupuestoBundle\Entity\Trabajo $trabajos)
+    {
+        $this->trabajos[] = $trabajos;
     
+        return $this;
+    }
+
+    /**
+     * Remove trabajos
+     *
+     * @param \Piddo\PresupuestoBundle\Entity\Trabajo $trabajos
+     */
+    public function removeTrabajo(\Piddo\PresupuestoBundle\Entity\Trabajo $trabajos)
+    {
+        $this->trabajos->removeElement($trabajos);
+    }
+
+    /**
+     * Get trabajos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrabajos()
+    {
+        return $this->trabajos;
+    }
 
     /************************************************************************
      *      METODOS                              
@@ -567,6 +599,7 @@ class Presupuesto
         
         return (string)$this->getId();
     }
+
 
 
 
