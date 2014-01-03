@@ -59,7 +59,6 @@ class GrupoComponente
     /**
      * @var Componente[]
      * 
-     * @Assert\NotBlank(message="Debe escojer un componente")
      * 
      * @ORM\OneToMany(targetEntity="Componente", mappedBy="grupoComponente")
      */

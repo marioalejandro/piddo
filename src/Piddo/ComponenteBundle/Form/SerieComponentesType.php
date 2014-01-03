@@ -11,7 +11,7 @@ class SerieComponentesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) 
     {
         $serie = $options['data'];
-        print_r($serie->getNombre());
+        //print_r($serie->getNombre());
         
         $builder->add('nombre');
         
