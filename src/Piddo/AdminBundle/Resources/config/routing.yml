@@ -33,3 +33,7 @@ admin_piezas:
 serie_col_piezas:
     pattern: /administracion/{marca}/{modelo}/{serie}/piezas
     defaults: { _controller: AdminBundle:Default:ColPiezas }
+
+agregar_repuestos:
+    pattern: /administracion/repuestos
+    defaults: { _controller: AdminBundle:Default:agregarRepuestos }

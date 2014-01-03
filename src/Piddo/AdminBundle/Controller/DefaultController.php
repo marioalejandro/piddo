@@ -14,6 +14,8 @@ use Piddo\AdminBundle\Form\GrupoPiezaType;
 use Piddo\AdminBundle\Form\SeriePiezasType;
 use Piddo\TallerBundle\Entity\ColRectificado;
 use Piddo\AdminBundle\Form\SerieRectType;
+use Piddo\AdminBundle\Form\AgregarRepuestoType;
+use Piddo\RepuestoBundle\Entity\Repuesto;
 
 
 class DefaultController extends Controller
@@ -461,6 +463,30 @@ class DefaultController extends Controller
                     //'grupos' =>$gp
                 ));
         }
-      
-      
+
+        /************************
+         * Agregar Repuestos
+         ************************/
+        public function agregarRepuestosAction ()
+        {
+            $peticion = $this->getRequest();
+            $em = $this->getDoctrine()->getManager();
+            
+            $repuesto = new Repuesto();
+            
+            $formulario = $this->createForm(new AgregarRepuestoType(), $repuesto);
+            $formulario->handleRequest($peticion);
+            
+            if($formulario->isValid()){
+                $em->persist($repuesto);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'El Repuesto '.$repuesto.' ha sido registrado correctamente');
+                return $this->redirect($this->generateUrl('agregar_repuestos'));
+            }
+            
+            return $this->render('AdminBundle:Default:agregarRepuestos.html.twig',
+                    array(
+                        'formulario' => $formulario->createView(),
+                    ));
+        }
 }

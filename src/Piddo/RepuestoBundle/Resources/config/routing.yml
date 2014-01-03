@@ -3,13 +3,13 @@ repuesto_portada:
     defaults: { _controller: RepuestoBundle:Default:repuesto }
 
 repuesto_lista_solicitudes:
-    pattern:  /solicitudes/
+    pattern:  /repuesto/solicitudes
     defaults: { _controller: RepuestoBundle:Default:listaSolicitudes }
 
 repuesto_presupuestos:
-    pattern:  /presupuestos/
+    pattern:  /repuesto/presupuestos
     defaults: { _controller: RepuestoBundle:Default:listaPresupuestos }
 
 repuesto_lista:
-    pattern:  /lista/
+    pattern:  /repuesto/lista
     defaults: { _controller: RepuestoBundle:Default:lista }

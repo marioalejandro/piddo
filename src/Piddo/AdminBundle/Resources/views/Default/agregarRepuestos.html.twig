@@ -1,0 +1,34 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    Agregar Repuestos
+{% endblock %}
+    
+{% block id 'agregarRepuestos' %}
+ 
+{% block article %}
+    <h1>
+        <a href="{{ path('agregar_repuestos')}}">Agregar Repuestos</a>
+    </h1>
+
+    <section id="agregarRepuestos">
+   {# Se crea el formulario con el Type y el builder #}
+        
+        <h4>Ingrese un Repuesto para que esté disponible</h4>
+        <form action="{{ path('agregar_repuestos') }}" method="post" {{ form_enctype(formulario) }}> 
+            {{ form_widget(formulario) }}
+            <input class="boton" type="submit" value="Agregar" />
+        </form>
+        
+    </section>
+    
+    <section id="verRepuestos">
+        <tr>
+            <td>##nada##</td>
+        </tr>
+    </section>
+ {% endblock article %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

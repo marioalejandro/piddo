@@ -191,36 +191,27 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Piddo\\RecepcionBundle\\Controller\\DefaultController::agregarClienteAction',  '_route' => 'recepcion_agregar_cliente',);
         }
 
-        // repuesto_portada
-        if ($pathinfo === '/repuesto') {
-            return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::repuestoAction',  '_route' => 'repuesto_portada',);
-        }
-
-        // repuesto_lista_solicitudes
-        if (rtrim($pathinfo, '/') === '/solicitudes') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'repuesto_lista_solicitudes');
+        if (0 === strpos($pathinfo, '/repuesto')) {
+            // repuesto_portada
+            if ($pathinfo === '/repuesto') {
+                return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::repuestoAction',  '_route' => 'repuesto_portada',);
             }
 
-            return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaSolicitudesAction',  '_route' => 'repuesto_lista_solicitudes',);
-        }
-
-        // repuesto_presupuestos
-        if (rtrim($pathinfo, '/') === '/presupuestos') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'repuesto_presupuestos');
+            // repuesto_lista_solicitudes
+            if ($pathinfo === '/repuesto/solicitudes') {
+                return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaSolicitudesAction',  '_route' => 'repuesto_lista_solicitudes',);
             }
 
-            return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaPresupuestosAction',  '_route' => 'repuesto_presupuestos',);
-        }
-
-        // repuesto_lista
-        if (rtrim($pathinfo, '/') === '/lista') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'repuesto_lista');
+            // repuesto_presupuestos
+            if ($pathinfo === '/repuesto/presupuestos') {
+                return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaPresupuestosAction',  '_route' => 'repuesto_presupuestos',);
             }
 
-            return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaAction',  '_route' => 'repuesto_lista',);
+            // repuesto_lista
+            if ($pathinfo === '/repuesto/lista') {
+                return array (  '_controller' => 'Piddo\\RepuestoBundle\\Controller\\DefaultController::listaAction',  '_route' => 'repuesto_lista',);
+            }
+
         }
 
         // nuevo_presupuesto
@@ -306,6 +297,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // serie_col_piezas
             if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/(?P<serie>[^/]++)/piezas$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'serie_col_piezas')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::ColPiezasAction',));
+            }
+
+            // agregar_repuestos
+            if ($pathinfo === '/administracion/repuestos') {
+                return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::agregarRepuestosAction',  '_route' => 'agregar_repuestos',);
             }
 
         }
