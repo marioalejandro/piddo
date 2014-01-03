@@ -26,6 +26,14 @@ borrar_serie:
     pattern: /administracion/{marca}/{modelo}/borrar-{serie}
     defaults: { _controller: AdminBundle:Default:borrarSerie }
 
+serie_col_piezas:
+    pattern: /administracion/{marca}/{modelo}/{serie}/piezas
+    defaults: { _controller: AdminBundle:Default:ColPiezas }
+
+agregar_repuestos:
+    pattern: /administracion/repuestos
+    defaults: { _controller: AdminBundle:Default:agregarRepuestos }
+    
 precios:
     pattern: /precios
     defaults: { _controller: AdminBundle:Precios:precios }
