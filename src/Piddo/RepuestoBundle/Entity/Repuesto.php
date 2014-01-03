@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Repuesto
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Piddo\RepuestoBundle\Entity\RepuestoRepository")
+ * @ORM\Entity()
  */
 class Repuesto
 {

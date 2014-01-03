@@ -487,6 +487,7 @@ class DefaultController extends Controller
             return $this->render('AdminBundle:Default:agregarRepuestos.html.twig',
                     array(
                         'formulario' => $formulario->createView(),
+                        'repuestos' => $em->getRepository('RepuestoBundle:Repuesto')->findAll()
                     ));
         }
 }

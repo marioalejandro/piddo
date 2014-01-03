@@ -23,9 +23,12 @@
     </section>
     
     <section id="verRepuestos">
-        <tr>
-            <td>##nada##</td>
-        </tr>
+    <h4>Repuestos Disponibles</h4>
+    <table>
+        {% for rep in repuestos %}
+        <tr><td>{{ rep.nombre }}</td></tr>
+        {% endfor %}
+    </table>
     </section>
  {% endblock article %}
  
