@@ -74,9 +74,9 @@ class Serie
     
     /**
      * 
-     * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\ColRectificado", mappedBy="serie", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Piddo\TallerBundle\Entity\PerfilRectificado", mappedBy="serie", cascade={"persist"})
      */
-    private $rectDisponibles;
+    private $perfilRectificados;
     
     /************************************************
      * 		CONSTRUCTOR
@@ -85,6 +85,7 @@ class Serie
     public function __construct()
     {
         $this->perfilComponentes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->perfilRectificados = new \Doctrine\Common\Collections\ArrayCollection();
     }   
     
     /************************************************
@@ -218,40 +219,39 @@ class Serie
         return $this->perfilComponentes;
     }    
     
-    
     /**
-     * Add rectDisponibles
+     * Add perfilRectificados
      *
-     * @param \Piddo\TallerBundle\Entity\ColRectificado $rectDisponibles
+     * @param \Piddo\TallerBundle\Entity\PerfilRectificado $perfilRectificados
      * @return Serie
      */
-    public function addRectDisponible(\Piddo\TallerBundle\Entity\ColRectificado $rectDisponibles)
+    public function addPerfilRectificado(\Piddo\TallerBundle\Entity\PerfilRectificado $perfilRectificados)
     {
-        $this->rectDisponibles[] = $rectDisponibles;
+        $this->perfilRectificados[] = $perfilRectificados;
     
         return $this;
     }
 
     /**
-     * Remove rectDisponibles
+     * Remove perfilRectificados
      *
-     * @param \Piddo\TallerBundle\Entity\ColRectificado $rectDisponibles
+     * @param \Piddo\TallerBundle\Entity\PerfilRectificado $perfilRectificados
      */
-    public function removeRectDisponible(\Piddo\TallerBundle\Entity\ColRectificado $rectDisponibles)
+    public function removePerfilRectificado(\Piddo\TallerBundle\Entity\PerfilRectificado $perfilRectificados)
     {
-        $this->rectDisponibles->removeElement($rectDisponibles);
+        $this->perfilRectificados->removeElement($perfilRectificados);
     }
 
     /**
-     * Get rectDisponibles
+     * Get perfilRectificados
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getRectDisponibles()
+    public function getPerfilRectificados()
     {
-        return $this->rectDisponibles;
-    }
-
+        return $this->perfilRectificados;
+    }    
+    
     /************************************************
      * 		METODOS
      ***********************************************/
@@ -260,4 +260,6 @@ class Serie
     {
         return $this->getNombre();
     }
+
+   
 }

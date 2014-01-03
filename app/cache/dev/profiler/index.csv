@@ -5161,3 +5161,12 @@ b90ab9,::1,GET,http://localhost/piddo/web/app_dev.php/componente/universo,138871
 6dd19f,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DComponenteBundle%253AComponente%253AlistaComponentes,1388713630,b90ab9
 6a8e5d,127.0.0.1,GET,http://localhost/piddo/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Des%26_controller%3DComponenteBundle%253AComponente%253AlistaComponentes,1388713630,b90ab9
 32e505,::1,GET,http://localhost/piddo/web/app_dev.php/nuevo-presupuesto,1388713632,
+18be04,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/marcas,1388718179,
+95ad57,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/volkswagen/modelos,1388718181,
+948dbd,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/volkswagen/gol/series,1388718183,
+44d7f3,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/volkswagen/gol/series,1388718183,
+a6930f,::1,GET,http://localhost/piddo/web/app_dev.php/administracion/volkswagen/gol/series,1388718600,
+984b2d,::1,GET,http://localhost/piddo/web/app_dev.php/componente/1/perfil,1388718604,
+0b05c1,::1,GET,http://localhost/piddo/web/app_dev.php/componente/1/perfil,1388718604,
+a075bd,::1,GET,http://localhost/piddo/web/app_dev.php/componente/1/perfil,1388718721,
+229582,::1,POST,http://localhost/piddo/web/app_dev.php/componente/1/perfil,1388718747,

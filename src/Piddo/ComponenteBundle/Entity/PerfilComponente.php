@@ -123,11 +123,21 @@ class PerfilComponente
      *
      * @return string
      */
-    public function getGrupoComponente()
+    /*public function getGrupoComponente()
     {
       
         return $this->getComponente()->getGrupoComponente()->getNombre();
-    } 
+    } */
+    
+    /**
+     * Get grupoComponente
+     *
+     * @return \Piddo\ComponenteBundle\Entity\GrupoComponente 
+     */
+    public function getGrupoComponente()
+    {
+        return $this->componente->getGrupoComponente()->getNombre();
+    }
     
         
     /************************************************

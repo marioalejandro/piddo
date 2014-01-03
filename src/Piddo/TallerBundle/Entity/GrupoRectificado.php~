@@ -4,15 +4,27 @@ namespace Piddo\TallerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Piddo\AdminBundle\Util\Util;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * GrupoRectificado
  *
+ * @UniqueEntity(
+ *     fields="nombre",
+ *     message="Este grupo ya existe."
+ * )
+ * 
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Piddo\TallerBundle\Entity\GrupoRectificadoRepository")
  */
 class GrupoRectificado
 {
+    
+    /************************************************
+     * 		ATRIBUTOS
+     ***********************************************/
+    
     /**
      * @var integer
      *
@@ -24,18 +36,24 @@ class GrupoRectificado
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank(message="Debe ingresar un nombre para el Grupo")
+     * 
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
     /**
      * @var string
-     *
+     * 
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
 
+    /************************************************
+     * 		ATRIBUTOS FOREIGN KEY
+     ***********************************************/    
+    
      /**
      *
      * @var type 
@@ -44,6 +62,20 @@ class GrupoRectificado
      */
     private $rectificados;
     
+    /************************************************
+     * 		CONSTRUCTOR
+     ***********************************************/      
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rectificados = new \Doctrine\Common\Collections\ArrayCollection();
+    }    
+
+    /************************************************
+     * 		GETTERS & SETTERS
+     ***********************************************/    
     
     /**
      * Get id
@@ -102,17 +134,10 @@ class GrupoRectificado
         return $this->slug;
     }
     
-    public function __toString() {
-       // return print_r($this);
-        return $this->getNombre();
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->rectificados = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
+    /************************************************
+     * 		GETTERS & SETTERS FOREIGN KEY
+     ***********************************************/    
     
     /**
      * Add rectificados
@@ -145,5 +170,14 @@ class GrupoRectificado
     public function getRectificados()
     {
         return $this->rectificados;
+    }
+    
+    /************************************************
+     * 		METODOS
+     ***********************************************/    
+    
+    public function __toString() {
+       // return print_r($this);
+        return $this->getNombre();
     }
 }

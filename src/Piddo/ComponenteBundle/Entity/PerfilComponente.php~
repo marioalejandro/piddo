@@ -73,7 +73,7 @@ class PerfilComponente
     
     function __construct() 
     {
-    $this->maximo = 0;
+        $this->maximo = 0;
     }
 
   
@@ -123,11 +123,21 @@ class PerfilComponente
      *
      * @return string
      */
-    public function getGrupoComponente()
+    /*public function getGrupoComponente()
     {
       
         return $this->getComponente()->getGrupoComponente()->getNombre();
-    } 
+    } */
+    
+    /**
+     * Get grupoComponente
+     *
+     * @return \Piddo\ComponenteBundle\Entity\GrupoComponente 
+     */
+    public function getGrupoComponente()
+    {
+        return $this->componente->getGrupoComponente();
+    }
     
         
     /************************************************

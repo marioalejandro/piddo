@@ -11,9 +11,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Recepcion
  *
  * @UniqueEntity(
- *     fields={"serie", "componente"},
- *     errorPath="componente",
- *     message="Este componente ya existe en este motor."
+ *     fields={"presupuesto", "perfilComponente"},
+ *     errorPath="perfilComponente",
+ *     message="Este componente ya se ingresó en este motor."
  * ) 
  * 
  * @ORM\Table()
@@ -166,7 +166,7 @@ class Recepcion
      */
     public function getMaximo()
     {
-        return $this->colPieza->getMaximo();
+        return $this->perfilComponente->getMaximo();
     }
     
     /**
@@ -176,7 +176,16 @@ class Recepcion
      */
     public function getGrupoComponente()
     {
-        return $this->getPerfilComponente()->getComponente()->getGrupoComponente();
+        return $this->getPerfilComponente()->getComponente()->getGrupoComponente()->getNombre();
+    }
+    /**
+     * Get GrupoComponente
+     *
+     * @return \Piddo\ComponenteBundle\Entity\GrupoComponente
+     */
+    public function getComponente()
+    {
+        return $this->getPerfilComponente()->getComponente()->getNombre();
     }
     
     /************************************************

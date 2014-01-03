@@ -5,15 +5,26 @@ namespace Piddo\TallerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Piddo\AdminBundle\Util\Util;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Piddo\TallerBundle\Entity\GrupoRectificado;
 
 /**
  * Rectificado
  *
+  * @UniqueEntity(
+ *     fields={"nombre", "grupoRectificado"},
+ *     errorPath="nombre",
+ *     message="Este trabajo ya existe en este grupo."
+ * )
+ * 
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Piddo\TallerBundle\Entity\RectificadoRepository")
  */
 class Rectificado
 {
+    /************************************************
+     * 		ATRIBUTOS
+     ***********************************************/
     /**
      * @var integer
      *
@@ -25,7 +36,7 @@ class Rectificado
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Debe ingresar un nombre para el trabajo")
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
@@ -37,13 +48,20 @@ class Rectificado
      */
     private $slug;
 
+    /************************************************
+     * 		ATRIBUTOS FOREIGN KEY
+     ***********************************************/   
+    
     /**
      * @var string
      * @Assert\NotBlank(message="Primero crea un grupo")
      * @ORM\ManyToOne(targetEntity="Piddo\TallerBundle\Entity\GrupoRectificado")
      */
     private $grupoRectificado;
-
+    
+    /************************************************
+     * 		GETTERS & SETTERS
+     ***********************************************/
 
     /**
      * Get id
@@ -101,10 +119,10 @@ class Rectificado
     {
         return $this->slug;
     }
+    /************************************************
+     *      GETTERS & SETTERS FOREIGN KEY
+     ***********************************************/
 
-    public function __toString() {
-        return $this->getNombre();
-    }
 
     /**
      * Set grupoRectificado
@@ -127,5 +145,13 @@ class Rectificado
     public function getGrupoRectificado()
     {
         return $this->grupoRectificado;
+    }
+    
+    /************************************************
+     * 		METODOS
+     ***********************************************/    
+    public function __toString() 
+    {
+        return $this->getNombre();
     }
 }

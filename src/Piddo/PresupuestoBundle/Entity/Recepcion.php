@@ -11,9 +11,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Recepcion
  *
  * @UniqueEntity(
- *     fields={"serie", "componente"},
- *     errorPath="componente",
- *     message="Este componente ya existe en este motor."
+ *     fields={"presupuesto", "perfilComponente"},
+ *     errorPath="perfilComponente",
+ *     message="Este componente ya se ingresó en este motor."
  * ) 
  * 
  * @ORM\Table()
