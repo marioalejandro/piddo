@@ -17,7 +17,7 @@ use Piddo\MotorBundle\Entity\Serie;
  * )
  * 
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Piddo\TallerBundle\Entity\TipoMotorRepository")
+ * @ORM\Entity()
  */
 class TipoMotor
 {
@@ -63,6 +63,14 @@ class TipoMotor
      */
     private $series;
     
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\AdminBundle\Entity\Precio", mappedBy="tipoMotor", cascade={"persist"})
+     */
+    private $precios;
+    
     /************************************************
      * 		CONSTRUCTOR
      ***********************************************/      
@@ -71,7 +79,8 @@ class TipoMotor
      */
     public function __construct()
     {
-        $this->$series = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->series = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->precios = new \Doctrine\Common\Collections\ArrayCollection();
     }    
 
     /************************************************
@@ -173,6 +182,39 @@ class TipoMotor
         return $this->series;
     }
     
+    /**
+     * Add precios
+     *
+     * @param \Piddo\AdminBundle\Entity\Precio $precios
+     * @return TipoMotor
+     */
+    public function addPrecio(\Piddo\AdminBundle\Entity\Precio $precios)
+    {
+        $this->precios[] = $precios;
+    
+        return $this;
+    }
+
+    /**
+     * Remove precios
+     *
+     * @param \Piddo\AdminBundle\Entity\Precio $precios
+     */
+    public function removePrecio(\Piddo\AdminBundle\Entity\Precio $precios)
+    {
+        $this->precios->removeElement($precios);
+    }
+
+    /**
+     * Get precios
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrecios()
+    {
+        return $this->precios;
+    }    
+    
     /************************************************
      * 		METODOS
      ***********************************************/    
@@ -183,4 +225,6 @@ class TipoMotor
     }
 
    
+
+    
 }

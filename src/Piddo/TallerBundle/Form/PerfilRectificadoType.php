@@ -18,7 +18,7 @@ class PerfilRectificadoType extends AbstractType
             ->add('grupoRectificado',null, array(
                 'disabled' => true,
             ))
-            ->add('cantidad',null, array(
+            ->add('cantidad','integer', array(
                 'invalid_message' => 'Ingrese solo números'
             ))
             ->add('rectificado',null, array(

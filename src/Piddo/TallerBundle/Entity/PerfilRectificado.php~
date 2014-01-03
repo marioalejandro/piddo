@@ -4,6 +4,7 @@ namespace Piddo\TallerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Piddo\ComponenteBundle\Entity\Componente;
 use Piddo\TallerBundle\Entity\Rectificado;
 
@@ -38,7 +39,8 @@ class PerfilRectificado
     
     /**
      * @var integer
-     *
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
+     * @Assert\NotBlank(message="Debe ingresar una cantidad")
      * @ORM\Column(name="cantidad", type="integer")
      */
     private $cantidad;

@@ -1,0 +1,53 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    Precios
+{% endblock %}
+{% block id 'piezas' %}
+ 
+{% block article %}
+    <h1>
+       <a href="{{ path('precios')}}">{{'Precios'}}</a> >
+       {{tipo.nombre}}
+    </h1>
+    <section id="formulario_marca">
+        <h4>Agregar un Coleccion de Piezas</h4>
+        <form action="{{ path('tipo',{'tipo': tipo.id })}}" method="post" {{ form_enctype(form) }}>
+         {#{ form_start(form) }#}
+            {{ form_errors(form) }}
+                   <h3>Modificar</h3>
+            {{form_row(form.nombre)}}
+            
+       <h3>Trabajos</h3>
+       
+            <table>
+                    <tr>
+                        <th>Grupo</th>
+                        <th>Rectificado</th>
+                        <th>Precio</th>
+                    </tr>
+                    {% for p in form.precios %}
+                    <tr>
+                        <td>{{ form_widget(p.grupoRectificado) }}</td>
+                        <td>{{ form_widget(p.rectificado) }}</td>
+                        <td>{{ form_widget(p.precio) }}</td>
+                        {{form_errors(p.precio)}}
+                    </tr>
+                    {% endfor %}
+                    {% if tipo.precios == null%}
+                        {{'no existen trabajos que valorar'}}
+                    {%endif%}
+                </table>
+           
+            {{ form_rest(form) }}
+            {#{ form_end(form) }#}
+                <input class="boton" type="submit" value="Guardar" />
+            </form>
+
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

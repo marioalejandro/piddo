@@ -22,6 +22,8 @@ class TrabajoType extends AbstractType
             ->add('rectificado',null, array(
                 'disabled' => true,
             ))
+            ->add('precio',null, array(
+            ))
         ;
     }
     

@@ -160,8 +160,32 @@ class Serie
 
     /************************************************
      * 		GETTERS & SETTERS FOREIGN KEY 
-     ***********************************************/    
+     ***********************************************/ 
+    
+    /**
+     * Set tipoMotor
+     *
+     * @param \Piddo\MotorBundle\Entity\TipoMotor $tipoMotor
+     * @return Serie
+     */
+    public function setTipoMotor(\Piddo\MotorBundle\Entity\TipoMotor $tipoMotor = null)
+    {
+        $this->tipoMotor = $tipoMotor;
+    
+        return $this;
+    }
 
+    /**
+     * Get tipoMotor
+     *
+     * @return \Piddo\MotorBundle\Entity\TipoMotor 
+     */
+    public function getTipoMotor()
+    {
+        return $this->tipoMotor;
+    }
+    
+    
     /**
      * Get marca
      *
@@ -270,4 +294,6 @@ class Serie
     }
 
    
+
+
 }

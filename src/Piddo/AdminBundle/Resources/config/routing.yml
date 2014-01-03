@@ -25,11 +25,11 @@ admin_series:
 borrar_serie:
     pattern: /administracion/{marca}/{modelo}/borrar-{serie}
     defaults: { _controller: AdminBundle:Default:borrarSerie }
-    
-admin_piezas:
-    pattern: /administracion/piezas
-    defaults: { _controller: AdminBundle:Default:piezas }
 
-serie_col_piezas:
-    pattern: /administracion/{marca}/{modelo}/{serie}/piezas
-    defaults: { _controller: AdminBundle:Default:ColPiezas }
+precios:
+    pattern: /precios
+    defaults: { _controller: AdminBundle:Precios:precios }
+    
+tipo:
+    pattern: /precios/{tipo}
+    defaults: { _controller: AdminBundle:Precios:tipos }    

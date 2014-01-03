@@ -1,0 +1,41 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    Series
+{% endblock %}
+{% block id 'series' %}
+ 
+{% block article %}
+    <h1>
+    Precios
+    </h1>
+    <section id="formulario_series">
+        <h4>Agregar nueva Serie</h4>
+        <form action="{{ path('precios') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+                <input class="boton" type="submit" value="Agregar" />
+        </form>
+    </section>
+    <section id="listado_modelos">
+        <table>
+            <tr>
+                <th>Tipo de Motor</th>
+            </tr>
+            {% for tipo in tipos %}
+                <tr>
+                    <td><a href="{{ path('tipo',{'tipo': tipo.id })}}">{{tipo.nombre}}</a></td>
+                </tr>
+            {% endfor %}
+            {% if tipos == null%}
+                {{'no existen tipos de motor registrados'}}
+            {%endif%}
+
+        </table>
+
+    </section>
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}
