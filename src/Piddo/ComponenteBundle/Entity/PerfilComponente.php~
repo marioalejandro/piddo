@@ -40,6 +40,7 @@ class PerfilComponente
      * @var integer
      *
      * @Assert\NotBlank(message="Debe ingresar el numero de componentes")
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
      * 
      * @ORM\Column(name="maximo", type="integer")
      */

@@ -36,11 +36,18 @@ class Trabajo
     private $id;
     
     /**
-     * 
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
      * @Assert\NotBlank(message="Debe ingresar una cantidad")
      * @ORM\Column(name="cantidad", type="integer")
      */
     private $cantidad;
+    
+    /**
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
+     * @Assert\NotBlank(message="Debe ingresar un precio")
+     * @ORM\Column(name="precio", type="integer")
+     */
+    private $precio;
 
     /************************************************
      * 		ATRIBUTOS FOREIGN KEY
@@ -65,6 +72,7 @@ class Trabajo
     function __construct() 
     {
         $this->cantidad = 0;
+        $this->precio = 0;
     }
 
       /************************************************
@@ -103,6 +111,30 @@ class Trabajo
     {
         return $this->cantidad;
     }
+    
+    /**
+     * Set precio
+     *
+     * @param integer $precio
+     * @return Trabajo
+     */
+    public function setPrecio($precio)
+    {
+        $this->precio = $precio;
+    
+        return $this;
+    }
+
+    /**
+     * Get precio
+     *
+     * @return integer 
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
+    }    
+    
     
     /************************************************
      * 		GETTERS & SETTERS FOREIGN KEY
@@ -189,6 +221,7 @@ class Trabajo
             'maxMessage' => 'Vous ne devez pas dépasser 180cm',
         )));
     }
+
 
 
 

@@ -22,7 +22,7 @@ class PerfilComponenteType extends AbstractType
             ->add('componente',null, array(
                 'disabled' => true
             ))
-            ->add('maximo',null, array(
+            ->add('maximo','integer', array(
                 'invalid_message' => 'Ingrese solo números',
             ))
             

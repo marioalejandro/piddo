@@ -289,14 +289,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'borrar_serie')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::borrarSerieAction',));
             }
 
-            // admin_piezas
-            if ($pathinfo === '/administracion/piezas') {
-                return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::piezasAction',  '_route' => 'admin_piezas',);
+        }
+
+        if (0 === strpos($pathinfo, '/precios')) {
+            // precios
+            if ($pathinfo === '/precios') {
+                return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\PreciosController::preciosAction',  '_route' => 'precios',);
             }
 
-            // serie_col_piezas
-            if (preg_match('#^/administracion/(?P<marca>[^/]++)/(?P<modelo>[^/]++)/(?P<serie>[^/]++)/piezas$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'serie_col_piezas')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::ColPiezasAction',));
+            // tipo
+            if (preg_match('#^/precios/(?P<tipo>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tipo')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\PreciosController::tiposAction',));
             }
 
             // agregar_repuestos

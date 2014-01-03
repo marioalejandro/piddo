@@ -182,6 +182,12 @@ public function recepcionAction($presupuesto)
                             $nuevoTrabajo = new Trabajo();
                             $nuevoTrabajo->setPresupuesto($presupuesto);
                             $nuevoTrabajo->setRectificado($r);
+                            $precio = $em->getRepository('AdminBundle:Precio')->findOneBy(array(
+                                'rectificado' =>$r->getId(),
+                                'tipoMotor' => $presupuesto->getSerie()->getTipoMotor()->getId(),
+                                ));
+                            $p = $precio == null ? 0 : $precio->getPrecio();
+                            $nuevoTrabajo->setPrecio($p);
                             $presupuesto->getTrabajos()->add($nuevoTrabajo);
                         }
                         
@@ -208,7 +214,7 @@ public function recepcionAction($presupuesto)
 
         }
 
-            return $this->render('PresupuestoBundle:Default:presupuestoTrabajos.html.twig', 
+        return $this->render('PresupuestoBundle:Default:presupuestoTrabajos.html.twig', 
          array(
              'form' => $formTrabajos->createView(),
          ));     
