@@ -1,26 +1,26 @@
 <?php
 
-namespace Piddo\ComponenteBundle\Entity;
+namespace Piddo\TallerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Piddo\ComponenteBundle\Entity\Componente;
-use Piddo\MotorBundle\Entity\Serie;
+use Piddo\TallerBundle\Entity\Rectificado;
 
 /**
- * PerfilComponente
+ * ColRectificado
  *
  * @UniqueEntity(
- *     fields={"serie", "componente"},
- *     errorPath="componente",
- *     message="Este componente ya existe en este motor."
+ *     fields={"serie", "rectificado"},
+ *     errorPath="rectificado",
+ *     message="Este trabajo ya existe en este motor."
  * )
  * 
+ * 
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Piddo\ComponenteBundle\Entity\PerfilComponenteRepository")
+ * @ORM\Entity(repositoryClass="Piddo\TallerBundle\Entity\PerfilRectificadoRepository")
  */
-class PerfilComponente
+class PerfilRectificado
 {
     
     /************************************************
@@ -35,53 +35,44 @@ class PerfilComponente
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
     /**
      * @var integer
      *
-     * @Assert\NotBlank(message="Debe ingresar el numero de componentes")
-     * 
-     * @ORM\Column(name="maximo", type="integer")
+     * @ORM\Column(name="cantidad", type="integer")
      */
-    private $maximo;
+    private $cantidad;
 
     /************************************************
      * 		ATRIBUTOS FOREIGN KEY
      ***********************************************/
     
     /**
-     * @var Componente
-     * 
-     * @Assert\NotBlank(message="Debe elegir un componente")
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Componente")
+     * * @ORM\ManyToOne(targetEntity="Piddo\TallerBundle\Entity\Rectificado")
      */
-    private $componente;
+    private $rectificado;
 
     /**
      * @var string
-     * 
-     * @Assert\NotBlank(message="Debe ingresar una serie")
      *
-     * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie", inversedBy="perfilComponentes")
+     * * @ORM\ManyToOne(targetEntity="Piddo\MotorBundle\Entity\Serie", inversedBy="rectDisponibles")
      */
     private $serie;
 
     /************************************************
      * 		CONSTRUCTOR
      ***********************************************/
-    
     function __construct() 
     {
         $this->maximo = 0;
     }
 
-  
     /************************************************
      * 		GETTERS & SETTERS
      ***********************************************/
-
-
+    
     /**
      * Get id
      *
@@ -91,79 +82,79 @@ class PerfilComponente
     {
         return $this->id;
     }
-
+    
     /**
-     * Set maximo
+     * Set cantidad
      *
-     * @param integer $maximo
-     * @return PerfilComponente
+     * @param string $cantidad
+     * @return PerfilRectificado
      */
-    public function setMaximo($maximo)
+    public function setCantidad($cantidad)
     {
-        $this->maximo = $maximo;
+        $this->cantidad = $cantidad;
     
         return $this;
     }
 
     /**
-     * Get maximo
+     * Get cantidad
      *
-     * @return integer 
+     * @return string 
      */
-    public function getMaximo()
+    public function getCantidad()
     {
-        return $this->maximo;
+        return $this->cantidad;
     }
+
     /************************************************
      * 		GETTERS EXTRAS
      ***********************************************/
     
     /**
-     * Get grupoComponente
+     * Get grupoRectificado
      *
-     * @return string
+     * @return Piddo\TallerBundle\Entity\GrupoRectificado
      */
-    public function getGrupoComponente()
+    public function getGrupoRectificado()
     {
       
-        return $this->getComponente()->getGrupoComponente()->getNombre();
-    } 
-    
-        
+        return $this->getRectificado()->getGrupoRectificado()->getNombre();
+    }     
+
     /************************************************
      *      GETTERS & SETTERS FOREIGN KEY
-     ***********************************************/
-
+     ***********************************************/    
+    
     /**
-     * Set componente
+     * Set rectificado
      *
-     * @param \Piddo\ComponenteBundle\Entity\Componente $componente
-     * @return PerfilComponente
+     * @param string $rectificado
+     * @return PerfilRectificado
      */
-    public function setComponente(\Piddo\ComponenteBundle\Entity\Componente $componente = null)
+    public function setRectificado($rectificado)
     {
-        $this->componente = $componente;
+        $this->rectificado = $rectificado;
     
         return $this;
     }
 
     /**
-     * Get componente
+     * Get rectificado
      *
-     * @return \Piddo\ComponenteBundle\Entity\Componente 
+     * @return string 
      */
-    public function getComponente()
+    public function getRectificado()
     {
-        return $this->componente;
+        return $this->rectificado;
     }
 
     /**
      * Set serie
      *
-     * @param \Piddo\MotorBundle\Entity\Serie $serie
-     * @return PerfilComponente
+     * @param string $serie
+     * @return PerfilRectificado
      */
-    public function setSerie(\Piddo\MotorBundle\Entity\Serie $serie = null)
+    public function setSerie($serie)
     {
         $this->serie = $serie;
     
@@ -173,22 +164,19 @@ class PerfilComponente
     /**
      * Get serie
      *
-     * @return \Piddo\MotorBundle\Entity\Serie 
+     * @return string 
      */
     public function getSerie()
     {
         return $this->serie;
     }
-    
     /************************************************
      * 		METODOS
      ***********************************************/
     
     public function __toString()
     {
-        return $this->getComponente()->getNombre();
+        return $this->getRectificado()->getNombre();
     }
-    
-    
-
+  
 }
