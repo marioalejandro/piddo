@@ -16,6 +16,7 @@ use Piddo\TallerBundle\Entity\ColRectificado;
 use Piddo\AdminBundle\Form\SerieRectType;
 use Piddo\AdminBundle\Form\AgregarRepuestoType;
 use Piddo\RepuestoBundle\Entity\Repuesto;
+use Piddo\PresupuestoBundle\Entity\Casillero;
 
 
 class DefaultController extends Controller
@@ -473,6 +474,34 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             
             $repuesto = new Repuesto();
+            
+            $formulario = $this->createForm(new AgregarRepuestoType(), $repuesto);
+            $formulario->handleRequest($peticion);
+            
+            if($formulario->isValid()){
+                $em->persist($repuesto);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', 'El Repuesto '.$repuesto.' ha sido registrado correctamente');
+                return $this->redirect($this->generateUrl('agregar_repuestos'));
+            }
+            
+            return $this->render('AdminBundle:Default:agregarRepuestos.html.twig',
+                    array(
+                        'formulario' => $formulario->createView(),
+                        'repuestos' => $em->getRepository('RepuestoBundle:Repuesto')->findAll()
+                    ));
+        }
+        
+        /************
+         * Casilleros
+         */
+        
+        public function casillerosAction($param) 
+        {
+            $peticion = $this->getRequest();
+            $em = $this->getDoctrine()->getManager();
+            
+            //$repuesto = new ();
             
             $formulario = $this->createForm(new AgregarRepuestoType(), $repuesto);
             $formulario->handleRequest($peticion);

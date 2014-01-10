@@ -8,4 +8,4 @@ presupuesto_recepcion:
     
 presupuesto_trabajos:
     pattern:  /presupuesto/trabajos/{presupuesto}
-    defaults: { _controller: PresupuestoBundle:Presupuesto:trabajos }    
+    defaults: { _controller: PresupuestoBundle:Presupuesto:trabajos }

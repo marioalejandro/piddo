@@ -40,4 +40,8 @@ precios:
     
 tipo:
     pattern: /precios/{tipo}
-    defaults: { _controller: AdminBundle:Precios:tipos }    
+    defaults: { _controller: AdminBundle:Precios:tipos }
+
+admin_casilleros:
+    pattern: /administracion/casilleros
+    defaults: { _controller: AdminBundle:Default:casilleros }

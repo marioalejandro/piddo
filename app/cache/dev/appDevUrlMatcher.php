@@ -314,6 +314,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // admin_casilleros
+        if ($pathinfo === '/administracion/casilleros') {
+            return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::casillerosAction',  '_route' => 'admin_casilleros',);
+        }
+
         // usuario_registro
         if ($pathinfo === '/registro') {
             return array (  '_controller' => 'Piddo\\UsuarioBundle\\Controller\\DefaultController::registroAction',  '_route' => 'usuario_registro',);
