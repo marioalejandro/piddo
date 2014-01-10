@@ -115,35 +115,40 @@ class Presupuesto
     
     /**
      * @var integer
-     *
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
      * @ORM\Column(name="total_repuestos", type="integer")
      */
     private $totalRepuestos;
     
     /**
      * @var integer
-     *
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
      * @ORM\Column(name="total_rectificados", type="integer")
      */
     private $totalRectificados;
     
     /**
      * @var integer
-     *
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
      * @ORM\Column(name="total_general", type="integer")
      */
     private $totalGeneral;
     
     /**
      * @var integer
-     *
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
      * @ORM\Column(name="descuento", type="integer")
      */
     private $descuento;
+    /**
+     * @var integer
+     * @Assert\Type(type="integer", message="Solo debe ingresar números")
+     * @ORM\Column(name="pagado", type="integer")
+     */
+    private $pagado;
     
     /**
      * @var string
-     *
      * @ORM\Column(name="motivoDescuento", type="string", length=255)
      */
     private $motivoDescuento;
@@ -165,6 +170,7 @@ class Presupuesto
         $this->setTotalRectificados(0);
         $this->setTotalRepuestos(0);
         $this->setMotivoDescuento('');
+        $this->setPagado(0);
         
         $this->setFechaCreacion(new \DateTime('now'));
         $this->setFechaEntrega(new \DateTime('tomorrow'));
@@ -499,6 +505,30 @@ class Presupuesto
     {
         return $this->descuento;
     }
+    
+    
+    /**
+     * Set pagado
+     *
+     * @param integer $pagado
+     * @return Presupuesto
+     */
+    public function setPagado($pagado)
+    {
+        $this->pagado = $pagado;
+    
+        return $this;
+    }
+
+    /**
+     * Get pagado
+     *
+     * @return integer 
+     */
+    public function getPagado()
+    {
+        return $this->pagado;
+    }
 
     /**
      * Set motivoDescuento
@@ -512,6 +542,7 @@ class Presupuesto
     
         return $this;
     }
+    
 
     /**
      * Get motivoDescuento
@@ -599,6 +630,8 @@ class Presupuesto
         
         return (string)$this->getId();
     }
+
+
 
 
 

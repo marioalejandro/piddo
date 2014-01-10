@@ -13,17 +13,28 @@
             <th>{{'marca'}}</th>
             <th>{{'modelo'}}</th>
             <th>{{'serie'}}</th>
+            <th>{{'recepcion'}}</th>
+            <th>{{'trabajos'}}</th>
+            <th>{{'total'}}</th>
         </tr>
         {%for p in presupuestos%}
         <tr>
-            <td>{{p.id}}</td>
-            <td>{{p.cliente}}</td>
-            <td>{{p.serie.modelo.marca}}</td>
-            <td>{{p.serie.modelo}}</td>
-            <td>{{p.serie}}</td>
+            <td><a href="{{ path('nuevo_presupuesto',{'presupuesto': p.id })}}">{{p.id}}</a></td>
+            <td><a href="{{ path('nuevo_presupuesto',{'presupuesto': p.id })}}">{{p.cliente}}</a></td>
+            <td><a href="{{ path('nuevo_presupuesto',{'presupuesto': p.id })}}">{{p.serie.modelo.marca}}</a></td>
+            <td><a href="{{ path('nuevo_presupuesto',{'presupuesto': p.id })}}">{{p.serie.modelo}}</a></td>
+            <td><a href="{{ path('nuevo_presupuesto',{'presupuesto': p.id })}}">{{p.serie}}</a></td>
+            <td><a href="{{ path('presupuesto_recepcion',{'presupuesto': p.id })}}">{{'modificar'}}</a></td>
+            <td><a href="{{ path('presupuesto_trabajos',{'presupuesto': p.id })}}">{{p.totalRectificados}}</a></td>
+            <td><a href="{{ path('presupuesto_final',{'presupuesto': p.id })}}">{{p.totalGeneral}}</a></td>
+
         </tr>
         {%endfor%}
     </table>
+    {%if index != 0%}
+        <a href="{{ path('portada_gerencia',{'index': index-1}) }}"><-Anterior</a>
+    {%endif%}
+        <a href="{{ path('portada_gerencia',{'index': index+1}) }}">Siguiente-></a>
 {% endblock %}
  
 {% block aside %}

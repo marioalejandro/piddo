@@ -1,0 +1,24 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    <a href="{{ path('nuevo_presupuesto')}}">Nuevo Presupuesto</a>
+{% endblock %}
+{% block id 'presupuesto' %}
+ 
+{% block article %}
+   
+    <h1>{{ block('title') }}</h1>
+    <section id="formulario_cliente">
+        <h4>TOTALES</h4>
+        {{ form(form) }}
+    </section>
+    
+    
+    
+
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

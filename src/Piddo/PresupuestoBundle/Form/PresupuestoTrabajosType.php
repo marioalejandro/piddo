@@ -20,6 +20,7 @@ class PresupuestoTrabajosType extends AbstractType
         ));
         //Botones
         $builder->add('Guardar', 'submit');
+        $builder->add('Final', 'submit');
         
         
     }

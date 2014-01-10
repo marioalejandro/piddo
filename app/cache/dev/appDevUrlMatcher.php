@@ -215,8 +215,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // nuevo_presupuesto
-        if ($pathinfo === '/nuevo-presupuesto') {
-            return array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::nuevoAction',  '_route' => 'nuevo_presupuesto',);
+        if (0 === strpos($pathinfo, '/nuevo-presupuesto') && preg_match('#^/nuevo\\-presupuesto(?:/(?P<presupuesto>[^/]++))?$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'nuevo_presupuesto')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::nuevoAction',  'presupuesto' => NULL,));
         }
 
         if (0 === strpos($pathinfo, '/presupuesto')) {
@@ -228,6 +228,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // presupuesto_trabajos
             if (0 === strpos($pathinfo, '/presupuesto/trabajos') && preg_match('#^/presupuesto/trabajos/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_trabajos')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::trabajosAction',));
+            }
+
+            // presupuesto_final
+            if (0 === strpos($pathinfo, '/presupuesto/final') && preg_match('#^/presupuesto/final/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_final')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::finalAction',));
             }
 
         }
@@ -252,8 +257,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         if (0 === strpos($pathinfo, '/administracion')) {
             // portada_gerencia
-            if ($pathinfo === '/administracion/portada') {
-                return array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::portadaGerenciaAction',  '_route' => 'portada_gerencia',);
+            if (0 === strpos($pathinfo, '/administracion/portada') && preg_match('#^/administracion/portada(?:/(?P<index>[^/]++))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'portada_gerencia')), array (  '_controller' => 'Piddo\\AdminBundle\\Controller\\DefaultController::portadaGerenciaAction',  'index' => 0,));
             }
 
             if (0 === strpos($pathinfo, '/administracion/marcas')) {
