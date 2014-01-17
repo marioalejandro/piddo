@@ -108,6 +108,11 @@ class Presupuesto
      * @ORM\OneToMany(targetEntity="Piddo\PresupuestoBundle\Entity\Trabajo", mappedBy="presupuesto", cascade={"persist"})
      */
     protected $trabajos;
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Piddo\RepuestoBundle\Entity\Repuestos", mappedBy="presupuesto", cascade={"persist"})
+     */
+    protected $repuestos;
     
     /************************************************************************
      *      ATRIBUTOS : TOTALES                                
@@ -634,7 +639,36 @@ class Presupuesto
 
 
 
+    /**
+     * Add repuestos
+     *
+     * @param \Piddo\RepuestoBundle\Entity\Repuestos $repuestos
+     * @return Presupuesto
+     */
+    public function addRepuesto(\Piddo\RepuestoBundle\Entity\Repuestos $repuestos)
+    {
+        $this->repuestos[] = $repuestos;
+    
+        return $this;
+    }
 
+    /**
+     * Remove repuestos
+     *
+     * @param \Piddo\RepuestoBundle\Entity\Repuestos $repuestos
+     */
+    public function removeRepuesto(\Piddo\RepuestoBundle\Entity\Repuestos $repuestos)
+    {
+        $this->repuestos->removeElement($repuestos);
+    }
 
-
+    /**
+     * Get repuestos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRepuestos()
+    {
+        return $this->repuestos;
+    }
 }

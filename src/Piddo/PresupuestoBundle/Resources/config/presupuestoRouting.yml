@@ -9,6 +9,10 @@ presupuesto_recepcion:
 presupuesto_trabajos:
     pattern:  /presupuesto/trabajos/{presupuesto}
     defaults: { _controller: PresupuestoBundle:Presupuesto:trabajos }
+
+presupuesto_repuestos:
+    pattern:  /presupuesto/repuestos/{presupuesto}
+    defaults: { _controller: PresupuestoBundle:Presupuesto:repuestos } 
     
 presupuesto_final:
     pattern:  /presupuesto/final/{presupuesto}

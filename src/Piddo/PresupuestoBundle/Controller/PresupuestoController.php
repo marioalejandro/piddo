@@ -10,6 +10,7 @@ use Piddo\PresupuestoBundle\Form\PresupuestoRecepcionType;
 use Piddo\PresupuestoBundle\Entity\Trabajo;
 use Piddo\PresupuestoBundle\Form\PresupuestoTrabajosType;
 use Piddo\PresupuestoBundle\Form\PresupuestoFinalType;
+use Piddo\PresupuestoBundle\Form\PresupuestoRepuestosType;
 
 class PresupuestoController extends Controller
 {
@@ -279,6 +280,69 @@ public function recepcionAction($presupuesto)
                 array(
                     'form' => $formulario->createView(),
                 ));
+    }
+    public function repuestosAction($presupuesto)
+    {
+        $peticion = $this->getRequest();
+       
+        //obtencion de datos del modelo
+        $em = $this->getDoctrine()->getManager();
+        $presupuesto = $em->getRepository('PresupuestoBundle:Presupuesto')->findOneBy(array('id'=> $presupuesto));
+        
+        $repuestos = $em->getRepository('RepuestoBundle:Repuesto')->findAll();
+        $repAgregados = $presupuesto->getRepuestos();
+        
+        $serie = $presupuesto->getSerie();
+        $perfilComponentes = $serie->getPerfilComponentes();
+        $gruposComponentes = $em->getRepository('ComponenteBundle:GrupoComponente')->findAll();
+        $recepComponentes = $presupuesto->getRecepcionComponentes();
+
+        //1.- Obtencion de objeto presupuesto (listo) $presupuesto
+        //2.- Creacion de los objetos Recepcion
+
+        foreach ($repuestos as $repuesto)
+        {
+            $nuevo = true;
+            //Recorremos los componentes
+            foreach ($repAgregados as $ra)
+            {
+                if($repuesto == $ra->getRepuesto())
+                {
+                    $nuevo = false;
+                }
+            }
+            if($nuevo)
+            {
+                $nuevo = new \Piddo\RepuestoBundle\Entity\Repuestos();
+                $nuevo->setRepuesto($repuesto);
+                $nuevo->setPresupuesto($presupuesto);
+                $presupuesto->getRepuestos()->add($nuevo);
+            }
+
+            
+        }
+
+
+        //3.- Agregar los Recepcion a el presupuesto(hecho)
+        //4.- Creacion de formulario
+        $formRepuestos = $this->createForm(new PresupuestoRepuestosType(), $presupuesto);
+     
+        $formRepuestos->handleRequest($peticion);
+
+        if($formRepuestos->isValid()){
+        $em->persist($presupuesto);
+        $em->flush();
+
+        $mensaje ='El Presupuesto se ha modificado correctamente';
+
+        $this->get('session')->getFlashBag()->add('info', $mensaje);
+
+        }
+
+            return $this->render('PresupuestoBundle:Default:presupuestoRepuestos.html.twig', 
+         array(
+             'form' => $formRepuestos->createView(),
+         ));     
     }
 }
 

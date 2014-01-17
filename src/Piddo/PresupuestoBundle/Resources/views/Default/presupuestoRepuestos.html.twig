@@ -1,0 +1,44 @@
+{% extends '::plantillaGerencia.html.twig' %}
+ 
+{% block title %}
+    <a href="{{ path('nuevo_presupuesto')}}">Nuevo Presupuesto</a>
+{% endblock %}
+{% block id 'presupuesto' %}
+ 
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+    <section id="formulario_cliente">
+        <h4>NOMINA DE REPUESTOS</h4>
+        {#<form action="{{ path('nuevo_presupuesto') }}" method="post" {{ form_enctype(form) }}>#}
+        {{ form_start(form) }}
+            {{ form_errors(form) }}
+                <table>
+                    <tr>
+                        <th>Grupo</th>
+                        <th>Componente</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                    </tr>
+                    {% for rep in form.repuestos %}
+                    <tr>
+                        <td>{{ form_widget(rep.repuesto) }}</td>
+                        <td>{{ form_widget(rep.cantidad) }}</td>
+                        <td>{{ form_widget(rep.precio) }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% if form.repuestos == null%}
+                        {{'el perfil de trabajos de este motor esta vacio'}}
+                    {%endif%}
+                </table>
+                
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
+        </form>
+    </section>
+
+
+{% endblock %}
+ 
+{% block aside %}
+    {# ... #}
+{% endblock %}

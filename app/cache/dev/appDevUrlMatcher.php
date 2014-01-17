@@ -230,6 +230,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_trabajos')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::trabajosAction',));
             }
 
+            // presupuesto_repuestos
+            if (0 === strpos($pathinfo, '/presupuesto/repuestos') && preg_match('#^/presupuesto/repuestos/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_repuestos')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::repuestosAction',));
+            }
+
             // presupuesto_final
             if (0 === strpos($pathinfo, '/presupuesto/final') && preg_match('#^/presupuesto/final/(?P<presupuesto>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'presupuesto_final')), array (  '_controller' => 'Piddo\\PresupuestoBundle\\Controller\\PresupuestoController::finalAction',));
